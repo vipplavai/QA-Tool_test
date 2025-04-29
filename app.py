@@ -187,7 +187,12 @@ with right:
         for i, pair in enumerate(qa_pairs):
             st.markdown(f"**Q{i+1}:** {pair['question']}")
             st.markdown(f"**A{i+1}:** {pair['answer']}")
-            j = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
+            j = st.radio(
+                label="", 
+                options=["Correct", "Incorrect", "Doubt"], 
+                key=f"j_{i}", 
+                index=None
+            )
             judgments.append({
                 "qa_index": i,
                 "question": pair["question"],
@@ -200,6 +205,7 @@ with right:
         submit = st.form_submit_button("✅ Submit and Next", disabled=not all_answered)
         if not all_answered:
             st.info("📝 Please judge all Q&A pairs before submitting.")
+
 
     if submit:
         now = datetime.now(timezone.utc)
