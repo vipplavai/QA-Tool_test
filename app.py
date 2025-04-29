@@ -62,7 +62,9 @@ if not intern_id:
     st.stop()
 
 # === Session State Initialization ===
-for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id", "eligible_content_ids", "timer_expired"]:
+for key in ["eligible_id", "deadline", "assigned_time", "judged",
+            "auto_skip_triggered", "current_content_id",
+            "eligible_content_ids", "timer_expired"]:
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
@@ -93,22 +95,17 @@ def assign_new_content():
 
     st.session_state.eligible_id = None
 
-# === Timer Expired Screen ===
+# === Timeout Screen ===
 if st.session_state.get("timer_expired"):
     st.title("⏰ Time Expired")
-    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
-
+    st.warning("This content ID has been skipped due to timeout.")
     if st.button("🔄 Fetch New Content"):
         st.session_state.timer_expired = False
-        st.session_state.eligible_id = None
-        st.session_state.current_content_id = None
-        st.session_state.judged = False
-        st.session_state.auto_skip_triggered = False
         assign_new_content()
         st.rerun()
     st.stop()
 
-# === Initial Content Assignment ===
+# === Assign Initial Content ===
 if st.session_state.eligible_id is None:
     assign_new_content()
 if st.session_state.eligible_id is None:
@@ -117,8 +114,6 @@ if st.session_state.eligible_id is None:
 
 # === Load Content and QA ===
 cid = st.session_state.eligible_id
-
-# ✅ Reset radios if content_id changes
 if st.session_state.current_content_id != cid:
     content, qa_doc = fetch_content_and_qa(cid)
     short_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
@@ -144,10 +139,8 @@ if not content or not qa_pairs:
     assign_new_content()
     st.rerun()
 
-# === Calculate Remaining Time ===
+# === Calculate Remaining Time & Auto Timeout ===
 remaining = int(st.session_state.deadline - time.time())
-
-# === Auto Skip on Timeout ===
 if remaining <= 0 and not st.session_state.judged:
     if not st.session_state.auto_skip_triggered:
         st.session_state.auto_skip_triggered = True
@@ -228,10 +221,9 @@ with right:
     if unanswered:
         st.info("📝 Please judge all Q&A pairs before submitting.")
 
-# === Submit button OUTSIDE the form ===
+# === Submit Button ===
 submit_btn = st.button("✅ Submit and Next")
 
-# === Handle Submit Click ===
 if submit_btn:
     if unanswered:
         st.warning("⚠️ Please judge all Q&A pairs before submitting.")
@@ -255,7 +247,7 @@ if submit_btn:
 
         st.success(f"✅ Judgments submitted in {time_taken:.1f} seconds.")
 
-        # Clear session state for next content
+        # Clear previous judgments
         for key in list(st.session_state.keys()):
             if key.startswith("j_"):
                 del st.session_state[key]
