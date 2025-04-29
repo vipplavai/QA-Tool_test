@@ -51,7 +51,7 @@ doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
 # === Constants ===
-TIMER_SECONDS = 60
+TIMER_SECONDS = 600  # 10 minutes
 MAX_AUDITORS = 5
 
 # === Intern Login ===
@@ -61,20 +61,25 @@ if not intern_id:
     st.warning("Please enter your Intern ID.")
     st.stop()
 
-# === Session State Init ===
+# === Session State Initialization ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id", "eligible_content_ids", "timer_expired"]:
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
-# === Timer Expired Screen ===
+# === Timeout Screen if Timer Expired ===
 if st.session_state.get("timer_expired"):
-    st.title("❌ Timer Ran Out")
-    st.error("Your 10 minutes are up for the current Content ID. Please return to Home Page to continue.")
-    
-    if st.button("🏠 Go to Home Page"):
-        for key in list(st.session_state.keys()):
-            del st.session_state[key]
-        st.experimental_rerun()
+    st.title("⏰ Time Expired")
+    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
+
+    if st.button("🔄 Fetch New Content"):
+        # Only reset necessary things
+        st.session_state.timer_expired = False
+        st.session_state.eligible_id = None
+        st.session_state.current_content_id = None
+        st.session_state.judged = False
+        st.session_state.auto_skip_triggered = False
+        assign_new_content()
+        st.rerun()
     st.stop()
 
 # === Cached Content Fetching ===
@@ -139,22 +144,22 @@ if not content or not qa_pairs:
     assign_new_content()
     st.rerun()
 
-# === Auto Skip on Timeout ===
-# === Timer Expired Screen ===
-if st.session_state.get("timer_expired"):
-    st.title("⏰ Time Expired")
-    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
+# === Calculate Remaining Time for Timer ===
+remaining = int(st.session_state.deadline - time.time())
 
-    if st.button("🔄 Fetch New Content"):
-        # Only reset minimal things
-        st.session_state.timer_expired = False
-        st.session_state.eligible_id = None
-        st.session_state.current_content_id = None
-        st.session_state.judged = False
-        st.session_state.auto_skip_triggered = False
-        assign_new_content()
-        st.rerun()
-    st.stop()
+# === Auto Skip on Timeout ===
+if remaining <= 0 and not st.session_state.judged:
+    if not st.session_state.auto_skip_triggered:
+        st.session_state.auto_skip_triggered = True
+        skip_col.insert_one({
+            "intern_id": intern_id,
+            "content_id": cid,
+            "status": "timeout",
+            "assigned_at": st.session_state.assigned_time,
+            "timestamp": datetime.now(timezone.utc)
+        })
+        st.session_state.timer_expired = True
+    st.rerun()
 
 # === HTML + JS Timer Visual
 st.components.v1.html(f"""
@@ -173,12 +178,12 @@ st.components.v1.html(f"""
         border: 2px solid #00bcd4;
         font-family: monospace;
     '>
-        ⏱ Time Left: <span id="timer">1:00</span>
+        ⏱ Time Left: <span id="timer">10:00</span>
         <script>
             let total = {remaining};
             const el = document.getElementById('timer');
             const interval = setInterval(() => {{
-                let m = Math.floor(total / 60);
+                let m = Math.floor(total/60);
                 let s = total % 60;
                 el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
                 total--;
@@ -240,7 +245,7 @@ if submit_btn:
                 "intern_id": intern_id,
                 "timestamp": now,
                 "assigned_at": st.session_state.assigned_time,
-                "time_taken": time_taken,  # ✅ Save time_taken
+                "time_taken": time_taken,
                 "length": "short"
             })
             if entry["judgment"] == "Doubt":
