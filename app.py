@@ -87,16 +87,21 @@ if st.session_state.eligible_id is None:
     st.stop()
 
 # === Load Content and QA ===
+# === Load Content and QA ===
 cid = st.session_state.eligible_id
 
-# ✅ Clear radios if content_id changes
+# ✅ Reset radio buttons if content_id changes
 if st.session_state.current_content_id != cid:
-    # Reset previous radio answers to None
-    for i in range(20):  # Assuming max 20 Q&A pairs (you can adjust)
-        key = f"j_{i}"
-        if key in st.session_state:
-            st.session_state[key] = None
+    # Fetch the number of short Q&A pairs for this content
+    qa_doc = qa_col.find_one({"content_id": cid})
+    short_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
+    
+    # Reset all radios to None
+    for i in range(len(short_pairs)):
+        st.session_state[f"j_{i}"] = None
+
     st.session_state.current_content_id = cid
+
 
 
 content = content_col.find_one({"content_id": cid})
