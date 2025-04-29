@@ -91,10 +91,13 @@ cid = st.session_state.eligible_id
 
 # ✅ Clear radios if content_id changes
 if st.session_state.current_content_id != cid:
-    for key in list(st.session_state.keys()):
-        if key.startswith("j_"):
-            del st.session_state[key]
+    # Reset previous radio answers to None
+    for i in range(20):  # Assuming max 20 Q&A pairs (you can adjust)
+        key = f"j_{i}"
+        if key in st.session_state:
+            st.session_state[key] = None
     st.session_state.current_content_id = cid
+
 
 content = content_col.find_one({"content_id": cid})
 qa_doc = qa_col.find_one({"content_id": cid})
