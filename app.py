@@ -51,7 +51,7 @@ doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
 # === Constants ===
-TIMER_SECONDS = 60  # 10 minutes
+TIMER_SECONDS = 60
 MAX_AUDITORS = 5
 
 # === Intern Login ===
@@ -95,7 +95,7 @@ def assign_new_content():
 
     st.session_state.eligible_id = None
 
-# === Timeout Screen ===
+# === Handle Timeout Rerun ===
 if st.session_state.get("timer_expired"):
     st.title("⏰ Time Expired")
     st.warning("This content ID has been skipped due to timeout.")
@@ -105,15 +105,16 @@ if st.session_state.get("timer_expired"):
         st.rerun()
     st.stop()
 
-# === Assign Initial Content ===
+# === Assign Content Initially ===
 if st.session_state.eligible_id is None:
     assign_new_content()
 if st.session_state.eligible_id is None:
     st.success("✅ All content audited!")
     st.stop()
 
-# === Load Content and QA ===
 cid = st.session_state.eligible_id
+
+# === Reset radios if new content loaded ===
 if st.session_state.current_content_id != cid:
     content, qa_doc = fetch_content_and_qa(cid)
     short_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
@@ -127,30 +128,36 @@ qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
 # === Handle Missing Content or QA ===
 if not content or not qa_pairs:
-    skip_col.insert_one({
-        "intern_id": intern_id,
-        "content_id": cid,
-        "status": "missing",
-        "assigned_at": st.session_state.assigned_time,
-        "timestamp": datetime.now(timezone.utc)
-    })
+    try:
+        skip_col.insert_one({
+            "intern_id": intern_id,
+            "content_id": cid,
+            "status": "missing",
+            "assigned_at": st.session_state.assigned_time,
+            "timestamp": datetime.now(timezone.utc)
+        })
+    except Exception as e:
+        st.error("❌ Failed to log missing data.")
     st.warning(f"⚠️ Skipping ID {cid} — missing content or Q&A.")
     st.session_state.current_content_id = None
     assign_new_content()
     st.rerun()
 
-# === Calculate Remaining Time & Auto Timeout ===
+# === Auto Timeout Logic (Safe) ===
 remaining = int(st.session_state.deadline - time.time())
 if remaining <= 0 and not st.session_state.judged:
-    if not st.session_state.auto_skip_triggered:
+    if not st.session_state.auto_skip_triggered and st.session_state.assigned_time and cid:
         st.session_state.auto_skip_triggered = True
-        skip_col.insert_one({
-            "intern_id": intern_id,
-            "content_id": cid,
-            "status": "timeout",
-            "assigned_at": st.session_state.assigned_time,
-            "timestamp": datetime.now(timezone.utc)
-        })
+        try:
+            skip_col.insert_one({
+                "intern_id": intern_id,
+                "content_id": cid,
+                "status": "timeout",
+                "assigned_at": st.session_state.assigned_time,
+                "timestamp": datetime.now(timezone.utc)
+            })
+        except Exception as e:
+            st.error("❌ Failed to log timeout skip.")
         st.session_state.timer_expired = True
     st.experimental_rerun()
 
@@ -176,7 +183,7 @@ st.components.v1.html(f"""
             let total = {remaining};
             const el = document.getElementById('timer');
             const interval = setInterval(() => {{
-                let m = Math.floor(total/60);
+                let m = Math.floor(total / 60);
                 let s = total % 60;
                 el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
                 total--;
@@ -186,7 +193,7 @@ st.components.v1.html(f"""
     </div>
 """, height=80)
 
-# === Render Content and Form ===
+# === UI Layout ===
 left, right = st.columns(2)
 
 with left:
@@ -209,7 +216,6 @@ with right:
         )
         if selected is None:
             unanswered = True
-
         judgments.append({
             "qa_index": i,
             "question": pair["question"],
@@ -240,14 +246,18 @@ if submit_btn:
                 "time_taken": time_taken,
                 "length": "short"
             })
-            if entry["judgment"] == "Doubt":
-                doubt_col.insert_one(entry)
-            else:
-                audit_col.insert_one(entry)
+            try:
+                if entry["judgment"] == "Doubt":
+                    doubt_col.insert_one(entry)
+                else:
+                    audit_col.insert_one(entry)
+            except Exception as e:
+                st.error("❌ Failed to save your audit. Please try again.")
+                st.stop()
 
         st.success(f"✅ Judgments submitted in {time_taken:.1f} seconds.")
 
-        # Clear previous judgments
+        # Clear radio selections
         for key in list(st.session_state.keys()):
             if key.startswith("j_"):
                 del st.session_state[key]
