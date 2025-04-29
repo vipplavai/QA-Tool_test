@@ -17,7 +17,7 @@ st.markdown("""
         font-family: sans-serif;
         color: #333;
         white-space: pre-wrap;
-        max-height: 400px;
+        max-height: 700px;
         overflow-y: auto;
     }
     div.stButton > button {
