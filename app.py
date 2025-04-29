@@ -51,7 +51,7 @@ doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
 # === Constants ===
-TIMER_SECONDS = 60  # 10 minutes
+TIMER_SECONDS = 600  # 10 minutes
 MAX_AUDITORS = 5
 
 # === Intern Login ===
@@ -171,7 +171,7 @@ st.components.v1.html(f"""
         border: 2px solid #00bcd4;
         font-family: monospace;
     '>
-        ⏱ Time Left: <span id="timer">1:00</span>
+        ⏱ Time Left: <span id="timer">10:00</span>
         <script>
             let total = {remaining};
             const el = document.getElementById('timer');
