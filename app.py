@@ -164,6 +164,7 @@ st.components.v1.html(f"""
 """, height=80)
 
 # === Render Content and Form ===
+# === Render Content and Form ===
 left, right = st.columns(2)
 
 with left:
@@ -171,35 +172,42 @@ with left:
     st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
 
 with right:
-    with st.form("judgment_form"):
-        judgments = []
+    st.subheader("❓ Short Q&A Pairs")
+    judgments = []
+    unanswered = False
 
-        st.subheader("❓ Short Q&A Pairs")
-        for i, pair in enumerate(qa_pairs):
-            st.markdown(f"**Q{i+1}:** {pair['question']}")
-            st.markdown(f"**A{i+1}:** {pair['answer']}")
-            j = st.radio(
-                label="",
-                options=["Correct", "Incorrect", "Doubt"],
-                key=f"j_{i}",
-                index=None
-            )
-            judgments.append({
-                "qa_index": i,
-                "question": pair["question"],
-                "answer": pair["answer"],
-                "judgment": j
-            })
-            st.markdown("---")
+    for i, pair in enumerate(qa_pairs):
+        st.markdown(f"**Q{i+1}:** {pair['question']}")
+        st.markdown(f"**A{i+1}:** {pair['answer']}")
+        selected = st.radio(
+            label="",
+            options=["Correct", "Incorrect", "Doubt"],
+            key=f"j_{i}",
+            index=None
+        )
+        if selected is None:
+            unanswered = True
 
-        # ✅ Require all judgments to be made
-        all_answered = all(j["judgment"] is not None for j in judgments)
-        submit = st.form_submit_button("✅ Submit and Next", disabled=not all_answered)
-        if not all_answered:
-            st.info("📝 Please judge all Q&A pairs before submitting.")
+        judgments.append({
+            "qa_index": i,
+            "question": pair["question"],
+            "answer": pair["answer"],
+            "judgment": selected
+        })
+        st.markdown("---")
 
+    # Info message inside right panel
+    if unanswered:
+        st.info("📝 Please judge all Q&A pairs before submitting.")
 
-    if submit:
+# === Submit button OUTSIDE the right column and form ===
+submit_btn = st.button("✅ Submit and Next")
+
+# === Handle Submit Click ===
+if submit_btn:
+    if unanswered:
+        st.warning("⚠️ Please judge all Q&A pairs before submitting.")
+    else:
         now = datetime.now(timezone.utc)
         for entry in judgments:
             entry.update({
@@ -215,6 +223,12 @@ with right:
                 audit_col.insert_one(entry)
 
         st.success("✅ Judgments submitted.")
+        
+        # Clear session state for next content
+        for key in list(st.session_state.keys()):
+            if key.startswith("j_"):
+                del st.session_state[key]
+
         st.session_state.judged = True
         st.session_state.current_content_id = None
         assign_new_content()
