@@ -51,7 +51,7 @@ doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
 # === Constants ===
-TIMER_SECONDS = 60
+TIMER_SECONDS = 600
 MAX_AUDITORS = 5
 
 # === Intern Login ===
@@ -62,9 +62,20 @@ if not intern_id:
     st.stop()
 
 # === Session State Init ===
-for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id", "eligible_content_ids"]:
+for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id", "eligible_content_ids", "timer_expired"]:
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
+
+# === Timer Expired Screen ===
+if st.session_state.get("timer_expired"):
+    st.title("❌ Timer Ran Out")
+    st.error("Your 10 minutes are up for the current Content ID. Please return to Home Page to continue.")
+    
+    if st.button("🏠 Go to Home Page"):
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        st.experimental_rerun()
+    st.stop()
 
 # === Cached Content Fetching ===
 @st.cache_data(ttl=300)
@@ -140,9 +151,7 @@ if remaining <= 0 and not st.session_state.judged:
             "assigned_at": st.session_state.assigned_time,
             "timestamp": datetime.now(timezone.utc)
         })
-        st.warning(f"⏰ Time expired — Skipped ID {cid}.")
-        st.session_state.current_content_id = None
-    assign_new_content()
+        st.session_state.timer_expired = True  # 🚀 Mark timer expired
     st.rerun()
 
 # === HTML + JS Timer Visual
@@ -162,7 +171,7 @@ st.components.v1.html(f"""
         border: 2px solid #00bcd4;
         font-family: monospace;
     '>
-        ⏱ Time Left: <span id="timer">1:00</span>
+        ⏱ Time Left: <span id="timer">10:00</span>
         <script>
             let total = {remaining};
             const el = document.getElementById('timer');
@@ -221,12 +230,15 @@ if submit_btn:
         st.warning("⚠️ Please judge all Q&A pairs before submitting.")
     else:
         now = datetime.now(timezone.utc)
+        time_taken = (now - st.session_state.assigned_time).total_seconds()
+
         for entry in judgments:
             entry.update({
                 "content_id": cid,
                 "intern_id": intern_id,
                 "timestamp": now,
                 "assigned_at": st.session_state.assigned_time,
+                "time_taken": time_taken,  # ✅ Save time_taken
                 "length": "short"
             })
             if entry["judgment"] == "Doubt":
@@ -234,8 +246,8 @@ if submit_btn:
             else:
                 audit_col.insert_one(entry)
 
-        st.success("✅ Judgments submitted.")
-        
+        st.success(f"✅ Judgments submitted in {time_taken:.1f} seconds.")
+
         # Clear session state for next content
         for key in list(st.session_state.keys()):
             if key.startswith("j_"):
