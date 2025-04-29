@@ -140,19 +140,21 @@ if not content or not qa_pairs:
     st.rerun()
 
 # === Auto Skip on Timeout ===
-remaining = int(st.session_state.deadline - time.time())
-if remaining <= 0 and not st.session_state.judged:
-    if not st.session_state.auto_skip_triggered:
-        st.session_state.auto_skip_triggered = True
-        skip_col.insert_one({
-            "intern_id": intern_id,
-            "content_id": cid,
-            "status": "timeout",
-            "assigned_at": st.session_state.assigned_time,
-            "timestamp": datetime.now(timezone.utc)
-        })
-        st.session_state.timer_expired = True  # 🚀 Mark timer expired
-    st.rerun()
+# === Timer Expired Screen ===
+if st.session_state.get("timer_expired"):
+    st.title("⏰ Time Expired")
+    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
+
+    if st.button("🔄 Fetch New Content"):
+        # Only reset minimal things
+        st.session_state.timer_expired = False
+        st.session_state.eligible_id = None
+        st.session_state.current_content_id = None
+        st.session_state.judged = False
+        st.session_state.auto_skip_triggered = False
+        assign_new_content()
+        st.rerun()
+    st.stop()
 
 # === HTML + JS Timer Visual
 st.components.v1.html(f"""
