@@ -1,10 +1,10 @@
 import streamlit as st
-from pymongo import MongoClient, errors
+from pymongo import MongoClient
 from datetime import datetime, timezone
 import random
 import time
 
-# === Streamlit Page Setup ===
+# === CONFIG ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
 
 st.markdown("""
@@ -35,43 +35,36 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# === MongoDB Setup (only mongo_uri from secrets) ===
+# === MongoDB Setup ===
 try:
     client = MongoClient(st.secrets["mongo_uri"])
     client.admin.command("ping")
 except Exception:
-    st.error("❌ Cannot connect to MongoDB. Check `mongo_uri` in secrets.toml.")
+    st.error("❌ Cannot connect to MongoDB. Check `mongo_uri` in Streamlit Secrets.")
     st.stop()
 
-db = client["Tel_QA"]  # hardcoded
+db = client["Tel_QA"]
 content_col = db["Content"]
 qa_col = db["QA_pairs"]
 audit_col = db["audit_logs"]
 doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
+# === Constants ===
+TIMER_SECONDS = 600
+MAX_AUDITORS = 5
+
 # === Intern Login ===
-st.title("🧐 JNANA - Q&A Auditing Tool")
+st.title("🧐 JNANA - Short Q&A Auditing Tool")
 intern_id = st.text_input("Enter your Intern ID").strip()
 if not intern_id:
     st.warning("Please enter your Intern ID.")
     st.stop()
 
-# === Timer Config ===
-TIMER_SECONDS = 600
-MAX_AUDITORS = 5
-
-# === State Initialization ===
-if "eligible_id" not in st.session_state:
-    st.session_state.eligible_id = None
-if "deadline" not in st.session_state:
-    st.session_state.deadline = None
-if "assigned_time" not in st.session_state:
-    st.session_state.assigned_time = None
-if "judged" not in st.session_state:
-    st.session_state.judged = False
-if "auto_skip_triggered" not in st.session_state:
-    st.session_state.auto_skip_triggered = False
+# === Session State Init ===
+for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered"]:
+    if key not in st.session_state:
+        st.session_state[key] = None if key == "eligible_id" else False
 
 # === Assign New Content ===
 def assign_new_content():
@@ -93,12 +86,13 @@ if st.session_state.eligible_id is None:
     st.success("✅ All content audited!")
     st.stop()
 
+# === Load Content and QA ===
 cid = st.session_state.eligible_id
 content = content_col.find_one({"content_id": cid})
-qa_data = qa_col.find_one({"content_id": cid})
+qa_doc = qa_col.find_one({"content_id": cid})
+qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
-# === Handle Missing Content ===
-if not content or not qa_data or "questions" not in qa_data or "short" not in qa_data["questions"]:
+if not content or not qa_pairs:
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
@@ -106,11 +100,15 @@ if not content or not qa_data or "questions" not in qa_data or "short" not in qa
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
-    st.warning(f"⚠️ Skipped ID {cid} due to missing content/Q&A.")
+    st.warning(f"⚠️ Skipping ID {cid} — missing content or Q&A.")
+    # Clear radio selections
+    for key in list(st.session_state.keys()):
+        if key.startswith("j_"):
+            del st.session_state[key]
     assign_new_content()
     st.rerun()
 
-# === Auto-skip if Timer Expires ===
+# === Auto Skip on Timeout ===
 remaining = int(st.session_state.deadline - time.time())
 if remaining <= 0 and not st.session_state.judged:
     if not st.session_state.auto_skip_triggered:
@@ -122,91 +120,99 @@ if remaining <= 0 and not st.session_state.judged:
             "assigned_at": st.session_state.assigned_time,
             "timestamp": datetime.now(timezone.utc)
         })
-        st.warning(f"⏰ Time expired for Content ID: {cid} — skipped automatically.")
+        st.warning(f"⏰ Time expired — Skipped ID {cid}.")
+
+        # Clear radio selections
+        for key in list(st.session_state.keys()):
+            if key.startswith("j_"):
+                del st.session_state[key]
+
         assign_new_content()
         st.rerun()
 
-# === Timer Display ===
-st.markdown(f"""
-<div style='position:sticky;top:0;z-index:1000;
-            text-align:center;background:#212121;color:white;
-            padding:0.5rem;font-family:monospace;'>
-  ⏱ Time Left: {remaining//60:02d}:{remaining%60:02d}
-</div>
-""", unsafe_allow_html=True)
+# === HTML + JS Timer Visual (No content ID)
+st.components.v1.html(f"""
+    <div style='
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 22px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #212121;
+        padding: 10px 20px;
+        border-radius: 8px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid #00bcd4;
+        font-family: monospace;
+    '>
+        ⏱ Time Left: <span id="timer">10:00</span>
+        <script>
+            let total = {remaining};
+            const el = document.getElementById('timer');
+            const interval = setInterval(() => {{
+                let m = Math.floor(total / 60);
+                let s = total % 60;
+                el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+                total--;
+                if (total < 0) clearInterval(interval);
+            }}, 1000);
+        </script>
+    </div>
+""", height=80)
 
-# === Q&A Layout ===
-qa_short = qa_data["questions"].get("short", [])
-qa_medium = qa_data["questions"].get("medium", [])
-qa_long = qa_data["questions"].get("long", [])
-
+# === Render Content and Form ===
 left, right = st.columns(2)
+
 with left:
     st.subheader(f"📄 Content ID: {cid}")
-    st.markdown(f"<div class='passage-box'>{content.get('content_text', '') or content.get('Content', '')}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
 
 with right:
     with st.form("judgment_form"):
         judgments = []
 
-        if qa_short:
-            st.subheader("Short Q&A")
-            for i, pair in enumerate(qa_short):
-                st.markdown(f"**Q{i+1}:** {pair['question']}")
-                st.markdown(f"**A{i+1}:** {pair['answer']}")
-                j = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"s_{i}")
-                judgments.append({**pair, "qa_index": i, "length": "short", "judgment": j})
+        st.subheader("❓ Short Q&A Pairs")
+        for i, pair in enumerate(qa_pairs):
+            st.markdown(f"**Q{i+1}:** {pair['question']}")
+            st.markdown(f"**A{i+1}:** {pair['answer']}")
+            j = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
+            judgments.append({
+                "qa_index": i,
+                "question": pair["question"],
+                "answer": pair["answer"],
+                "judgment": j
+            })
+            st.markdown("---")
 
-        if qa_medium:
-            st.subheader("Medium Q&A")
-            for i, pair in enumerate(qa_medium):
-                st.markdown(f"**Q{i+1}:** {pair['question']}")
-                st.markdown(f"**A{i+1}:** {pair['answer']}")
-                j = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"m_{i}")
-                judgments.append({**pair, "qa_index": i, "length": "medium", "judgment": j})
-
-        if qa_long:
-            st.subheader("Long Q&A")
-            for i, pair in enumerate(qa_long):
-                st.markdown(f"**Q{i+1}:** {pair['question']}")
-                st.markdown(f"**A{i+1}:** {pair['answer']}")
-                j = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"l_{i}")
-                judgments.append({**pair, "qa_index": i, "length": "long", "judgment": j})
-
-        # Submit button is only enabled if all judgments made
-        can_submit = all(j["judgment"] in ["Correct", "Incorrect", "Doubt"] for j in judgments)
-        submit = st.form_submit_button("✅ Submit and Next", disabled=not can_submit)
-        if not can_submit:
+        all_answered = all(j["judgment"] in ["Correct", "Incorrect", "Doubt"] for j in judgments)
+        submit = st.form_submit_button("✅ Submit and Next", disabled=not all_answered)
+        if not all_answered:
             st.info("📝 Please judge all Q&A pairs before submitting.")
 
     if submit:
         now = datetime.now(timezone.utc)
         for entry in judgments:
-            doc = {
-                **entry,
+            entry.update({
                 "content_id": cid,
                 "intern_id": intern_id,
                 "timestamp": now,
                 "assigned_at": st.session_state.assigned_time,
-            }
+                "length": "short"
+            })
             if entry["judgment"] == "Doubt":
-                doubt_col.insert_one(doc)
+                doubt_col.insert_one(entry)
             else:
-                audit_col.insert_one(doc)
+                audit_col.insert_one(entry)
+
         st.success("✅ Judgments submitted.")
+
+        # Clear radio selections
+        for key in list(st.session_state.keys()):
+            if key.startswith("j_"):
+                del st.session_state[key]
+
         st.session_state.judged = True
         assign_new_content()
         st.rerun()
-
-# === Manual Skip Button ===
-if st.button("➡️ Skip"):
-    skip_col.insert_one({
-        "intern_id": intern_id,
-        "content_id": cid,
-        "status": "manual_skip",
-        "assigned_at": st.session_state.assigned_time,
-        "timestamp": datetime.now(timezone.utc)
-    })
-    st.info(f"➡️ Manually skipped ID {cid}")
-    assign_new_content()
-    st.rerun()
