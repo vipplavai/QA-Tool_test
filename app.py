@@ -92,6 +92,7 @@ content = content_col.find_one({"content_id": cid})
 qa_doc = qa_col.find_one({"content_id": cid})
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
+# === Handle Missing Content or QA ===
 if not content or not qa_pairs:
     skip_col.insert_one({
         "intern_id": intern_id,
@@ -101,10 +102,12 @@ if not content or not qa_pairs:
         "timestamp": datetime.now(timezone.utc)
     })
     st.warning(f"⚠️ Skipping ID {cid} — missing content or Q&A.")
-    # Clear radio selections
+    
+    # ✅ Clear previous selections
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
+
     assign_new_content()
     st.rerun()
 
@@ -122,7 +125,7 @@ if remaining <= 0 and not st.session_state.judged:
         })
         st.warning(f"⏰ Time expired — Skipped ID {cid}.")
 
-        # Clear radio selections
+        # ✅ Clear previous selections
         for key in list(st.session_state.keys()):
             if key.startswith("j_"):
                 del st.session_state[key]
@@ -130,7 +133,7 @@ if remaining <= 0 and not st.session_state.judged:
         assign_new_content()
         st.rerun()
 
-# === HTML + JS Timer Visual (No content ID)
+# === HTML + JS Timer Visual (Without Content ID)
 st.components.v1.html(f"""
     <div style='
         text-align: center;
@@ -208,7 +211,7 @@ with right:
 
         st.success("✅ Judgments submitted.")
 
-        # Clear radio selections
+        # ✅ Clear previous selections
         for key in list(st.session_state.keys()):
             if key.startswith("j_"):
                 del st.session_state[key]
