@@ -36,13 +36,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === MongoDB Setup ===
-try:
+@st.cache_resource
+def get_mongo_client():
     client = MongoClient(st.secrets["mongo_uri"])
     client.admin.command("ping")
-except Exception:
-    st.error("❌ Cannot connect to MongoDB. Check `mongo_uri` in Streamlit Secrets.")
-    st.stop()
+    return client
 
+client = get_mongo_client()
 db = client["Tel_QA"]
 content_col = db["Content"]
 qa_col = db["QA_pairs"]
@@ -62,15 +62,26 @@ if not intern_id:
     st.stop()
 
 # === Session State Init ===
-for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id"]:
+for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id", "eligible_content_ids"]:
     if key not in st.session_state:
-        st.session_state[key] = None if key == "eligible_id" or key == "current_content_id" else False
+        st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
+
+# === Cached Content Fetching ===
+@st.cache_data(ttl=300)
+def fetch_content_and_qa(cid):
+    content = content_col.find_one({"content_id": cid})
+    qa_doc = qa_col.find_one({"content_id": cid})
+    return content, qa_doc
 
 # === Assign New Content ===
 def assign_new_content():
-    all_ids = qa_col.distinct("content_id")
-    random.shuffle(all_ids)
-    for cid in all_ids:
+    if not st.session_state.eligible_content_ids:
+        all_ids = qa_col.distinct("content_id")
+        random.shuffle(all_ids)
+        st.session_state.eligible_content_ids = all_ids
+
+    while st.session_state.eligible_content_ids:
+        cid = st.session_state.eligible_content_ids.pop()
         judged_by = audit_col.distinct("intern_id", {"content_id": cid})
         if len(judged_by) < MAX_AUDITORS and intern_id not in judged_by:
             st.session_state.eligible_id = cid
@@ -80,6 +91,8 @@ def assign_new_content():
             st.session_state.auto_skip_triggered = False
             return
 
+    st.session_state.eligible_id = None
+
 if st.session_state.eligible_id is None:
     assign_new_content()
 if st.session_state.eligible_id is None:
@@ -87,25 +100,18 @@ if st.session_state.eligible_id is None:
     st.stop()
 
 # === Load Content and QA ===
-# === Load Content and QA ===
 cid = st.session_state.eligible_id
 
-# ✅ Reset radio buttons if content_id changes
+# ✅ Reset radios if content_id changes
 if st.session_state.current_content_id != cid:
-    # Fetch the number of short Q&A pairs for this content
-    qa_doc = qa_col.find_one({"content_id": cid})
+    content, qa_doc = fetch_content_and_qa(cid)
     short_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
-    
-    # Reset all radios to None
     for i in range(len(short_pairs)):
         st.session_state[f"j_{i}"] = None
-
     st.session_state.current_content_id = cid
+else:
+    content, qa_doc = fetch_content_and_qa(cid)
 
-
-
-content = content_col.find_one({"content_id": cid})
-qa_doc = qa_col.find_one({"content_id": cid})
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
 # === Handle Missing Content or QA ===
@@ -136,8 +142,8 @@ if remaining <= 0 and not st.session_state.judged:
         })
         st.warning(f"⏰ Time expired — Skipped ID {cid}.")
         st.session_state.current_content_id = None
-        assign_new_content()
-        st.rerun()
+    assign_new_content()
+    st.rerun()
 
 # === HTML + JS Timer Visual
 st.components.v1.html(f"""
@@ -172,7 +178,6 @@ st.components.v1.html(f"""
 """, height=80)
 
 # === Render Content and Form ===
-# === Render Content and Form ===
 left, right = st.columns(2)
 
 with left:
@@ -204,11 +209,10 @@ with right:
         })
         st.markdown("---")
 
-    # Info message inside right panel
     if unanswered:
         st.info("📝 Please judge all Q&A pairs before submitting.")
 
-# === Submit button OUTSIDE the right column and form ===
+# === Submit button OUTSIDE the form ===
 submit_btn = st.button("✅ Submit and Next")
 
 # === Handle Submit Click ===
