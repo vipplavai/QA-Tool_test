@@ -159,7 +159,7 @@ if remaining <= 0 and not st.session_state.judged:
         except Exception as e:
             st.error("❌ Failed to log timeout skip.")
         st.session_state.timer_expired = True
-    st.experimental_rerun()
+    st.rerun()
 
 # === HTML + JS Timer Visual
 st.components.v1.html(f"""
