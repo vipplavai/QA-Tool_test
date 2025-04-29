@@ -66,22 +66,6 @@ for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_tri
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
-# === Timeout Screen if Timer Expired ===
-if st.session_state.get("timer_expired"):
-    st.title("⏰ Time Expired")
-    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
-
-    if st.button("🔄 Fetch New Content"):
-        # Only reset necessary things
-        st.session_state.timer_expired = False
-        st.session_state.eligible_id = None
-        st.session_state.current_content_id = None
-        st.session_state.judged = False
-        st.session_state.auto_skip_triggered = False
-        assign_new_content()
-        st.rerun()
-    st.stop()
-
 # === Cached Content Fetching ===
 @st.cache_data(ttl=300)
 def fetch_content_and_qa(cid):
@@ -109,6 +93,22 @@ def assign_new_content():
 
     st.session_state.eligible_id = None
 
+# === Timer Expired Screen ===
+if st.session_state.get("timer_expired"):
+    st.title("⏰ Time Expired")
+    st.error(f"Timer ran out for Content ID: {st.session_state.current_content_id}")
+
+    if st.button("🔄 Fetch New Content"):
+        st.session_state.timer_expired = False
+        st.session_state.eligible_id = None
+        st.session_state.current_content_id = None
+        st.session_state.judged = False
+        st.session_state.auto_skip_triggered = False
+        assign_new_content()
+        st.rerun()
+    st.stop()
+
+# === Initial Content Assignment ===
 if st.session_state.eligible_id is None:
     assign_new_content()
 if st.session_state.eligible_id is None:
@@ -144,7 +144,7 @@ if not content or not qa_pairs:
     assign_new_content()
     st.rerun()
 
-# === Calculate Remaining Time for Timer ===
+# === Calculate Remaining Time ===
 remaining = int(st.session_state.deadline - time.time())
 
 # === Auto Skip on Timeout ===
@@ -159,7 +159,7 @@ if remaining <= 0 and not st.session_state.judged:
             "timestamp": datetime.now(timezone.utc)
         })
         st.session_state.timer_expired = True
-    st.rerun()
+    st.experimental_rerun()
 
 # === HTML + JS Timer Visual
 st.components.v1.html(f"""
