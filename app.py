@@ -82,9 +82,16 @@ def assign_new_content():
 
 if st.session_state.eligible_id is None:
     assign_new_content()
+
+# ✅ Clear previous Q&A radio button values when new content is loaded
+for key in list(st.session_state.keys()):
+    if key.startswith("j_"):
+        del st.session_state[key]
+
 if st.session_state.eligible_id is None:
     st.success("✅ All content audited!")
     st.stop()
+
 
 # === Load Content and QA ===
 cid = st.session_state.eligible_id
