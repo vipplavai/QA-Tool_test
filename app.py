@@ -62,9 +62,9 @@ if not intern_id:
     st.stop()
 
 # === Session State Init ===
-for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered"]:
+for key in ["eligible_id", "deadline", "assigned_time", "judged", "auto_skip_triggered", "current_content_id"]:
     if key not in st.session_state:
-        st.session_state[key] = None if key == "eligible_id" else False
+        st.session_state[key] = None if key == "eligible_id" or key == "current_content_id" else False
 
 # === Assign New Content ===
 def assign_new_content():
@@ -82,19 +82,20 @@ def assign_new_content():
 
 if st.session_state.eligible_id is None:
     assign_new_content()
-
-# ✅ Clear previous Q&A radio button values when new content is loaded
-for key in list(st.session_state.keys()):
-    if key.startswith("j_"):
-        del st.session_state[key]
-
 if st.session_state.eligible_id is None:
     st.success("✅ All content audited!")
     st.stop()
 
-
 # === Load Content and QA ===
 cid = st.session_state.eligible_id
+
+# ✅ Clear radios if content_id changes
+if st.session_state.current_content_id != cid:
+    for key in list(st.session_state.keys()):
+        if key.startswith("j_"):
+            del st.session_state[key]
+    st.session_state.current_content_id = cid
+
 content = content_col.find_one({"content_id": cid})
 qa_doc = qa_col.find_one({"content_id": cid})
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
@@ -109,12 +110,7 @@ if not content or not qa_pairs:
         "timestamp": datetime.now(timezone.utc)
     })
     st.warning(f"⚠️ Skipping ID {cid} — missing content or Q&A.")
-    
-    # ✅ Clear previous selections
-    for key in list(st.session_state.keys()):
-        if key.startswith("j_"):
-            del st.session_state[key]
-
+    st.session_state.current_content_id = None
     assign_new_content()
     st.rerun()
 
@@ -131,16 +127,11 @@ if remaining <= 0 and not st.session_state.judged:
             "timestamp": datetime.now(timezone.utc)
         })
         st.warning(f"⏰ Time expired — Skipped ID {cid}.")
-
-        # ✅ Clear previous selections
-        for key in list(st.session_state.keys()):
-            if key.startswith("j_"):
-                del st.session_state[key]
-
+        st.session_state.current_content_id = None
         assign_new_content()
         st.rerun()
 
-# === HTML + JS Timer Visual (Without Content ID)
+# === HTML + JS Timer Visual
 st.components.v1.html(f"""
     <div style='
         text-align: center;
@@ -188,9 +179,9 @@ with right:
             st.markdown(f"**Q{i+1}:** {pair['question']}")
             st.markdown(f"**A{i+1}:** {pair['answer']}")
             j = st.radio(
-                label="", 
-                options=["Correct", "Incorrect", "Doubt"], 
-                key=f"j_{i}", 
+                label="",
+                options=["Correct", "Incorrect", "Doubt"],
+                key=f"j_{i}",
                 index=None
             )
             judgments.append({
@@ -201,12 +192,10 @@ with right:
             })
             st.markdown("---")
 
-        # ✅ Require all judgments to be made
         all_answered = all(j.get("judgment") is not None for j in judgments)
         submit = st.form_submit_button("✅ Submit and Next", disabled=not all_answered)
         if not all_answered:
             st.info("📝 Please judge all Q&A pairs before submitting.")
-
 
     if submit:
         now = datetime.now(timezone.utc)
@@ -224,12 +213,7 @@ with right:
                 audit_col.insert_one(entry)
 
         st.success("✅ Judgments submitted.")
-
-        # ✅ Clear previous selections
-        for key in list(st.session_state.keys()):
-            if key.startswith("j_"):
-                del st.session_state[key]
-
         st.session_state.judged = True
+        st.session_state.current_content_id = None
         assign_new_content()
         st.rerun()
