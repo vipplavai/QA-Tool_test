@@ -192,10 +192,12 @@ with right:
             })
             st.markdown("---")
 
-        all_answered = all(j.get("judgment") is not None for j in judgments)
+        # ✅ Require all judgments to be made
+        all_answered = all(j["judgment"] is not None for j in judgments)
         submit = st.form_submit_button("✅ Submit and Next", disabled=not all_answered)
         if not all_answered:
             st.info("📝 Please judge all Q&A pairs before submitting.")
+
 
     if submit:
         now = datetime.now(timezone.utc)
