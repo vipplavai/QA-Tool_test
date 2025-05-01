@@ -123,6 +123,8 @@ if st.session_state.current_content_id != cid:
         if f"j_{i}" in st.session_state:
             del st.session_state[f"j_{i}"]
     st.session_state.current_content_id = cid
+    st.session_state.submitted = False
+    st.session_state.judged = False
 
 # === Handle Missing ===
 if not content or not qa_pairs:
@@ -153,29 +155,27 @@ if remaining <= 0 and not st.session_state.judged:
         st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY (Independent of Reruns) ===
-with st.empty():
-    remaining_mins = remaining // 60
-    remaining_secs = remaining % 60
-    timer_html = f"""
-    <div style='text-align:center; font-size:22px; font-weight:bold; color:white;
-                background:#212121; padding:10px 20px; border-radius:8px;
-                width:fit-content; margin:auto; border:2px solid #00bcd4; font-family:monospace;'>
-        ⏱ Time Left: <span id='timer'>{remaining_mins:02d}:{remaining_secs:02d}</span>
-        <script>
-        let total = {remaining};
-        const el = document.getElementById('timer');
-        const interval = setInterval(() => {{
-            let m = Math.floor(total / 60);
-            let s = total % 60;
-            el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-            total--;
-            if (total < 0) clearInterval(interval);
-        }}, 1000);
-        </script>
-    </div>
-    """
-    st.components.v1.html(timer_html, height=80)
+# === TIMER DISPLAY (Stable with no re-renders) ===
+timer_placeholder = st.empty()
+timer_html = f"""
+<div style='text-align:center; font-size:22px; font-weight:bold; color:white;
+            background:#212121; padding:10px 20px; border-radius:8px;
+            width:fit-content; margin:auto; border:2px solid #00bcd4; font-family:monospace;'>
+    ⏱ Time Left: <span id='timer'>{remaining // 60:02d}:{remaining % 60:02d}</span>
+    <script>
+    let total = {remaining};
+    const el = document.getElementById('timer');
+    const interval = setInterval(() => {{
+        let m = Math.floor(total / 60);
+        let s = total % 60;
+        el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+        total--;
+        if (total < 0) clearInterval(interval);
+    }}, 1000);
+    </script>
+</div>
+"""
+timer_placeholder.components.v1.html(timer_html, height=80)
 
 # === LAYOUT ===
 left, right = st.columns(2)
@@ -202,10 +202,10 @@ with right:
         st.info("📝 Please judge all Q&A pairs before submitting.")
 
 # === BUTTONS ===
-submit_btn = st.button("✅ Submit")
+submit_btn = st.button("✅ Submit", disabled=st.session_state.submitted or unanswered)
 next_btn = st.button("➡️ Next", disabled=not st.session_state.submitted)
 
-if submit_btn and not unanswered:
+if submit_btn:
     now = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
 
@@ -227,7 +227,7 @@ if submit_btn and not unanswered:
     st.session_state.submitted = True
     st.session_state.judged = True
 
-if next_btn and st.session_state.submitted:
+if next_btn:
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
