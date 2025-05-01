@@ -6,7 +6,6 @@ import time
 
 # === CONFIG ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
-
 st.markdown("""
     <style>
     .passage-box {
@@ -50,12 +49,11 @@ audit_col = db["audit_logs"]
 doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
-# === CONSTANTS ===
 TIMER_SECONDS = 600
 MAX_AUDITORS = 5
 
 # === Intern Login ===
-st.title("💞 JNANA - Short Q&A Auditing Tool")
+st.title("🧐 JNANA - Short Q&A Auditing Tool")
 intern_id = st.text_input("Enter your Intern ID").strip()
 if not intern_id:
     st.stop()
@@ -75,8 +73,6 @@ if st.session_state.timer_expired:
         st.session_state.timer_expired = False
         st.session_state.eligible_id = None
         st.session_state.current_content_id = None
-        st.session_state.submitted = False
-        st.session_state.judged = False
         st.rerun()
     st.stop()
 
@@ -94,9 +90,6 @@ def assign_new_content():
             st.session_state.eligible_id = cid
             st.session_state.deadline = time.time() + TIMER_SECONDS
             st.session_state.assigned_time = datetime.now(timezone.utc)
-            st.session_state.judged = False
-            st.session_state.auto_skip_triggered = False
-            st.session_state.submitted = False
             return
     st.session_state.eligible_id = None
 
@@ -108,6 +101,7 @@ if st.session_state.eligible_id is None:
     st.stop()
 
 cid = st.session_state.eligible_id
+remaining = int(st.session_state.deadline - time.time())
 
 # === Fetch Content & QA ===
 @st.cache_data(ttl=300)
@@ -120,11 +114,8 @@ qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 # === Reset radios if content changes ===
 if st.session_state.current_content_id != cid:
     for i in range(len(qa_pairs)):
-        if f"j_{i}" in st.session_state:
-            del st.session_state[f"j_{i}"]
+        st.session_state[f"j_{i}"] = None
     st.session_state.current_content_id = cid
-    st.session_state.submitted = False
-    st.session_state.judged = False
 
 # === Handle Missing ===
 if not content or not qa_pairs:
@@ -135,49 +126,33 @@ if not content or not qa_pairs:
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
-    st.warning(f"⚠️ Missing content or Q&A. Skipping ID {cid}")
     st.session_state.current_content_id = None
     assign_new_content()
     st.rerun()
 
-# === Auto Skip on Timeout ===
-remaining = int(st.session_state.deadline - time.time())
-if remaining <= 0 and not st.session_state.judged:
-    if not st.session_state.auto_skip_triggered:
-        skip_col.insert_one({
-            "intern_id": intern_id,
-            "content_id": cid,
-            "status": "timeout",
-            "assigned_at": st.session_state.assigned_time,
-            "timestamp": datetime.now(timezone.utc)
-        })
-        st.session_state.auto_skip_triggered = True
-        st.session_state.timer_expired = True
+# === Auto Timeout Handling ===
+if remaining <= 0:
+    skip_col.insert_one({
+        "intern_id": intern_id,
+        "content_id": cid,
+        "status": "timeout",
+        "assigned_at": st.session_state.assigned_time,
+        "timestamp": datetime.now(timezone.utc)
+    })
+    st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY (Stable) ===
+# === Timer Display (pure JS, not affected by Streamlit rerenders) ===
 st.components.v1.html(f"""
-<div style='
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #212121;
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid #00bcd4;
-    font-family: monospace;
-'>
-  ⏱ Time Left: <span id="timer">{remaining // 60:02d}:{remaining % 60:02d}</span>
+<div style='text-align:center;margin-bottom:1rem;font-size:22px;font-weight:bold;color:white;
+    background-color:#212121;padding:10px 20px;border-radius:8px;width:fit-content;margin:auto;
+    border:2px solid #00bcd4;font-family:monospace;'>
+  ⏱ Time Left: <span id="timer">{remaining//60:02d}:{remaining%60:02d}</span>
   <script>
     let total = {remaining};
     const el = document.getElementById('timer');
     const interval = setInterval(() => {{
-      let m = Math.floor(total / 60);
+      let m = Math.floor(total/60);
       let s = total % 60;
       el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
       total--;
@@ -187,7 +162,7 @@ st.components.v1.html(f"""
 </div>
 """, height=80)
 
-# === LAYOUT ===
+# === UI Layout ===
 left, right = st.columns(2)
 
 with left:
@@ -197,56 +172,46 @@ with left:
 with right:
     st.subheader("❓ Short Q&A Pairs")
     judgments = []
-    unanswered = False
-
     for i, pair in enumerate(qa_pairs):
         st.markdown(f"**Q{i+1}:** {pair['question']}")
         st.markdown(f"**A{i+1}:** {pair['answer']}")
         selected = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}", index=None)
-        if selected is None:
-            unanswered = True
-        judgments.append({"qa_index": i, "question": pair["question"], "answer": pair["answer"], "judgment": selected})
+        judgments.append({
+            "qa_index": i,
+            "question": pair["question"],
+            "answer": pair["answer"],
+            "judgment": selected
+        })
         st.markdown("---")
 
-    if unanswered:
-        st.info("📜 Please judge all Q&A pairs before submitting.")
+# === Buttons ===
+submit = st.button("✅ Submit")
+next_ = st.button("➡️ Next")
 
-# === BUTTONS ===
-with st.form("judgment_form"):
-    submit_col, next_col = st.columns([1, 1])
-    with submit_col:
-        submit_btn = st.form_submit_button("✅ Submit", disabled=st.session_state.submitted or unanswered)
-    with next_col:
-        next_btn = st.form_submit_button("➡️ Next", disabled=not st.session_state.submitted)
+if submit:
+    now = datetime.now(timezone.utc)
+    time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    if submit_btn:
-        now = datetime.now(timezone.utc)
-        time_taken = (now - st.session_state.assigned_time).total_seconds()
+    for entry in judgments:
+        entry.update({
+            "content_id": cid,
+            "intern_id": intern_id,
+            "timestamp": now,
+            "assigned_at": st.session_state.assigned_time,
+            "time_taken": time_taken,
+            "length": "short"
+        })
+        if entry["judgment"] == "Doubt":
+            doubt_col.insert_one(entry)
+        else:
+            audit_col.insert_one(entry)
 
-        for entry in judgments:
-            entry.update({
-                "content_id": cid,
-                "intern_id": intern_id,
-                "timestamp": now,
-                "assigned_at": st.session_state.assigned_time,
-                "time_taken": time_taken,
-                "length": "short"
-            })
-            if entry["judgment"] == "Doubt":
-                doubt_col.insert_one(entry)
-            else:
-                audit_col.insert_one(entry)
+    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
-        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
-        st.session_state.submitted = True
-        st.session_state.judged = True
-
-    if next_btn:
-        for key in list(st.session_state.keys()):
-            if key.startswith("j_"):
-                del st.session_state[key]
-        st.session_state.current_content_id = None
-        st.session_state.submitted = False
-        st.session_state.judged = False
-        assign_new_content()
-        st.rerun()
+if next_:
+    for key in list(st.session_state.keys()):
+        if key.startswith("j_"):
+            del st.session_state[key]
+    st.session_state.current_content_id = None
+    assign_new_content()
+    st.rerun()
