@@ -152,21 +152,37 @@ if remaining <= 0 and not st.session_state.judged:
         st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY (STATIC) ===
-if "last_remaining_display" not in st.session_state:
-    st.session_state.last_remaining_display = remaining
-else:
-    st.session_state.last_remaining_display = int(st.session_state.deadline - time.time())
-
-mins = st.session_state.last_remaining_display // 60
-secs = st.session_state.last_remaining_display % 60
-
-st.markdown(f"""
-<div style='text-align:center;font-size:22px;font-weight:bold;color:#fff;background-color:#212121;
-            padding:10px 20px;border-radius:8px;width:fit-content;margin:10px auto;
-            border:2px solid #00bcd4;font-family:monospace;'>
-    ⏱ Time Left: {mins:02d}:{secs:02d}
-</div>""", unsafe_allow_html=True)
+# === TIMER DISPLAY via JS ===
+st.components.v1.html(f"""
+<div style='
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #212121;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #00bcd4;
+    font-family: monospace;
+'>
+  ⏱ Time Left: <span id="timer">10:00</span>
+  <script>
+    let total = {remaining};
+    const el = document.getElementById('timer');
+    const interval = setInterval(() => {{
+      let m = Math.floor(total / 60);
+      let s = total % 60;
+      el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+      total--;
+      if (total < 0) clearInterval(interval);
+    }}, 1000);
+  </script>
+</div>
+""", height=80)
 
 # === LAYOUT ===
 left, right = st.columns(2)
