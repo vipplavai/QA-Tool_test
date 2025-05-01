@@ -55,7 +55,7 @@ TIMER_SECONDS = 600
 MAX_AUDITORS = 5
 
 # === Intern Login ===
-st.title("🧐 JNANA - Short Q&A Auditing Tool")
+st.title("🧞 JNANA - Short Q&A Auditing Tool")
 intern_id = st.text_input("Enter your Intern ID").strip()
 if not intern_id:
     st.stop()
@@ -152,37 +152,21 @@ if remaining <= 0 and not st.session_state.judged:
         st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY ===
-st.components.v1.html(f"""
-<div style='
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #212121;
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid #00bcd4;
-    font-family: monospace;
-'>
-  ⏱ Time Left: <span id="timer">10:00</span>
-  <script>
-    let total = {remaining};
-    const el = document.getElementById('timer');
-    const interval = setInterval(() => {{
-      let m = Math.floor(total / 60);
-      let s = total % 60;
-      el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-      total--;
-      if (total < 0) clearInterval(interval);
-    }}, 1000);
-  </script>
-</div>
-""", height=80)
+# === TIMER DISPLAY (STATIC) ===
+if "last_remaining_display" not in st.session_state:
+    st.session_state.last_remaining_display = remaining
+else:
+    st.session_state.last_remaining_display = int(st.session_state.deadline - time.time())
+
+mins = st.session_state.last_remaining_display // 60
+secs = st.session_state.last_remaining_display % 60
+
+st.markdown(f"""
+<div style='text-align:center;font-size:22px;font-weight:bold;color:#fff;background-color:#212121;
+            padding:10px 20px;border-radius:8px;width:fit-content;margin:10px auto;
+            border:2px solid #00bcd4;font-family:monospace;'>
+    ⏱ Time Left: {mins:02d}:{secs:02d}
+</div>""", unsafe_allow_html=True)
 
 # === LAYOUT ===
 left, right = st.columns(2)
@@ -199,20 +183,10 @@ with right:
     for i, pair in enumerate(qa_pairs):
         st.markdown(f"**Q{i+1}:** {pair['question']}")
         st.markdown(f"**A{i+1}:** {pair['answer']}")
-        selected = st.radio(
-            label="",
-            options=["Correct", "Incorrect", "Doubt"],
-            key=f"j_{i}",
-            index=None
-        )
+        selected = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}", index=None)
         if selected is None:
             unanswered = True
-        judgments.append({
-            "qa_index": i,
-            "question": pair["question"],
-            "answer": pair["answer"],
-            "judgment": selected
-        })
+        judgments.append({"qa_index": i, "question": pair["question"], "answer": pair["answer"], "judgment": selected})
         st.markdown("---")
 
     if unanswered:
@@ -222,7 +196,6 @@ with right:
 submit_btn = st.button("✅ Submit")
 next_btn = st.button("➡️ Next", disabled=not st.session_state.submitted)
 
-# === HANDLE SUBMIT ===
 if submit_btn and not unanswered:
     now = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
@@ -245,7 +218,6 @@ if submit_btn and not unanswered:
     st.session_state.submitted = True
     st.session_state.judged = True
 
-# === HANDLE NEXT ===
 if next_btn and st.session_state.submitted:
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
