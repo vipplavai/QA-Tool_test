@@ -55,7 +55,7 @@ TIMER_SECONDS = 600
 MAX_AUDITORS = 5
 
 # === Intern Login ===
-st.title("🧞 JNANA - Short Q&A Auditing Tool")
+st.title("💞 JNANA - Short Q&A Auditing Tool")
 intern_id = st.text_input("Enter your Intern ID").strip()
 if not intern_id:
     st.stop()
@@ -155,27 +155,37 @@ if remaining <= 0 and not st.session_state.judged:
         st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY (Stable with no re-renders) ===
-timer_html = f"""
-<div style='text-align:center; font-size:22px; font-weight:bold; color:white;
-            background:#212121; padding:10px 20px; border-radius:8px;
-            width:fit-content; margin:auto; border:2px solid #00bcd4; font-family:monospace;'>
-    ⏱ Time Left: <span id='timer'>{remaining // 60:02d}:{remaining % 60:02d}</span>
-    <script>
+# === TIMER DISPLAY (Stable) ===
+st.components.v1.html(f"""
+<div style='
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #212121;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #00bcd4;
+    font-family: monospace;
+'>
+  ⏱ Time Left: <span id="timer">{remaining // 60:02d}:{remaining % 60:02d}</span>
+  <script>
     let total = {remaining};
     const el = document.getElementById('timer');
     const interval = setInterval(() => {{
-        let m = Math.floor(total / 60);
-        let s = total % 60;
-        el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-        total--;
-        if (total < 0) clearInterval(interval);
+      let m = Math.floor(total / 60);
+      let s = total % 60;
+      el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+      total--;
+      if (total < 0) clearInterval(interval);
     }}, 1000);
-    </script>
+  </script>
 </div>
-"""
-st.components.v1.html(timer_html, height=80)
-
+""", height=80)
 
 # === LAYOUT ===
 left, right = st.columns(2)
@@ -199,40 +209,44 @@ with right:
         st.markdown("---")
 
     if unanswered:
-        st.info("📝 Please judge all Q&A pairs before submitting.")
+        st.info("📜 Please judge all Q&A pairs before submitting.")
 
 # === BUTTONS ===
-submit_btn = st.button("✅ Submit", disabled=st.session_state.submitted or unanswered)
-next_btn = st.button("➡️ Next", disabled=not st.session_state.submitted)
+with st.form("judgment_form"):
+    submit_col, next_col = st.columns([1, 1])
+    with submit_col:
+        submit_btn = st.form_submit_button("✅ Submit", disabled=st.session_state.submitted or unanswered)
+    with next_col:
+        next_btn = st.form_submit_button("➡️ Next", disabled=not st.session_state.submitted)
 
-if submit_btn:
-    now = datetime.now(timezone.utc)
-    time_taken = (now - st.session_state.assigned_time).total_seconds()
+    if submit_btn:
+        now = datetime.now(timezone.utc)
+        time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    for entry in judgments:
-        entry.update({
-            "content_id": cid,
-            "intern_id": intern_id,
-            "timestamp": now,
-            "assigned_at": st.session_state.assigned_time,
-            "time_taken": time_taken,
-            "length": "short"
-        })
-        if entry["judgment"] == "Doubt":
-            doubt_col.insert_one(entry)
-        else:
-            audit_col.insert_one(entry)
+        for entry in judgments:
+            entry.update({
+                "content_id": cid,
+                "intern_id": intern_id,
+                "timestamp": now,
+                "assigned_at": st.session_state.assigned_time,
+                "time_taken": time_taken,
+                "length": "short"
+            })
+            if entry["judgment"] == "Doubt":
+                doubt_col.insert_one(entry)
+            else:
+                audit_col.insert_one(entry)
 
-    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
-    st.session_state.submitted = True
-    st.session_state.judged = True
+        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+        st.session_state.submitted = True
+        st.session_state.judged = True
 
-if next_btn:
-    for key in list(st.session_state.keys()):
-        if key.startswith("j_"):
-            del st.session_state[key]
-    st.session_state.current_content_id = None
-    st.session_state.submitted = False
-    st.session_state.judged = False
-    assign_new_content()
-    st.rerun()
+    if next_btn:
+        for key in list(st.session_state.keys()):
+            if key.startswith("j_"):
+                del st.session_state[key]
+        st.session_state.current_content_id = None
+        st.session_state.submitted = False
+        st.session_state.judged = False
+        assign_new_content()
+        st.rerun()
