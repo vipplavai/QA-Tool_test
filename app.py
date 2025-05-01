@@ -55,7 +55,7 @@ TIMER_SECONDS = 60
 MAX_AUDITORS = 5
 
 # === Intern Login ===
-st.title("🤮 JNANA - Short Q&A Auditing Tool")
+st.title("🧐 JNANA - Short Q&A Auditing Tool")
 intern_id = st.text_input("Enter your Intern ID").strip()
 if not intern_id:
     st.warning("Please enter your Intern ID.")
@@ -64,7 +64,7 @@ if not intern_id:
 # === Session State Initialization ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
             "auto_skip_triggered", "current_content_id",
-            "eligible_content_ids", "timer_expired", "submitted"]:
+            "eligible_content_ids", "timer_expired"]:
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
@@ -91,7 +91,6 @@ def assign_new_content():
             st.session_state.assigned_time = datetime.now(timezone.utc)
             st.session_state.judged = False
             st.session_state.auto_skip_triggered = False
-            st.session_state.submitted = False
             return
 
     st.session_state.eligible_id = None
@@ -122,7 +121,6 @@ if st.session_state.current_content_id != cid:
     for i in range(len(short_pairs)):
         st.session_state[f"j_{i}"] = None
     st.session_state.current_content_id = cid
-    st.session_state.submitted = False
 else:
     content, qa_doc = fetch_content_and_qa(cid)
 
@@ -164,36 +162,37 @@ if remaining <= 0 and not st.session_state.judged:
     st.rerun()
 
 # === HTML + JS Timer Visual
-st.components.v1.html(f"""
-    <div style='
-        text-align: center;
-        margin-bottom: 1rem;
-        font-size: 22px;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: #212121;
-        padding: 10px 20px;
-        border-radius: 8px;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-        border: 2px solid #00bcd4;
-        font-family: monospace;
-    '>
-        ⏱ Time Left: <span id="timer">1:00</span>
-        <script>
-            let total = {remaining};
-            const el = document.getElementById('timer');
-            const interval = setInterval(() => {{
-                let m = Math.floor(total / 60);
-                let s = total % 60;
-                el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-                total--;
-                if (total < 0) clearInterval(interval);
-            }}, 1000);
-        </script>
-    </div>
-""", height=80)
+with st.empty():
+    st.components.v1.html(f"""
+        <div style='
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #212121;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #00bcd4;
+            font-family: monospace;
+        '>
+            ⏱ Time Left: <span id="timer">1:00</span>
+            <script>
+                let total = {remaining};
+                const el = document.getElementById('timer');
+                const interval = setInterval(() => {{
+                    let m = Math.floor(total / 60);
+                    let s = total % 60;
+                    el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+                    total--;
+                    if (total < 0) clearInterval(interval);
+                }}, 1000);
+            </script>
+        </div>
+    """, height=80)
 
 # === UI Layout ===
 left, right = st.columns(2)
@@ -229,13 +228,8 @@ with right:
     if unanswered:
         st.info("📝 Please judge all Q&A pairs before submitting.")
 
-# === Submit and Next Button Separation ===
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    submit_btn = st.button("✅ Submit Judgments")
-with col2:
-    next_btn = st.button("➡️ Next Content", disabled=not st.session_state.submitted)
+# === Submit Button ===
+submit_btn = st.button("✅ Submit Judgments")
 
 if submit_btn:
     if unanswered:
@@ -263,16 +257,16 @@ if submit_btn:
                 st.stop()
 
         st.success(f"✅ Judgments submitted in {time_taken:.1f} seconds.")
-        st.session_state.submitted = True
+        st.session_state.judged = True
+
+# === Next Button ===
+next_btn = st.button("➡️ Next Content", disabled=not st.session_state.judged)
 
 if next_btn:
-    # Clear radio selections
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
-
-    st.session_state.judged = True
     st.session_state.current_content_id = None
-    st.session_state.submitted = False
+    st.session_state.judged = False
     assign_new_content()
     st.rerun()
