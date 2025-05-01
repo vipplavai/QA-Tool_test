@@ -106,7 +106,9 @@ remaining = int(st.session_state.deadline - time.time())
 # === Fetch Content & QA ===
 @st.cache_data(ttl=300)
 def fetch_content_qa(cid):
-    return content_col.find_one({"content_id": cid}), qa_col.find_one({"content_id": cid})
+    content = content_col.find_one({"content_id": cid})
+    qa_doc = qa_col.find_one({"content_id": cid})
+    return content, qa_doc
 
 content, qa_doc = fetch_content_qa(cid)
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
@@ -117,8 +119,15 @@ if st.session_state.current_content_id != cid:
         st.session_state[f"j_{i}"] = None
     st.session_state.current_content_id = cid
 
-# === Handle Missing ===
-if not content or "content_text" not in content or not isinstance(qa_pairs, list) or not all("question" in q and "answer" in q for q in qa_pairs):
+# === Handle Invalid or Missing ===
+invalid_data = (
+    not content or
+    not isinstance(content.get("content_text", ""), str) or
+    not isinstance(qa_pairs, list) or
+    not all("question" in q and "answer" in q for q in qa_pairs)
+)
+
+if invalid_data:
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
@@ -131,7 +140,7 @@ if not content or "content_text" not in content or not isinstance(qa_pairs, list
     assign_new_content()
     st.rerun()
 
-# === Auto Timeout Handling ===
+# === Timeout Logic ===
 if remaining <= 0:
     skip_col.insert_one({
         "intern_id": intern_id,
