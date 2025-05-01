@@ -118,14 +118,15 @@ if st.session_state.current_content_id != cid:
     st.session_state.current_content_id = cid
 
 # === Handle Missing ===
-if not content or not qa_pairs:
+if not content or "content_text" not in content or not qa_pairs:
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
-        "status": "missing",
+        "status": "missing_or_invalid",
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
+    st.warning(f"⚠️ Skipping ID {cid} — content or QA missing/invalid.")
     st.session_state.current_content_id = None
     assign_new_content()
     st.rerun()
@@ -142,7 +143,7 @@ if remaining <= 0:
     st.session_state.timer_expired = True
     st.rerun()
 
-# === Timer Display (JS only, smooth) ===
+# === Timer Display ===
 st.components.v1.html(f"""
 <div style='text-align:center;margin-bottom:1rem;font-size:22px;font-weight:bold;color:white;
     background-color:#212121;padding:10px 20px;border-radius:8px;width:fit-content;margin:auto;
@@ -167,20 +168,7 @@ left, right = st.columns(2)
 
 with left:
     st.subheader(f"📄 Content ID: {cid}")
-    if "content_text" in content:
-        st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
-    else:
-        st.error("❌ This content is missing 'content_text'. Skipping to next.")
-        skip_col.insert_one({
-            "intern_id": intern_id,
-            "content_id": cid,
-            "status": "missing_content_text",
-            "assigned_at": st.session_state.assigned_time,
-            "timestamp": datetime.now(timezone.utc)
-        })
-        st.session_state.current_content_id = None
-        assign_new_content()
-        st.rerun()
+    st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
 
 with right:
     st.subheader("❓ Short Q&A Pairs")
