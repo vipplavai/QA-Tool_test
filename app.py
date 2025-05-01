@@ -49,7 +49,7 @@ audit_col = db["audit_logs"]
 doubt_col = db["doubt_logs"]
 skip_col = db["skipped_logs"]
 
-TIMER_SECONDS = 60
+TIMER_SECONDS = 600
 MAX_AUDITORS = 5
 
 # === Intern Login ===
@@ -61,7 +61,7 @@ if not intern_id:
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
             "auto_skip_triggered", "current_content_id",
-            "eligible_content_ids", "timer_expired", "submitted"]:
+            "eligible_content_ids", "timer_expired"]:
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
@@ -142,7 +142,7 @@ if remaining <= 0:
     st.session_state.timer_expired = True
     st.rerun()
 
-# === Timer Display (pure JS, not affected by Streamlit rerenders) ===
+# === Timer Display (JS only, smooth) ===
 st.components.v1.html(f"""
 <div style='text-align:center;margin-bottom:1rem;font-size:22px;font-weight:bold;color:white;
     background-color:#212121;padding:10px 20px;border-radius:8px;width:fit-content;margin:auto;
@@ -167,7 +167,20 @@ left, right = st.columns(2)
 
 with left:
     st.subheader(f"📄 Content ID: {cid}")
-    st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
+    if "content_text" in content:
+        st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
+    else:
+        st.error("❌ This content is missing 'content_text'. Skipping to next.")
+        skip_col.insert_one({
+            "intern_id": intern_id,
+            "content_id": cid,
+            "status": "missing_content_text",
+            "assigned_at": st.session_state.assigned_time,
+            "timestamp": datetime.now(timezone.utc)
+        })
+        st.session_state.current_content_id = None
+        assign_new_content()
+        st.rerun()
 
 with right:
     st.subheader("❓ Short Q&A Pairs")
