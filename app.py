@@ -118,7 +118,7 @@ if st.session_state.current_content_id != cid:
     st.session_state.current_content_id = cid
 
 # === Handle Missing ===
-if not content or "content_text" not in content or not qa_pairs:
+if not content or "content_text" not in content or not isinstance(qa_pairs, list) or not all("question" in q and "answer" in q for q in qa_pairs):
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
