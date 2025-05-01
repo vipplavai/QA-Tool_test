@@ -120,7 +120,8 @@ qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 # === Reset radios if content changes ===
 if st.session_state.current_content_id != cid:
     for i in range(len(qa_pairs)):
-        st.session_state[f"j_{i}"] = None
+        if f"j_{i}" in st.session_state:
+            del st.session_state[f"j_{i}"]
     st.session_state.current_content_id = cid
 
 # === Handle Missing ===
@@ -152,37 +153,29 @@ if remaining <= 0 and not st.session_state.judged:
         st.session_state.timer_expired = True
     st.rerun()
 
-# === TIMER DISPLAY via JS ===
-st.components.v1.html(f"""
-<div style='
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #212121;
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid #00bcd4;
-    font-family: monospace;
-'>
-  ⏱ Time Left: <span id="timer">10:00</span>
-  <script>
-    let total = {remaining};
-    const el = document.getElementById('timer');
-    const interval = setInterval(() => {{
-      let m = Math.floor(total / 60);
-      let s = total % 60;
-      el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-      total--;
-      if (total < 0) clearInterval(interval);
-    }}, 1000);
-  </script>
-</div>
-""", height=80)
+# === TIMER DISPLAY (Independent of Reruns) ===
+with st.empty():
+    remaining_mins = remaining // 60
+    remaining_secs = remaining % 60
+    timer_html = f"""
+    <div style='text-align:center; font-size:22px; font-weight:bold; color:white;
+                background:#212121; padding:10px 20px; border-radius:8px;
+                width:fit-content; margin:auto; border:2px solid #00bcd4; font-family:monospace;'>
+        ⏱ Time Left: <span id='timer'>{remaining_mins:02d}:{remaining_secs:02d}</span>
+        <script>
+        let total = {remaining};
+        const el = document.getElementById('timer');
+        const interval = setInterval(() => {{
+            let m = Math.floor(total / 60);
+            let s = total % 60;
+            el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+            total--;
+            if (total < 0) clearInterval(interval);
+        }}, 1000);
+        </script>
+    </div>
+    """
+    st.components.v1.html(timer_html, height=80)
 
 # === LAYOUT ===
 left, right = st.columns(2)
