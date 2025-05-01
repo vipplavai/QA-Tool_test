@@ -156,7 +156,6 @@ if remaining <= 0 and not st.session_state.judged:
     st.rerun()
 
 # === TIMER DISPLAY (Stable with no re-renders) ===
-timer_placeholder = st.empty()
 timer_html = f"""
 <div style='text-align:center; font-size:22px; font-weight:bold; color:white;
             background:#212121; padding:10px 20px; border-radius:8px;
@@ -175,7 +174,8 @@ timer_html = f"""
     </script>
 </div>
 """
-timer_placeholder.components.v1.html(timer_html, height=80)
+st.components.v1.html(timer_html, height=80)
+
 
 # === LAYOUT ===
 left, right = st.columns(2)
