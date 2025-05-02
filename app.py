@@ -111,10 +111,7 @@ def fetch_content_qa(cid):
     return content, qa_doc
 
 content, qa_doc = fetch_content_qa(cid)
-
-# === Normalize QA structure ===
-questions = qa_doc.get("questions") if qa_doc else {}
-qa_pairs = questions.get("short", []) if isinstance(questions, dict) else []
+qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
 # === Reset radios if content changes ===
 if st.session_state.current_content_id != cid:
