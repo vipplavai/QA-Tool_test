@@ -123,9 +123,11 @@ if st.session_state.current_content_id != cid:
     st.session_state.current_content_id = cid
 
 # === Handle Invalid or Missing ===
+content_text = content.get("content_text", "").strip() if isinstance(content.get("content_text"), str) else ""
+
 invalid_data = (
     not content or
-    not isinstance(content.get("content_text", ""), str) or
+    not content_text or
     not isinstance(qa_pairs, list) or
     not all("question" in q and "answer" in q for q in qa_pairs)
 )
@@ -180,7 +182,7 @@ left, right = st.columns(2)
 
 with left:
     st.subheader(f"📄 Content ID: {cid}")
-    st.markdown(f"<div class='passage-box'>{content['content_text']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
 
 with right:
     st.subheader("❓ Short Q&A Pairs")
