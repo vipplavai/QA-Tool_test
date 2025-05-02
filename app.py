@@ -63,7 +63,7 @@ try:
     # make sure this exact URL is in your Auth0 “Allowed Callback URLs”
     redirect_uri="https://audit-tooltest.streamlit.app/"
 )
-    )
+
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
     st.exception(e)
