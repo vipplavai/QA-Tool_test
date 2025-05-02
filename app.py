@@ -6,6 +6,13 @@ import time
 from auth0_component import login_button
 import streamlit.components.v1 as components
 
+# === APP STATE TRACKING ===
+if "profile_step" not in st.session_state:
+    st.session_state["profile_step"] = 1
+if "prev_auth0_id" not in st.session_state:
+    st.session_state["prev_auth0_id"] = None
+
+
 # === CONFIG & STYLING ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
 st.markdown("""
@@ -58,23 +65,33 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN & USER INFO ===
 try:
     user_info = login_button(
-    st.secrets["AUTH0_CLIENT_ID"],
-    domain=st.secrets["AUTH0_DOMAIN"],
-    logout_url=(
-        f"https://{st.secrets['AUTH0_DOMAIN']}"
-        f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-        f"&returnTo=https://audit-tooltest.streamlit.app/"
+        st.secrets["AUTH0_CLIENT_ID"],
+        domain=st.secrets["AUTH0_DOMAIN"],
+        logout_url=(
+            f"https://{st.secrets['AUTH0_DOMAIN']}"
+            f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
+            f"&returnTo=https://audit-tooltest.streamlit.app/"
+        )
     )
-)
-
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
     st.exception(e)
     st.stop()
 
+# — detect logout (Auth0 session cleared) —
+if st.session_state["prev_auth0_id"] and not user_info:
+    st.success("✅ Successfully logged out.")
+    st.session_state["prev_auth0_id"] = None
+
+# — store on login for next-round detection —
+if user_info:
+    st.session_state["prev_auth0_id"] = user_info.get("sub")
+
+# — if still not logged in, show login prompt & stop —
 if not user_info:
     st.warning("Please log in to continue.")
     st.stop()
+
 
 # === EXTRACT USER INFO ONCE ===
 auth0_id   = user_info.get("sub")
@@ -92,39 +109,47 @@ def generate_intern_ids(first, last):
 # === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
 if existing_user is None:
-    st.subheader("👤 Complete Your Profile")
 
-    first_name   = st.text_input("First Name", value=given_name)
-    last_name    = st.text_input("Last Name")
-    phone_number = st.text_input("Phone Number")
+    # ── STEP 1: collect basic info ──
+    if st.session_state.profile_step == 1:
+        st.subheader("👤 Complete Your Profile")
+        fn = st.text_input("First Name", value=given_name)
+        ln = st.text_input("Last Name")
+        phone = st.text_input("Phone Number")
 
-    # Step 1: Generate Intern IDs
-    if first_name and last_name and phone_number:
-        if "generated_ids" not in st.session_state:
-            if st.button("🔄 Generate Intern IDs"):
-                st.session_state.generated_ids = generate_intern_ids(first_name, last_name)
+        if fn and ln and phone and st.button("➡️ Next"):
+            st.session_state.first_name   = fn
+            st.session_state.last_name    = ln
+            st.session_state.phone_number = phone
+            st.session_state.profile_step = 2
+            st.rerun()
+        st.stop()
 
-        # Step 2: Choose one & complete profile
-        if st.session_state.get("generated_ids"):
-            selected_intern_id = st.radio(
-                "Choose Intern ID",
-                st.session_state.generated_ids
-            )
-            if selected_intern_id and st.button("✅ Complete Profile"):
-                users_col.insert_one({
-                    "auth0_id":   auth0_id,
-                    "first_name": first_name,
-                    "last_name":  last_name,
-                    "phone":      phone_number,
-                    "email":      email,
-                    "picture":    picture,
-                    "intern_id":  selected_intern_id,
-                    "created_at": datetime.utcnow()
-                })
-                st.success("✅ Profile saved! Reloading…")
-                st.rerun()
+    # ── STEP 2: generate & choose intern ID ──
+    if st.session_state.profile_step == 2:
+        st.subheader("👤 Choose Your Intern ID")
+        ids = generate_intern_ids(
+            st.session_state.first_name,
+            st.session_state.last_name
+        )
+        selected = st.radio("Select an Intern ID", ids)
 
-    st.stop()
+        if selected and st.button("✅ Submit Profile Information"):
+            users_col.insert_one({
+                "auth0_id":   auth0_id,
+                "first_name": st.session_state.first_name,
+                "last_name":  st.session_state.last_name,
+                "phone":      st.session_state.phone_number,
+                "email":      email,
+                "picture":    picture,
+                "intern_id":  selected,
+                "created_at": datetime.utcnow()
+            })
+            st.success("✅ Profile saved! Reloading…")
+            # reset wizard for next time
+            st.session_state.profile_step = 1
+            st.rerun()
+        st.stop()
 
 
 
