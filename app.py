@@ -70,7 +70,7 @@ if not user_info:
     st.warning("Please log in to continue.")
     st.stop()
 
-# === EXTRACT USER INFO ===
+# === EXTRACT USER INFO ONCE ===
 auth0_id   = user_info.get("sub")
 given_name = user_info.get("given_name", "")
 email      = user_info.get("email", "")
@@ -87,13 +87,6 @@ st.markdown(f"<div style='text-align:right;'>"
             f"<a href='{logout_url}' target='_self'>🔓 Logout</a>"
             f"</div>",
             unsafe_allow_html=True)
-
-# === EXTRACT USER INFO ===
-user_info  = auth_result["user"]
-auth0_id   = user_info.get("sub")
-given_name = user_info.get("given_name", "")
-email      = user_info.get("email", "")
-picture    = user_info.get("picture", "")
 
 # === INTERN‐ID GENERATOR ===
 def generate_intern_ids(first, last):
