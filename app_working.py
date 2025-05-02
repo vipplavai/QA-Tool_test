@@ -104,12 +104,43 @@ given_name = user_info.get("given_name", "")
 email      = user_info.get("email", "")
 picture    = user_info.get("picture", "")
 
-# === INTERN‐ID GENERATOR ===
+# === INTERN‐ID GENERATOR & UNIQUE 5 OPTIONS ===
 def generate_intern_ids(first, last):
-    # Use first 3 chars of first and last names, pad with 'x' if needed
-    base = (first[:3] + last[:3])
-    base = re.sub(r'[^A-Za-z]', '', base)[:6].lower().ljust(6, 'x')
-    return [base]
+    # load existing intern_ids (if any)
+    try:
+        existing = set(doc["intern_id"] for doc in users_col.find({}, {"intern_id": 1}))
+    except:
+        existing = set()
+
+    # possible base patterns mixing first/last
+    patterns = [
+        first[:3] + last[:2],
+        first[:2] + last[:3],
+        first[:1] + last[:5],
+        last[:3] + first[:2],
+        last[:2] + first[:3],
+    ]
+
+    candidates = []
+    for pat in patterns:
+        # strip non-alpha, lowercase
+        base = re.sub(r'[^A-Za-z]', '', pat).lower()
+        # pad or trim to 6 letters
+        base = (base[:6]).ljust(6, 'x')
+        if base not in existing and base not in candidates:
+            candidates.append(base)
+        if len(candidates) == 5:
+            break
+
+    # if still fewer than 5, fill with random alpha suffixes
+    import string, random as _rand
+    while len(candidates) < 5:
+        suffix = ''.join(_rand.choices(string.ascii_lowercase, k=6))
+        if suffix not in existing and suffix not in candidates:
+            candidates.append(suffix)
+
+    return candidates
+
 
 # === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
@@ -131,14 +162,14 @@ if existing_user is None:
                 st.rerun()
         st.stop()
 
-    # STEP 2: choose intern ID
+    # === STEP 2: choose intern ID (replace your existing) ===
     if st.session_state.profile_step == 2:
         st.subheader("🆔 Choose Your Intern ID")
-        ids = generate_intern_ids(
+        options = generate_intern_ids(
             st.session_state.first_name,
             st.session_state.last_name
         )
-        selected = st.radio("Select an Intern ID", ids)
+        selected = st.radio("Select one of these IDs:", options)
         if selected and st.button("✅ Submit Profile Information"):
             users_col.insert_one({
                 "auth0_id":   auth0_id,
