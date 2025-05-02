@@ -48,7 +48,7 @@ TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
 # === FULL-PAGE AUTH0 LOGIN REDIRECT ===
-params = st.experimental_get_query_params()
+params = st.query_params
 if not st.session_state.auth_exchanged and "code" not in params:
     login_url = (
         f"https://{st.secrets['AUTH0_DOMAIN']}/authorize?"
