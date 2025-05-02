@@ -118,18 +118,17 @@ if st.session_state.current_content_id != cid:
     for i in range(len(qa_pairs)):
         st.session_state[f"j_{i}"] = None
     st.session_state.current_content_id = cid
+    
+# === Handle Invalid or Missing Short QA ===
+content_text = content.get("content_text", "").strip() if content and isinstance(content.get("content_text"), str) else ""
 
-# === Handle Invalid or Missing ===
-content_text = content.get("content_text", "").strip() if isinstance(content.get("content_text"), str) else ""
-
-invalid_data = (
-    not content or
-    not content_text or
-    not isinstance(qa_pairs, list) or
-    not all("question" in q and "answer" in q for q in qa_pairs)
+qa_valid = (
+    qa_doc and
+    isinstance(qa_doc.get("questions", {}).get("short"), list) and
+    all("question" in q and "answer" in q for q in qa_doc["questions"]["short"])
 )
 
-if invalid_data:
+if not content or not content_text or not qa_valid:
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
@@ -137,10 +136,11 @@ if invalid_data:
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
-    st.warning(f"⚠️ Skipping ID {cid} — content or QA missing/invalid.")
+    st.warning(f"⚠️ Skipping ID {cid} — content or valid short QA missing.")
     st.session_state.current_content_id = None
     assign_new_content()
     st.rerun()
+
 
 # === Timeout Logic ===
 if remaining <= 0:
