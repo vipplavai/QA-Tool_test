@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import re
 from auth0_component import login_button
 import streamlit.components.v1 as components
+import random
 
 # === APP STATE TRACKING ===
 if "profile_step" not in st.session_state:
@@ -179,8 +180,9 @@ if existing_user is None:
                 "email":      email,
                 "picture":    picture,
                 "intern_id":  selected,
-                "created_at": datetime.utcnow()
+                "created_at": datetime.now(timezone.utc)
             })
+
             st.success("✅ Profile saved! Reloading…")
             st.session_state.profile_step = 1
             st.rerun()
@@ -218,11 +220,11 @@ def assign_new_content():
 
     while st.session_state.eligible_content_ids:
         cid = st.session_state.eligible_content_ids.pop()
-        judged_by = audit_col.distinct("intern_id", {"content_id": cid})
+        judged_by = aud_col.distinct("intern_id", {"content_id": cid})
         if len(judged_by) < MAX_AUDITORS and intern_id not in judged_by:
-            st.session_state.eligible_id = cid
-            st.session_state.deadline = time.time() + TIMER_SECONDS
-            st.session_state.assigned_time = datetime.now(timezone.utc)
+            st.session_state.eligible_id    = cid
+            st.session_state.deadline       = time.time() + TIMER_SECONDS
+            st.session_state.assigned_time  = datetime.now(timezone.utc)
             return
     st.session_state.eligible_id = None
 
