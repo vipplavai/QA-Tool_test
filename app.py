@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from datetime import datetime, timezone
 import random
 import time
+from streamlit_auth0 import login_button
 
 # === CONFIG ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
@@ -52,11 +53,68 @@ skip_col = db["skipped_logs"]
 TIMER_SECONDS = 60
 MAX_AUDITORS = 5
 
-# === Intern Login ===
-st.title("🧐 JNANA - Short Q&A Auditing Tool")
-intern_id = st.text_input("Enter your Intern ID").strip()
-if not intern_id:
+users_col = db["users"]  # New users collection
+
+# Auth0 Login
+auth_result = login_button(
+    domain=st.secrets["AUTH0_DOMAIN"],
+    client_id=st.secrets["AUTH0_CLIENT_ID"],
+    client_secret=st.secrets["AUTH0_CLIENT_SECRET"],
+    audience=st.secrets["AUTH0_AUDIENCE"]
+)
+
+if not auth_result:
+    st.warning("Please log in to continue.")
     st.stop()
+
+user_info = auth_result["user"]
+auth0_id = user_info.get("sub")
+email = user_info.get("email")
+picture = user_info.get("picture", "")
+name = user_info.get("name", "")
+given_name = user_info.get("given_name", name.split()[0] if name else "")
+
+def generate_intern_ids(first, last):
+    base = (first[:2] + last[:2]).lower()
+    return [base + str(i) for i in range(10, 100) if len(base + str(i)) == 5][:5]
+
+existing_user = users_col.find_one({"auth0_id": auth0_id})
+if not existing_user:
+    st.subheader("👤 Complete Your Profile")
+
+    first_name = st.text_input("First Name", value=given_name)
+    last_name = st.text_input("Last Name")
+    phone_number = st.text_input("Phone Number")
+
+    intern_id_options = []
+    selected_intern_id = None
+    if first_name and last_name:
+        intern_id_options = generate_intern_ids(first_name, last_name)
+        selected_intern_id = st.radio("Choose Intern ID", intern_id_options)
+
+    if first_name and last_name and phone_number and selected_intern_id:
+        if st.button("Submit Profile"):
+            users_col.insert_one({
+                "auth0_id": auth0_id,
+                "first_name": first_name,
+                "last_name": last_name,
+                "phone_number": phone_number,
+                "email": email,
+                "intern_id": selected_intern_id,
+                "picture": picture,
+                "created_at": datetime.utcnow()
+            })
+            st.success("✅ Profile completed successfully. Reloading...")
+            st.experimental_rerun()
+    st.stop()
+
+
+# === Intern Login ===
+intern_id = existing_user["intern_id"]
+st.title("🧐 JNANA - Short Q&A Auditing Tool")
+st.markdown(f"Hi {existing_user['first_name']} {existing_user['last_name']}, Intern ID: {intern_id}")
+
+
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
