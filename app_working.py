@@ -1,8 +1,7 @@
 import streamlit as st
 from pymongo import MongoClient
 from datetime import datetime, timezone
-import random
-import time
+import re
 from auth0_component import login_button
 import streamlit.components.v1 as components
 
@@ -11,7 +10,6 @@ if "profile_step" not in st.session_state:
     st.session_state["profile_step"] = 1
 if "prev_auth0_id" not in st.session_state:
     st.session_state["prev_auth0_id"] = None
-
 
 # === CONFIG & STYLING ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
@@ -43,6 +41,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Helper: Show Login Screen Title & Description
+def show_login_intro():
+    st.title("🔐 Welcome to JNANA QA Auditing Tool")
+    st.markdown("Please log in to audit short Q&A pairs.")
+
 # === MONGO CONNECTION ===
 @st.cache_resource
 def get_client():
@@ -55,7 +58,7 @@ db          = client["Tel_QA"]
 users_col   = db["users"]
 content_col = db["Content"]
 qa_col      = db["QA_pairs"]
-audit_col   = db["audit_logs"]
+aud_col     = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
@@ -63,6 +66,7 @@ TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN & USER INFO ===
+show_login_intro()
 try:
     user_info = login_button(
         st.secrets["AUTH0_CLIENT_ID"],
@@ -70,30 +74,31 @@ try:
         logout_url=(
             f"https://{st.secrets['AUTH0_DOMAIN']}"
             f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-            f"&returnTo=https://audit-tooltest.streamlit.app/"
+            f"&returnTo=https://audittool-test2.streamlit.app/"
         )
     )
 except Exception as e:
-    st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
+    st.error("🔴 Auth0 Login Failed. Check your settings.")
     st.exception(e)
     st.stop()
 
-# — detect logout (Auth0 session cleared) —
+# ── Logout Handling ──
 if st.session_state["prev_auth0_id"] and not user_info:
-    st.success("✅ Successfully logged out.")
+    st.success("🎉 You have been logged out successfully.")
     st.session_state["prev_auth0_id"] = None
+    show_login_intro()
+    st.stop()
 
-# — store on login for next-round detection —
+# ── Store current user if logged in ──
 if user_info:
     st.session_state["prev_auth0_id"] = user_info.get("sub")
 
-# — if still not logged in, show login prompt & stop —
+# ── If not logged in, prompt and stop ──
 if not user_info:
-    st.warning("Please log in to continue.")
+    st.warning("⚠️ Please log in to continue.")
     st.stop()
 
-
-# === EXTRACT USER INFO ONCE ===
+# === EXTRACT USER INFO ===
 auth0_id   = user_info.get("sub")
 given_name = user_info.get("given_name", "")
 email      = user_info.get("email", "")
@@ -101,47 +106,39 @@ picture    = user_info.get("picture", "")
 
 # === INTERN‐ID GENERATOR ===
 def generate_intern_ids(first, last):
-    base = (first[:2] + last[:2]).lower()
-    return [base + str(i)
-            for i in range(10, 100)
-            if len(base + str(i)) == 6][:5]
+    # Use first 3 chars of first and last names, pad with 'x' if needed
+    base = (first[:3] + last[:3])
+    base = re.sub(r'[^A-Za-z]', '', base)[:6].lower().ljust(6, 'x')
+    return [base]
 
 # === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
 if existing_user is None:
-
-    # ── STEP 1: collect basic info ──
+    # STEP 1: collect basic info
     if st.session_state.profile_step == 1:
-        st.subheader("👤 Complete Your Profile")
-
-        # always render inputs
+        st.subheader("📝 Complete Your Profile")
         fn = st.text_input("First Name", value=given_name)
         ln = st.text_input("Last Name")
         phone = st.text_input("Phone Number")
-
-        # always render Next button
-        if st.button("➡️ Next"):
-            # validate before advancing
+        if st.button("➡️ Next Step"):
             if not (fn and ln and phone):
-                st.warning("⚠️ Please fill all fields before proceeding.")
+                st.warning("⚠️ All fields are required.")
             else:
-                st.session_state.first_name   = fn
-                st.session_state.last_name    = ln
+                st.session_state.first_name = fn
+                st.session_state.last_name  = ln
                 st.session_state.phone_number = phone
                 st.session_state.profile_step = 2
                 st.rerun()
         st.stop()
 
-
-    # ── STEP 2: generate & choose intern ID ──
+    # STEP 2: choose intern ID
     if st.session_state.profile_step == 2:
-        st.subheader("👤 Choose Your Intern ID")
+        st.subheader("🆔 Choose Your Intern ID")
         ids = generate_intern_ids(
             st.session_state.first_name,
             st.session_state.last_name
         )
         selected = st.radio("Select an Intern ID", ids)
-
         if selected and st.button("✅ Submit Profile Information"):
             users_col.insert_one({
                 "auth0_id":   auth0_id,
@@ -154,19 +151,14 @@ if existing_user is None:
                 "created_at": datetime.utcnow()
             })
             st.success("✅ Profile saved! Reloading…")
-            # reset wizard for next time
             st.session_state.profile_step = 1
             st.rerun()
         st.stop()
 
-
-
 # === POST‐SIGNUP UI ===
 intern_id = existing_user["intern_id"]
-st.title("🧐 JNANA - Short Q&A Auditing Tool")
-st.markdown(f"Hi {existing_user['first_name']} "
-            f"{existing_user['last_name']}, Intern ID: {intern_id}")
-
+st.title("🔍 JNANA – Short Q&A Auditing Tool")
+st.markdown(f"Hello, **{existing_user['first_name']} {existing_user['last_name']}**! Your Intern ID: **{intern_id}**.")
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
