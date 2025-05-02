@@ -4,4 +4,4 @@ pandas
 numpy
 plotly
 statsmodels
-streamlit-auth0
+streamlit-auth0-component

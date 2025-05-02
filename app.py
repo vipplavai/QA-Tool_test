@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from datetime import datetime, timezone
 import random
 import time
-from streamlit_auth0 import login_button
+from auth0_component import login_button
 import streamlit.components.v1 as components
 
 # === CONFIG & STYLING ===
