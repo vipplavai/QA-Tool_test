@@ -58,11 +58,9 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN (no 'audience') ===
 try:
     auth_result = login_button(
-    domain=st.secrets["AUTH0_DOMAIN"],
-    client_id=st.secrets["AUTH0_CLIENT_ID"],
-    # make sure this exact URL is in your Auth0 “Allowed Callback URLs”
-    redirect_uri="https://audit-tooltest.streamlit.app/"
-)
+        domain=st.secrets["AUTH0_DOMAIN"],
+        client_id=st.secrets["AUTH0_CLIENT_ID"],
+    )
 
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
