@@ -113,17 +113,25 @@ if existing_user is None:
     # ── STEP 1: collect basic info ──
     if st.session_state.profile_step == 1:
         st.subheader("👤 Complete Your Profile")
+
+        # always render inputs
         fn = st.text_input("First Name", value=given_name)
         ln = st.text_input("Last Name")
         phone = st.text_input("Phone Number")
 
-        if fn and ln and phone and st.button("➡️ Next"):
-            st.session_state.first_name   = fn
-            st.session_state.last_name    = ln
-            st.session_state.phone_number = phone
-            st.session_state.profile_step = 2
-            st.rerun()
+        # always render Next button
+        if st.button("➡️ Next"):
+            # validate before advancing
+            if not (fn and ln and phone):
+                st.warning("⚠️ Please fill all fields before proceeding.")
+            else:
+                st.session_state.first_name   = fn
+                st.session_state.last_name    = ln
+                st.session_state.phone_number = phone
+                st.session_state.profile_step = 2
+                st.rerun()
         st.stop()
+
 
     # ── STEP 2: generate & choose intern ID ──
     if st.session_state.profile_step == 2:
