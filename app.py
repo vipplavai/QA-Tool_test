@@ -56,16 +56,26 @@ MAX_AUDITORS = 5
 users_col = db["users"]  # New users collection
 
 # Auth0 Login
-auth_result = login_button(
-    domain=st.secrets["AUTH0_DOMAIN"],
-    client_id=st.secrets["AUTH0_CLIENT_ID"],
-    client_secret=st.secrets["AUTH0_CLIENT_SECRET"],
-    audience=st.secrets["AUTH0_AUDIENCE"]
+try:
+    auth_result = login_button(
+        domain=st.secrets["AUTH0_DOMAIN"],
+        client_id=st.secrets["AUTH0_CLIENT_ID"],
+        client_secret=st.secrets["AUTH0_CLIENT_SECRET"],
+        audience=st.secrets["AUTH0_AUDIENCE"]
+    )
+except Exception as e:
+    st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
+    st.exception(e)
+    st.stop()
+
+import streamlit.components.v1 as components
+
+logout_url = f"https://{st.secrets['AUTH0_DOMAIN']}/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}&returnTo=https://audittool.streamlit.app"
+st.markdown(
+    f"<div style='text-align:right;'><a href='{logout_url}' target='_self'>🔓 Logout</a></div>",
+    unsafe_allow_html=True
 )
 
-if not auth_result:
-    st.warning("Please log in to continue.")
-    st.stop()
 
 user_info = auth_result["user"]
 auth0_id = user_info.get("sub")
