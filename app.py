@@ -58,9 +58,15 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN & USER INFO ===
 try:
     user_info = login_button(
-        st.secrets["AUTH0_CLIENT_ID"],
-        domain=st.secrets["AUTH0_DOMAIN"],
+    st.secrets["AUTH0_CLIENT_ID"],
+    domain=st.secrets["AUTH0_DOMAIN"],
+    logout_url=(
+        f"https://{st.secrets['AUTH0_DOMAIN']}"
+        f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
+        f"&returnTo=https://audit-tooltest.streamlit.app/"
     )
+)
+
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
     st.exception(e)
@@ -75,18 +81,6 @@ auth0_id   = user_info.get("sub")
 given_name = user_info.get("given_name", "")
 email      = user_info.get("email", "")
 picture    = user_info.get("picture", "")
-
-# Logout link
-logout_url = (
-    f"https://{st.secrets['AUTH0_DOMAIN']}"
-    f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-    f"&returnTo=https://audit-tooltest.streamlit.app/"
-)
-
-st.markdown(f"<div style='text-align:right;'>"
-            f"<a href='{logout_url}' target='_self'>🔓 Logout</a>"
-            f"</div>",
-            unsafe_allow_html=True)
 
 # === INTERN‐ID GENERATOR ===
 def generate_intern_ids(first, last):
@@ -104,25 +98,35 @@ if existing_user is None:
     last_name    = st.text_input("Last Name")
     phone_number = st.text_input("Phone Number")
 
+    # Step 1: Generate Intern IDs
     if first_name and last_name and phone_number:
-        options = generate_intern_ids(first_name, last_name)
-        selected_intern_id = st.radio("Choose Intern ID", options)
+        if "generated_ids" not in st.session_state:
+            if st.button("🔄 Generate Intern IDs"):
+                st.session_state.generated_ids = generate_intern_ids(first_name, last_name)
 
-        if selected_intern_id and st.button("Submit Profile"):
-            users_col.insert_one({
-                "auth0_id":   auth0_id,
-                "first_name": first_name,
-                "last_name":  last_name,
-                "phone":      phone_number,
-                "email":      email,
-                "picture":    picture,
-                "intern_id":  selected_intern_id,
-                "created_at": datetime.utcnow()
-            })
-            st.success("✅ Profile saved! Reloading…")
-            st.experimental_rerun()
+        # Step 2: Choose one & complete profile
+        if st.session_state.get("generated_ids"):
+            selected_intern_id = st.radio(
+                "Choose Intern ID",
+                st.session_state.generated_ids
+            )
+            if selected_intern_id and st.button("✅ Complete Profile"):
+                users_col.insert_one({
+                    "auth0_id":   auth0_id,
+                    "first_name": first_name,
+                    "last_name":  last_name,
+                    "phone":      phone_number,
+                    "email":      email,
+                    "picture":    picture,
+                    "intern_id":  selected_intern_id,
+                    "created_at": datetime.utcnow()
+                })
+                st.success("✅ Profile saved! Reloading…")
+                st.rerun()
 
     st.stop()
+
+
 
 # === POST‐SIGNUP UI ===
 intern_id = existing_user["intern_id"]
