@@ -55,28 +55,34 @@ skip_col    = db["skipped_logs"]
 TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
-# === AUTH0 LOGIN (no 'audience') ===
+# === AUTH0 LOGIN & USER INFO ===
 try:
-    auth_result = login_button(
-        st.secrets["AUTH0_CLIENT_ID"],               # ← first positional arg is clientId
-        domain=st.secrets["AUTH0_DOMAIN"], 
+    user_info = login_button(
+        st.secrets["AUTH0_CLIENT_ID"],
+        domain=st.secrets["AUTH0_DOMAIN"],
     )
-
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
     st.exception(e)
     st.stop()
 
-if not auth_result:
+if not user_info:
     st.warning("Please log in to continue.")
     st.stop()
+
+# === EXTRACT USER INFO ===
+auth0_id   = user_info.get("sub")
+given_name = user_info.get("given_name", "")
+email      = user_info.get("email", "")
+picture    = user_info.get("picture", "")
 
 # Logout link
 logout_url = (
     f"https://{st.secrets['AUTH0_DOMAIN']}"
     f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-    f"&returnTo=https://audittool.streamlit.app"
+    f"&returnTo=https://audit-tooltest.streamlit.app/"
 )
+
 st.markdown(f"<div style='text-align:right;'>"
             f"<a href='{logout_url}' target='_self'>🔓 Logout</a>"
             f"</div>",
