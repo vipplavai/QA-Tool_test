@@ -58,8 +58,8 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN (no 'audience') ===
 try:
     auth_result = login_button(
-        domain=st.secrets["AUTH0_DOMAIN"],
-        client_id=st.secrets["AUTH0_CLIENT_ID"],
+        st.secrets["AUTH0_CLIENT_ID"],               # ← first positional arg is clientId
+        domain=st.secrets["AUTH0_DOMAIN"], 
     )
 
 except Exception as e:
