@@ -70,7 +70,7 @@ if "code" not in params:
     login_url = (
         f"https://{st.secrets['AUTH0_DOMAIN']}/authorize?"
         f"client_id={st.secrets['AUTH0_CLIENT_ID']}&"
-        "redirect_uri=https://audit-tooltest.streamlit.app/&"
+        "redirect_uri=https://audit-tooltest.streamlit.app/~/+/component/auth0_component.login_button/index.html&"
         "response_type=code&"
         "scope=openid%20profile%20email"
     )
