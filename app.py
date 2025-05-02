@@ -63,19 +63,44 @@ TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN & USER INFO ===
+
+# Auto-redirect to Auth0 login page if "code" is not in query parameters
+params = st.experimental_get_query_params()
+if "code" not in params:
+    login_url = (
+        f"https://{st.secrets['AUTH0_DOMAIN']}/authorize?"
+        f"client_id={st.secrets['AUTH0_CLIENT_ID']}&"
+        "redirect_uri=https://audit-tooltest.streamlit.app/&"
+        "response_type=code&"
+        "scope=openid%20profile%20email"
+    )
+    st.markdown(f'<meta http-equiv="refresh" content="0;url={login_url}">', unsafe_allow_html=True)
+    st.stop()
+
+# Replace the login-button pop with the token exchange using Auth0 code
 try:
     user_info = login_button(
         st.secrets["AUTH0_CLIENT_ID"],
         domain=st.secrets["AUTH0_DOMAIN"],
         logout_url=(
-            f"https://{st.secrets['AUTH0_DOMAIN']}"
-            f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-            f"&returnTo=https://audit-tooltest.streamlit.app/"
+            f"https://{st.secrets['AUTH0_DOMAIN']}/v2/logout?"
+            f"client_id={st.secrets['AUTH0_CLIENT_ID']}&"
+            "returnTo=https://audit-tooltest.streamlit.app/"
         )
     )
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
     st.exception(e)
+    st.stop()
+
+# Add a Logout button that redirects to Auth0 logout, showing the login page
+if st.button("Logout"):
+    logout_url = (
+        f"https://{st.secrets['AUTH0_DOMAIN']}/v2/logout?"
+        f"client_id={st.secrets['AUTH0_CLIENT_ID']}&"
+        "returnTo=https://audit-tooltest.streamlit.app/"
+    )
+    st.markdown(f'<meta http-equiv="refresh" content="0;url={logout_url}">', unsafe_allow_html=True)
     st.stop()
 
 # — detect logout (Auth0 session cleared) —
@@ -101,10 +126,18 @@ picture    = user_info.get("picture", "")
 
 # === INTERN‐ID GENERATOR ===
 def generate_intern_ids(first, last):
-    base = (first[:2] + last[:2]).lower()
-    return [base + str(i)
-            for i in range(10, 100)
-            if len(base + str(i)) == 6][:5]
+    # Remove non-alphabetic characters and convert to lowercase
+    import re
+    first_clean = re.sub(r'[^a-zA-Z]', '', first).lower()
+    last_clean  = re.sub(r'[^a-zA-Z]', '', last).lower()
+    # Generate 5 variations using only letters
+    return [
+        first_clean + last_clean,
+        first_clean[:2] + last_clean,
+        first_clean + last_clean[:2],
+        first_clean[:3] + last_clean,
+        first_clean + last_clean[:3]
+    ]
 
 # === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
