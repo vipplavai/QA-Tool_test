@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import random
 import time
 from streamlit_auth0 import login_button
+import streamlit.components.v1 as components
 
 # === CONFIG ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
@@ -60,7 +61,6 @@ try:
     auth_result = login_button(
         domain=st.secrets["AUTH0_DOMAIN"],
         client_id=st.secrets["AUTH0_CLIENT_ID"],
-        client_secret=st.secrets["AUTH0_CLIENT_SECRET"],
         audience=st.secrets["AUTH0_AUDIENCE"]
     )
 except Exception as e:
@@ -68,7 +68,9 @@ except Exception as e:
     st.exception(e)
     st.stop()
 
-import streamlit.components.v1 as components
+if not auth_result:
+    st.warning("Please log in to continue.")
+    st.stop()
 
 logout_url = f"https://{st.secrets['AUTH0_DOMAIN']}/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}&returnTo=https://audittool.streamlit.app"
 st.markdown(
