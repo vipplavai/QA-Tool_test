@@ -104,7 +104,7 @@ def generate_intern_ids(first, last):
     base = (first[:2] + last[:2]).lower()
     return [base + str(i)
             for i in range(10, 100)
-            if len(base + str(i)) == 5][:5]
+            if len(base + str(i)) == 6][:5]
 
 # === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
