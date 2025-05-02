@@ -6,7 +6,7 @@ import time
 from streamlit_auth0 import login_button
 import streamlit.components.v1 as components
 
-# === CONFIG ===
+# === CONFIG & STYLING ===
 st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
 st.markdown("""
     <style>
@@ -36,32 +36,30 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# === MongoDB Connection ===
+# === MONGO CONNECTION ===
 @st.cache_resource
 def get_client():
     client = MongoClient(st.secrets["mongo_uri"])
     client.admin.command("ping")
     return client
 
-client = get_client()
-db = client["Tel_QA"]
+client      = get_client()
+db          = client["Tel_QA"]
+users_col   = db["users"]
 content_col = db["Content"]
-qa_col = db["QA_pairs"]
-audit_col = db["audit_logs"]
-doubt_col = db["doubt_logs"]
-skip_col = db["skipped_logs"]
+qa_col      = db["QA_pairs"]
+audit_col   = db["audit_logs"]
+doubt_col   = db["doubt_logs"]
+skip_col    = db["skipped_logs"]
 
 TIMER_SECONDS = 60
-MAX_AUDITORS = 5
+MAX_AUDITORS  = 5
 
-users_col = db["users"]  # New users collection
-
-# Auth0 Login
+# === AUTH0 LOGIN (no 'audience') ===
 try:
     auth_result = login_button(
         domain=st.secrets["AUTH0_DOMAIN"],
         client_id=st.secrets["AUTH0_CLIENT_ID"],
-        audience=st.secrets["AUTH0_AUDIENCE"]
     )
 except Exception as e:
     st.error("❌ Auth0 Login Failed. Check secrets.toml and Auth0 settings.")
@@ -72,60 +70,65 @@ if not auth_result:
     st.warning("Please log in to continue.")
     st.stop()
 
-logout_url = f"https://{st.secrets['AUTH0_DOMAIN']}/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}&returnTo=https://audittool.streamlit.app"
-st.markdown(
-    f"<div style='text-align:right;'><a href='{logout_url}' target='_self'>🔓 Logout</a></div>",
-    unsafe_allow_html=True
+# Logout link
+logout_url = (
+    f"https://{st.secrets['AUTH0_DOMAIN']}"
+    f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
+    f"&returnTo=https://audittool.streamlit.app"
 )
+st.markdown(f"<div style='text-align:right;'>"
+            f"<a href='{logout_url}' target='_self'>🔓 Logout</a>"
+            f"</div>",
+            unsafe_allow_html=True)
 
+# === EXTRACT USER INFO ===
+user_info  = auth_result["user"]
+auth0_id   = user_info.get("sub")
+given_name = user_info.get("given_name", "")
+email      = user_info.get("email", "")
+picture    = user_info.get("picture", "")
 
-user_info = auth_result["user"]
-auth0_id = user_info.get("sub")
-email = user_info.get("email")
-picture = user_info.get("picture", "")
-name = user_info.get("name", "")
-given_name = user_info.get("given_name", name.split()[0] if name else "")
-
+# === INTERN‐ID GENERATOR ===
 def generate_intern_ids(first, last):
     base = (first[:2] + last[:2]).lower()
-    return [base + str(i) for i in range(10, 100) if len(base + str(i)) == 5][:5]
+    return [base + str(i)
+            for i in range(10, 100)
+            if len(base + str(i)) == 5][:5]
 
+# === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
-if not existing_user:
+if existing_user is None:
     st.subheader("👤 Complete Your Profile")
 
-    first_name = st.text_input("First Name", value=given_name)
-    last_name = st.text_input("Last Name")
+    first_name   = st.text_input("First Name", value=given_name)
+    last_name    = st.text_input("Last Name")
     phone_number = st.text_input("Phone Number")
 
-    intern_id_options = []
-    selected_intern_id = None
-    if first_name and last_name:
-        intern_id_options = generate_intern_ids(first_name, last_name)
-        selected_intern_id = st.radio("Choose Intern ID", intern_id_options)
+    if first_name and last_name and phone_number:
+        options = generate_intern_ids(first_name, last_name)
+        selected_intern_id = st.radio("Choose Intern ID", options)
 
-    if first_name and last_name and phone_number and selected_intern_id:
-        if st.button("Submit Profile"):
+        if selected_intern_id and st.button("Submit Profile"):
             users_col.insert_one({
-                "auth0_id": auth0_id,
+                "auth0_id":   auth0_id,
                 "first_name": first_name,
-                "last_name": last_name,
-                "phone_number": phone_number,
-                "email": email,
-                "intern_id": selected_intern_id,
-                "picture": picture,
+                "last_name":  last_name,
+                "phone":      phone_number,
+                "email":      email,
+                "picture":    picture,
+                "intern_id":  selected_intern_id,
                 "created_at": datetime.utcnow()
             })
-            st.success("✅ Profile completed successfully. Reloading...")
+            st.success("✅ Profile saved! Reloading…")
             st.experimental_rerun()
+
     st.stop()
 
-
-# === Intern Login ===
+# === POST‐SIGNUP UI ===
 intern_id = existing_user["intern_id"]
 st.title("🧐 JNANA - Short Q&A Auditing Tool")
-st.markdown(f"Hi {existing_user['first_name']} {existing_user['last_name']}, Intern ID: {intern_id}")
-
+st.markdown(f"Hi {existing_user['first_name']} "
+            f"{existing_user['last_name']}, Intern ID: {intern_id}")
 
 
 # === Session State Init ===
