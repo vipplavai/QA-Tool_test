@@ -70,43 +70,47 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN & LOGOUT HANDLING ===
 try:
     user_info = login_button(
-        st.secrets["AUTH0_CLIENT_ID"],
-        domain=st.secrets["AUTH0_DOMAIN"],
-        
+        client_id   = st.secrets["AUTH0_CLIENT_ID"],
+        domain      = st.secrets["AUTH0_DOMAIN"],
+        # force redirect back to your app’s root—never the internal component path
+        redirect_uri= "https://audittool-test2.streamlit.app",
+        # remove audience so you don’t inadvertently hit the /api/v2/ endpoint
+        audience    = None,
+        scope       = "openid profile email"
     )
-    # debug logging
-    st.write("DEBUG ▶ user_info:", user_info)
-    st.write("DEBUG ▶ prev_auth0_id:", st.session_state.get("prev_auth0_id"))
+    # immediate debug logs in your Streamlit sidebar/logs 
+    st.write("🔍 DEBUG ▶ user_info:", user_info)
+    st.write("🔍 DEBUG ▶ prev_auth0_id:", st.session_state.get("prev_auth0_id"))
 except Exception as e:
-    st.error("🔴 Auth0 Login Failed. Check your settings.")
+    st.error("🔴 Auth0 Login Failed. Check your Auth0 settings.")
     st.exception(e)
     st.stop()
 
-# ── If they were logged in, and now user_info is empty ⇒ logout
+# ── LOGOUT DETECTION ──
 if st.session_state.get("prev_auth0_id") and not user_info:
-    st.write("DEBUG ▶ Detected logout event")
-    # clear every key in session_state
+    st.write("🚪 DEBUG ▶ Detected logout, clearing session_state…")
+    # completely clear everything
     for k in list(st.session_state.keys()):
         del st.session_state[k]
-    # reinitialize the minimal state you need
-    st.session_state["profile_step"] = 1
-    st.session_state["prev_auth0_id"] = None
+    # re-init minimal keys
+    st.session_state["profile_step"]   = 1
+    st.session_state["prev_auth0_id"]  = None
 
     st.success("🎉 You have been logged out successfully.")
     if st.button("🔄 Reload to log in again"):
         st.experimental_rerun()
-    # stop everything else
     st.stop()
 
-# ── If they’ve just logged in, store their sub
+# ── ON LOGIN SUCCESS ──
 if user_info:
-    st.session_state["prev_auth0_id"] = user_info.get("sub")
+    st.session_state["prev_auth0_id"] = user_info["sub"]
 
-# ── If still no user_info, show intro + login prompt
+# ── NOT LOGGED IN? SHOW INTRO & STOP ──
 if not user_info:
     show_login_intro()
     st.warning("⚠️ Please log in to continue.")
     st.stop()
+
 
 # === EXTRACT USER INFO ===
 auth0_id   = user_info.get("sub")
