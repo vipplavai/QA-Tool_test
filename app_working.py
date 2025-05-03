@@ -60,7 +60,7 @@ db          = client["Tel_QA"]
 users_col   = db["users"]
 content_col = db["Content"]
 qa_col      = db["QA_pairs"]
-audit_col     = db["audit_logs"]
+audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
@@ -225,6 +225,7 @@ def assign_new_content():
 
     while st.session_state.eligible_content_ids:
         cid = st.session_state.eligible_content_ids.pop()
+        # ← use audit_col, not aud_col!
         judged_by = audit_col.distinct("intern_id", {"content_id": cid})
         if len(judged_by) < MAX_AUDITORS and intern_id not in judged_by:
             st.session_state.eligible_id    = cid
@@ -232,6 +233,7 @@ def assign_new_content():
             st.session_state.assigned_time  = datetime.now(timezone.utc)
             return
     st.session_state.eligible_id = None
+
 
 # === Load Content Initially ===
 if st.session_state.eligible_id is None:
