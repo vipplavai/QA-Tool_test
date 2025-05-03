@@ -68,61 +68,43 @@ TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
-try:
-    user_info = login_button(
-        st.secrets["AUTH0_CLIENT_ID"],
-        st.secrets["AUTH0_DOMAIN"],
-    )
-except Exception as e:
-    st.error("🔴 Auth0 Login Failed. Check your settings.")
-    st.exception(e)
-    st.stop()
 
-if not user_info:
-    show_login_intro()
-    st.warning("⚠️ Please log in to continue.")
-    st.stop()
-# at this point you have a valid user_info
-st.session_state["prev_auth0_id"] = user_info["sub"]
+# Hide default Auth0 logout button by storing user_info in session_state
+if "user_info" not in st.session_state:
+    try:
+        auth0_user_info = login_button(
+            st.secrets["AUTH0_CLIENT_ID"],
+            st.secrets["AUTH0_DOMAIN"],
+        )
+    except Exception as e:
+        st.error("🔴 Auth0 Login Failed. Check your settings.")
+        st.exception(e)
+        st.stop()
 
+    if not auth0_user_info:
+        show_login_intro()
+        st.warning("⚠️ Please log in to continue.")
+        st.stop()
 
-# ── AUTH0 LOGOUT DETECTION & AUTO-RELOAD ──
-if st.session_state.get("prev_auth0_id") and not user_info:
-    # completely clear session state
-    for key in list(st.session_state.keys()):
-        del st.session_state[key]
-    st.session_state["profile_step"] = 1
-    st.session_state["prev_auth0_id"] = None
+    st.session_state.user_info = auth0_user_info  # store for subsequent runs
 
-    st.success("🎉 You have been logged out successfully.")
-    # inject JS to force a full browser reload
-    st.components.v1.html(
-        """
-        <script>
-          // reload the page at the browser level
-          window.location.href = window.location.origin + window.location.pathname;
-        </script>
-        """,
-        height=0,
-    )
-    st.stop()
-
+user_info = st.session_state.user_info
 
 # === EXTRACT USER INFO ===
+
 auth0_id   = user_info.get("sub")
 given_name = user_info.get("given_name", "")
 email      = user_info.get("email", "")
 picture    = user_info.get("picture", "")
 
-# === INTERN‐ID GENERATOR & UNIQUE 5 OPTIONS ===
+# === INTERN‑ID GENERATOR & UNIQUE 5 OPTIONS ===
+
 def generate_intern_ids(first, last):
-    # load existing intern_ids (if any)
     try:
         existing = set(doc["intern_id"] for doc in users_col.find({}, {"intern_id": 1}))
     except:
         existing = set()
 
-    # possible base patterns mixing first/last
     patterns = [
         first[:3] + last[:2],
         first[:2] + last[:3],
@@ -133,30 +115,26 @@ def generate_intern_ids(first, last):
 
     candidates = []
     for pat in patterns:
-        # strip non-alpha, lowercase
         base = re.sub(r'[^A-Za-z]', '', pat).lower()
-        # pad or trim to 6 letters
         base = (base[:6]).ljust(6, 'x')
         if base not in existing and base not in candidates:
             candidates.append(base)
         if len(candidates) == 5:
             break
 
-    # if still fewer than 5, fill with random alpha suffixes
-    import string, random as _rand
+    import random, string
     while len(candidates) < 5:
-        suffix = ''.join(_rand.choices(string.ascii_lowercase, k=6))
+        suffix = ''.join(random.choices(string.ascii_lowercase, k=6))
         if suffix not in existing and suffix not in candidates:
             candidates.append(suffix)
 
     return candidates
 
+# === FIRST‑TIME SIGNUP FLOW ===
 
-# === FIRST‐TIME SIGNUP FLOW ===
 existing_user = users_col.find_one({"auth0_id": auth0_id})
 if existing_user is None:
-    # STEP 1: collect basic info
-    if st.session_state.profile_step == 1:
+    if st.session_state.get("profile_step", 1) == 1:
         st.subheader("📝 Complete Your Profile")
         fn = st.text_input("First Name", value=given_name)
         ln = st.text_input("Last Name")
@@ -172,7 +150,6 @@ if existing_user is None:
                 st.rerun()
         st.stop()
 
-    # === STEP 2: choose intern ID (replace your existing) ===
     if st.session_state.profile_step == 2:
         st.subheader("🆔 Choose Your Intern ID")
         options = generate_intern_ids(
@@ -191,38 +168,43 @@ if existing_user is None:
                 "intern_id":  selected,
                 "created_at": datetime.now(timezone.utc)
             })
-
             st.success("✅ Profile saved! Reloading…")
             st.session_state.profile_step = 1
             st.rerun()
         st.stop()
 
-# === POST‐SIGNUP UI ===
-intern_id = existing_user["intern_id"]
+# === POST‑SIGNUP UI ===
+
+intern_id = existing_user["intern_id"] if existing_user else selected
+first = existing_user["first_name"] if existing_user else st.session_state.first_name
+last = existing_user["last_name"] if existing_user else st.session_state.last_name
+
 st.title("🔍 JNANA – Short Q&A Auditing Tool")
-st.markdown(f"Hello, **{existing_user['first_name']} {existing_user['last_name']}**! Your Intern ID: **{intern_id}**.")
+st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 
 # === MANUAL LOGOUT BUTTON ===
+
 if st.button("🔒 Logout"):
-    # 1) clear everything
+    # Clear session state
     for k in list(st.session_state.keys()):
         del st.session_state[k]
-    # 2) build the Auth0 logout URL
-    logout_url = (
-        f"https://{st.secrets['AUTH0_DOMAIN']}"
-        f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-        f"&returnTo=https://audittool-test2.streamlit.app/"
-    )
-    # 3) force a top-window redirect
+    # Build Auth0 logout URL and perform safe redirect with alert
+    domain = st.secrets["AUTH0_DOMAIN"]
+    client_id = st.secrets["AUTH0_CLIENT_ID"]
     st.components.v1.html(
         f"""
         <script>
-          window.top.location.href = "{logout_url}";
+          const domain = "{domain}";
+          const clientId = "{client_id}";
+          const returnTo = window.location.origin + window.location.pathname;
+          alert("🎉 You have been logged out successfully. Redirecting now...");
+          window.top.location.href = `https://${domain}/v2/logout?client_id=${clientId}&returnTo=${returnTo}`;
         </script>
         """,
         height=0,
     )
     st.stop()
+
 
 
 # === Session State Init ===
