@@ -108,6 +108,28 @@ if not user_info:
     st.warning("⚠️ Please log in to continue.")
     st.stop()
 
+# ── AUTH0 LOGOUT DETECTION & AUTO-RELOAD ──
+if st.session_state.get("prev_auth0_id") and not user_info:
+    # completely clear session state
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.session_state["profile_step"] = 1
+    st.session_state["prev_auth0_id"] = None
+
+    st.success("🎉 You have been logged out successfully.")
+    # inject JS to force a full browser reload
+    st.components.v1.html(
+        """
+        <script>
+          // reload the page at the browser level
+          window.location.href = window.location.origin + window.location.pathname;
+        </script>
+        """,
+        height=0,
+    )
+    st.stop()
+
+
 # === EXTRACT USER INFO ===
 auth0_id   = user_info.get("sub")
 given_name = user_info.get("given_name", "")
