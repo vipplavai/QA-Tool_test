@@ -60,7 +60,7 @@ db          = client["Tel_QA"]
 users_col   = db["users"]
 content_col = db["Content"]
 qa_col      = db["QA_pairs"]
-aud_col     = db["audit_logs"]
+audit_col     = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
@@ -68,7 +68,6 @@ TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN & USER INFO ===
-show_login_intro()
 try:
     user_info = login_button(
         st.secrets["AUTH0_CLIENT_ID"],
@@ -84,19 +83,24 @@ except Exception as e:
     st.exception(e)
     st.stop()
 
-# ── Logout Handling ──
+ # ── Logout Handling ──
 if st.session_state["prev_auth0_id"] and not user_info:
-    st.success("🎉 You have been logged out successfully.")
+    # clear out the old user
     st.session_state["prev_auth0_id"] = None
-    show_login_intro()
+
+    # show only the logout confirmation + reload button
+    st.success("🎉 You have been logged out successfully.")
+    if st.button("🔄 Reload to log in again"):
+        st.rerun()
     st.stop()
 
 # ── Store current user if logged in ──
 if user_info:
     st.session_state["prev_auth0_id"] = user_info.get("sub")
 
-# ── If not logged in, prompt and stop ──
+# ── First-time / not-yet-logged-in ──
 if not user_info:
+    show_login_intro()
     st.warning("⚠️ Please log in to continue.")
     st.stop()
 
@@ -221,7 +225,7 @@ def assign_new_content():
 
     while st.session_state.eligible_content_ids:
         cid = st.session_state.eligible_content_ids.pop()
-        judged_by = aud_col.distinct("intern_id", {"content_id": cid})
+        judged_by = audit_col.distinct("intern_id", {"content_id": cid})
         if len(judged_by) < MAX_AUDITORS and intern_id not in judged_by:
             st.session_state.eligible_id    = cid
             st.session_state.deadline       = time.time() + TIMER_SECONDS
