@@ -198,7 +198,7 @@ if st.button("🔒 Logout"):
           const clientId = "{client_id}";
           const returnTo = window.location.origin + window.location.pathname;
           alert("🎉 You have been logged out successfully. Redirecting now...");
-          window.top.location.href = `https://${domain}/v2/logout?client_id=${clientId}&returnTo=${returnTo}`;
+          window.top.location.href = `https://${domain}/v2/logout?client_id=${AUTH0_CLIENT_ID}&returnTo=${returnTo}`;
         </script>
         """,
         height=0,
