@@ -67,7 +67,7 @@ skip_col    = db["skipped_logs"]
 TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
-# === AUTH0 LOGIN & USER INFO ===
+# === AUTH0 LOGIN & LOGOUT HANDLING ===
 try:
     user_info = login_button(
         st.secrets["AUTH0_CLIENT_ID"],
@@ -78,27 +78,35 @@ try:
             f"&returnTo=https://audittool-test2.streamlit.app/"
         )
     )
+    # debug logging
+    st.write("DEBUG ▶ user_info:", user_info)
+    st.write("DEBUG ▶ prev_auth0_id:", st.session_state.get("prev_auth0_id"))
 except Exception as e:
     st.error("🔴 Auth0 Login Failed. Check your settings.")
     st.exception(e)
     st.stop()
 
- # ── Logout Handling ──
-if st.session_state["prev_auth0_id"] and not user_info:
-    # clear out the old user
+# ── If they were logged in, and now user_info is empty ⇒ logout
+if st.session_state.get("prev_auth0_id") and not user_info:
+    st.write("DEBUG ▶ Detected logout event")
+    # clear every key in session_state
+    for k in list(st.session_state.keys()):
+        del st.session_state[k]
+    # reinitialize the minimal state you need
+    st.session_state["profile_step"] = 1
     st.session_state["prev_auth0_id"] = None
 
-    # show only the logout confirmation + reload button
     st.success("🎉 You have been logged out successfully.")
     if st.button("🔄 Reload to log in again"):
-        st.rerun()
+        st.experimental_rerun()
+    # stop everything else
     st.stop()
 
-# ── Store current user if logged in ──
+# ── If they’ve just logged in, store their sub
 if user_info:
     st.session_state["prev_auth0_id"] = user_info.get("sub")
 
-# ── First-time / not-yet-logged-in ──
+# ── If still no user_info, show intro + login prompt
 if not user_info:
     show_login_intro()
     st.warning("⚠️ Please log in to continue.")
