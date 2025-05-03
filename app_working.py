@@ -72,11 +72,7 @@ try:
     user_info = login_button(
         st.secrets["AUTH0_CLIENT_ID"],
         domain=st.secrets["AUTH0_DOMAIN"],
-        logout_url=(
-            f"https://{st.secrets['AUTH0_DOMAIN']}"
-            f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
-            f"&returnTo=https://audittool-test2.streamlit.app/"
-        )
+        
     )
     # debug logging
     st.write("DEBUG ▶ user_info:", user_info)
