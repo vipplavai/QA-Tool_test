@@ -343,7 +343,6 @@ submit = st.button("✅ Submit")
 next_ = st.button("➡️ Next")
 
 if submit:
-    global audit_col, doubt_col, skip_col  # added global declarations
     now = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
 
