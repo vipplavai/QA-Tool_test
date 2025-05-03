@@ -70,18 +70,18 @@ MAX_AUDITORS  = 5
 # === AUTH0 LOGIN & LOGOUT HANDLING ===
 try:
     user_info = login_button(
-    client_id=st.secrets["AUTH0_CLIENT_ID"],
-    domain=st.secrets["AUTH0_DOMAIN"],
-    # must exactly match the callback path below!
-    redirect_uri="https://audittool-test2.streamlit.app/~/+/component/auth0_component.login_button/index.html",
-    logout_url="https://audittool-test2.streamlit.app/"
-)
-
-
+        st.secrets["AUTH0_CLIENT_ID"],          # ← first positional: your Client ID
+        st.secrets["AUTH0_DOMAIN"],             # ← second positional: your Auth0 domain
+        redirectUri="https://audittool-test2.streamlit.app/~/+/component/auth0_component.login_button/index.html",
+        logoutUri="https://audittool-test2.streamlit.app/"
+    )
+    st.write("DEBUG ▶ user_info:", user_info)
+    st.write("DEBUG ▶ prev_auth0_id:", st.session_state.get("prev_auth0_id"))
 except Exception as e:
     st.error("🔴 Auth0 Login Failed. Check your settings.")
     st.exception(e)
     st.stop()
+
 
 # ── If they were logged in, and now user_info is empty ⇒ logout
 if st.session_state.get("prev_auth0_id") and not user_info:
