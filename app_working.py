@@ -67,46 +67,24 @@ skip_col    = db["skipped_logs"]
 TIMER_SECONDS = 60
 MAX_AUDITORS  = 5
 
-# === AUTH0 LOGIN & LOGOUT HANDLING ===
+# === AUTH0 LOGIN ===
 try:
     user_info = login_button(
-        st.secrets["AUTH0_CLIENT_ID"],          # ← first positional: your Client ID
-        st.secrets["AUTH0_DOMAIN"],             # ← second positional: your Auth0 domain
-        redirectUri="https://audittool-test2.streamlit.app/~/+/component/auth0_component.login_button/index.html",
-        logoutUri="https://audittool-test2.streamlit.app/"
+        st.secrets["AUTH0_CLIENT_ID"],
+        st.secrets["AUTH0_DOMAIN"],
     )
-    st.write("DEBUG ▶ user_info:", user_info)
-    st.write("DEBUG ▶ prev_auth0_id:", st.session_state.get("prev_auth0_id"))
 except Exception as e:
     st.error("🔴 Auth0 Login Failed. Check your settings.")
     st.exception(e)
     st.stop()
 
-
-# ── If they were logged in, and now user_info is empty ⇒ logout
-if st.session_state.get("prev_auth0_id") and not user_info:
-    # clear every key in session_state
-    for k in list(st.session_state.keys()):
-        del st.session_state[k]
-    # reinitialize the minimal state you need
-    st.session_state["profile_step"] = 1
-    st.session_state["prev_auth0_id"] = None
-
-    st.success("🎉 You have been logged out successfully.")
-    if st.button("🔄 Reload to log in again"):
-        st.experimental_rerun()
-    # stop everything else
-    st.stop()
-
-# ── If they’ve just logged in, store their sub
-if user_info:
-    st.session_state["prev_auth0_id"] = user_info.get("sub")
-
-# ── If still no user_info, show intro + login prompt
 if not user_info:
     show_login_intro()
     st.warning("⚠️ Please log in to continue.")
     st.stop()
+# at this point you have a valid user_info
+st.session_state["prev_auth0_id"] = user_info["sub"]
+
 
 # ── AUTH0 LOGOUT DETECTION & AUTO-RELOAD ──
 if st.session_state.get("prev_auth0_id") and not user_info:
@@ -223,6 +201,29 @@ if existing_user is None:
 intern_id = existing_user["intern_id"]
 st.title("🔍 JNANA – Short Q&A Auditing Tool")
 st.markdown(f"Hello, **{existing_user['first_name']} {existing_user['last_name']}**! Your Intern ID: **{intern_id}**.")
+
+# === MANUAL LOGOUT BUTTON ===
+if st.button("🔒 Logout"):
+    # 1) clear everything
+    for k in list(st.session_state.keys()):
+        del st.session_state[k]
+    # 2) build the Auth0 logout URL
+    logout_url = (
+        f"https://{st.secrets['AUTH0_DOMAIN']}"
+        f"/v2/logout?client_id={st.secrets['AUTH0_CLIENT_ID']}"
+        f"&returnTo=https://audittool-test2.streamlit.app/"
+    )
+    # 3) force a top-window redirect
+    st.components.v1.html(
+        f"""
+        <script>
+          window.top.location.href = "{logout_url}";
+        </script>
+        """,
+        height=0,
+    )
+    st.stop()
+
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
