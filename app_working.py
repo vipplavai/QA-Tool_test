@@ -43,6 +43,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Inject CSS to hide the default Auth0-component logout button
+st.markdown("""
+    <style>
+      /* Hide the red-box Auth0-component logout button */
+      button[data-baseweb="button"][style*="background-color: rgb(217, 83, 79)"] {
+        display: none !important;
+      }
+    </style>
+""", unsafe_allow_html=True)
+
 # Helper: Show Login Screen Title & Description
 def show_login_intro():
     st.title("🔐 Welcome to JNANA QA Auditing Tool")
@@ -185,27 +195,22 @@ st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 # === MANUAL LOGOUT BUTTON ===
 
 if st.button("🔒 Logout"):
-    # Clear session state
+    # Clear only our custom session keys
     for k in list(st.session_state.keys()):
-        del st.session_state[k]
-    # Build Auth0 logout URL and perform safe redirect with alert
+        if k not in ["global_config", "secrets"]:
+            del st.session_state[k]
     domain = st.secrets["AUTH0_DOMAIN"]
     client_id = st.secrets["AUTH0_CLIENT_ID"]
-    st.components.v1.html(
-        f"""
+    st.components.v1.html(f"""
         <script>
           const domain = "{domain}";
           const clientId = "{client_id}";
-          const returnTo = window.location.origin + window.location.pathname;
-          alert("🎉 You have been logged out successfully. Redirecting now...");
-          window.top.location.href = `https://${domain}/v2/logout?client_id=${AUTH0_CLIENT_ID}&returnTo=${returnTo}`;
+          const returnTo = window.location.origin;
+          alert("🎉 You have been logged out successfully. The app will now reload.");
+          window.top.location.href = `https://${{domain}}/v2/logout?client_id=${{clientId}}&returnTo=${{returnTo}}`;
         </script>
-        """,
-        height=0,
-    )
-    st.stop()
-
-
+    """, height=0)
+    st.rerun()
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
