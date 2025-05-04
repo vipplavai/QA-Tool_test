@@ -69,35 +69,40 @@ MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
 
-# create a placeholder to hold the Auth0 component
-login_ph = st.empty()
-
-# if we haven’t stored user_info yet, show the Auth0 login_button in that placeholder
+# 1. Render login_button if necessary
 if "user_info" not in st.session_state:
     try:
-        auth0_user_info = login_ph.login_button(
+        auth0_user_info = login_button(
             st.secrets["AUTH0_CLIENT_ID"],
             st.secrets["AUTH0_DOMAIN"],
         )
     except Exception as e:
-        # on error, tear down the placeholder so nothing lingers
-        login_ph.empty()
         st.error("🔴 Auth0 Login Failed. Check your settings.")
         st.exception(e)
         st.stop()
 
-    # if not yet logged in, keep showing the login, otherwise tear it down
     if not auth0_user_info:
         show_login_intro()
         st.warning("⚠️ Please log in to continue.")
         st.stop()
-    else:
-        # successful login: store and remove the entire component
-        st.session_state.user_info = auth0_user_info
-        login_ph.empty()
 
-# at this point we know we have user_info
+    # successful login → store it
+    st.session_state.user_info = auth0_user_info
+
+# 2. Once logged in, hide the entire Auth0 component (iframe + buttons)
+if "user_info" in st.session_state:
+    st.markdown("""
+    <style>
+      /* Hide the Auth0-component’s container (login button + red logout) */
+      div.stCustomComponentV1 {
+        display: none !important;
+      }
+    </style>
+    """, unsafe_allow_html=True)
+
+# 3. Now grab user_info for your app
 user_info = st.session_state.user_info
+
 
 
 # === EXTRACT USER INFO ===
