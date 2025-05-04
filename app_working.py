@@ -69,7 +69,7 @@ MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
 
-# 1. Prompt login if we don't have user_info yet
+# only call login_button() until we have user_info
 if "user_info" not in st.session_state:
     try:
         auth0_user_info = login_button(
@@ -86,32 +86,12 @@ if "user_info" not in st.session_state:
         st.warning("⚠️ Please log in to continue.")
         st.stop()
 
-    # successful login → store it for later
+    # store and immediately rerun to clear the login UI
     st.session_state.user_info = auth0_user_info
+    st.rerun()
 
-# 2. Grab the stored user_info
+# from here on down, we know user_info is set and login_button() won't be called again
 user_info = st.session_state.user_info
-
-# 3. Immediately remove the entire Auth0 iframe + its wrapper from the DOM
-st.components.v1.html("""
-<script>
-  // Delay to ensure Streamlit has injected the iframe
-  setTimeout(() => {
-    const iframe = document.querySelector('iframe[title="auth0_component.login_button"]');
-    if (iframe) {
-      // climb up to the .stElementContainer wrapper
-      let container = iframe;
-      while (container && !container.classList.contains('stElementContainer')) {
-        container = container.parentElement;
-      }
-      // remove it entirely
-      if (container && container.parentElement) {
-        container.parentElement.removeChild(container);
-      }
-    }
-  }, 500);
-</script>
-""", height=0)
 
 # === EXTRACT USER INFO ===
 
