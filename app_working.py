@@ -100,6 +100,13 @@ if "user_info" not in st.session_state:
 
 user_info = st.session_state.user_info
 
+# Hide the Auth0‐component’s built-in logout
+st.markdown("""
+    <style>
+      .stButton:first-of-type { display: none !important; }
+    </style>
+""", unsafe_allow_html=True)
+
 # === EXTRACT USER INFO ===
 
 auth0_id   = user_info.get("sub")
