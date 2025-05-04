@@ -69,43 +69,35 @@ MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
 
-# 1. Prompt user to log in via Auth0, storing the result in session_state
+# create a placeholder to hold the Auth0 component
+login_ph = st.empty()
+
+# if we haven’t stored user_info yet, show the Auth0 login_button in that placeholder
 if "user_info" not in st.session_state:
     try:
-        auth0_user_info = login_button(
+        auth0_user_info = login_ph.login_button(
             st.secrets["AUTH0_CLIENT_ID"],
             st.secrets["AUTH0_DOMAIN"],
         )
     except Exception as e:
+        # on error, tear down the placeholder so nothing lingers
+        login_ph.empty()
         st.error("🔴 Auth0 Login Failed. Check your settings.")
         st.exception(e)
         st.stop()
 
+    # if not yet logged in, keep showing the login, otherwise tear it down
     if not auth0_user_info:
         show_login_intro()
         st.warning("⚠️ Please log in to continue.")
         st.stop()
+    else:
+        # successful login: store and remove the entire component
+        st.session_state.user_info = auth0_user_info
+        login_ph.empty()
 
-    st.session_state.user_info = auth0_user_info  # store for subsequent runs
-
-# 2. Retrieve the stored user info
+# at this point we know we have user_info
 user_info = st.session_state.user_info
-
-# 3. Inject JS to hide the Auth0-component’s red logout button by its computed background color
-st.components.v1.html("""
-<script>
-  // Delay so Auth0 component finishes rendering
-  setTimeout(() => {
-    document.querySelectorAll("button").forEach(btn => {
-      const bg = window.getComputedStyle(btn).backgroundColor;
-      // Auth0's default logout red (add variants if needed)
-      if (bg === "rgb(217, 83, 79)" || bg === "rgb(223, 70, 56)") {
-        btn.style.display = "none";
-      }
-    });
-  }, 500);
-</script>
-""", height=0)
 
 
 # === EXTRACT USER INFO ===
