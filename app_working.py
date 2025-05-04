@@ -39,6 +39,9 @@ st.markdown("""
     }
     div.stButton > button:hover {
         background-color: #0097a7 !important;
+    /* hide the red Auth0 logout button */
+    button[data-baseweb="button"][style*="background-color: rgb(217, 83, 79)"] {
+        display: none !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -99,13 +102,6 @@ if "user_info" not in st.session_state:
     st.session_state.user_info = auth0_user_info  # store for subsequent runs
 
 user_info = st.session_state.user_info
-
-# Hide the Auth0‐component’s built-in logout
-st.markdown("""
-    <style>
-      .stButton:first-of-type { display: none !important; }
-    </style>
-""", unsafe_allow_html=True)
 
 # === EXTRACT USER INFO ===
 
