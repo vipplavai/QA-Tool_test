@@ -39,20 +39,7 @@ st.markdown("""
     }
     div.stButton > button:hover {
         background-color: #0097a7 !important;
-    /* hide the red Auth0 logout button */
-    button[data-baseweb="button"][style*="background-color: rgb(217, 83, 79)"] {
-        display: none !important;
     }
-    </style>
-""", unsafe_allow_html=True)
-
-# Inject CSS to hide the default Auth0-component logout button
-st.markdown("""
-    <style>
-      /* Hide the red-box Auth0-component logout button */
-      button[data-baseweb="button"][style*="background-color: rgb(217, 83, 79)"] {
-        display: none !important;
-      }
     </style>
 """, unsafe_allow_html=True)
 
@@ -82,7 +69,7 @@ MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
 
-# Hide default Auth0 logout button by storing user_info in session_state
+# 1. Prompt user to log in via Auth0, storing the result in session_state
 if "user_info" not in st.session_state:
     try:
         auth0_user_info = login_button(
@@ -101,7 +88,25 @@ if "user_info" not in st.session_state:
 
     st.session_state.user_info = auth0_user_info  # store for subsequent runs
 
+# 2. Retrieve the stored user info
 user_info = st.session_state.user_info
+
+# 3. Inject JS to hide the Auth0-component’s red logout button by its computed background color
+st.components.v1.html("""
+<script>
+  // Delay so Auth0 component finishes rendering
+  setTimeout(() => {
+    document.querySelectorAll("button").forEach(btn => {
+      const bg = window.getComputedStyle(btn).backgroundColor;
+      // Auth0's default logout red (add variants if needed)
+      if (bg === "rgb(217, 83, 79)" || bg === "rgb(223, 70, 56)") {
+        btn.style.display = "none";
+      }
+    });
+  }, 500);
+</script>
+""", height=0)
+
 
 # === EXTRACT USER INFO ===
 
