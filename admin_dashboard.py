@@ -63,7 +63,8 @@ for cid, pairs in pairwise.items():
                 continue
             count = Counter(judgments)
             matrix = np.array([[count.get("Correct", 0), count.get("Incorrect", 0)]])
-            kappa = fleiss_kappa(matrix)
+            with np.errstate(invalid="ignore"):
+                kappa = fleiss_kappa(matrix)
             if np.isnan(kappa) and (matrix[0][0] == 5 or matrix[0][1] == 5):
                 kappa = 1.0
             if not np.isnan(kappa):
