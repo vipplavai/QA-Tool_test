@@ -64,7 +64,7 @@ audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
-TIMER_SECONDS = 60 * 10
+TIMER_SECONDS = 60 * 7
 MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
