@@ -291,43 +291,53 @@ if st.session_state.timer_expired:
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
-    # 1) grab every content_id, shuffle for fairness
+    # 1) get all content IDs
     all_ids = qa_col.distinct("content_id")
-    random.shuffle(all_ids)
 
+    # 2) aggregate real audit counts once
+    real_counts = {
+        doc["_id"]: doc["count"]
+        for doc in audit_col.aggregate([
+            {"$group": {"_id": "$content_id", "count": {"$sum": 1}}}
+        ])
+    }
+
+    # 3) aggregate pending (placeholder) counts once
+    pending_counts = {
+        doc["_id"]: doc["count"]
+        for doc in assign_col.aggregate([
+            {"$group": {"_id": "$content_id", "count": {"$sum": 1}}}
+        ])
+    }
+
+    # 4) lookup which IDs this intern already saw or reserved
+    seen = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
+    reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+
+    # 5) filter to those under the cap and not yet seen by this intern
+    candidates = []
     for cid in all_ids:
-        # 2) count how many have actually audited it
-        real_count       = audit_col.count_documents({"content_id": cid})
-        #    and how many are currently reserved (placeholders)
-        pending_count    = assign_col.count_documents({"content_id": cid})
-        total_assigned   = real_count + pending_count
+        total = real_counts.get(cid, 0) + pending_counts.get(cid, 0)
+        if total < MAX_AUDITORS and cid not in seen and cid not in reserved:
+            candidates.append(cid)
 
-        # 3) skip if we've already hit the 5-intern cap
-        if total_assigned >= MAX_AUDITORS:
-            continue
-
-        # 4) skip if this intern already worked on it or has it reserved
-        already_judged   = audit_col.find_one({"content_id": cid, "intern_id": intern_id})
-        already_reserved = assign_col.find_one({"content_id": cid, "intern_id": intern_id})
-        if already_judged or already_reserved:
-            continue
-
-        # 5) reserve it for this intern
-        assign_col.insert_one({
-            "content_id":  cid,
-            "intern_id":   intern_id,
-            "assigned_at": datetime.now(timezone.utc)
-        })
-        log_user_action(intern_id, "assigned_content", {"content_id": cid})
-
-        # 6) set Streamlit state and return
-        st.session_state.eligible_id   = cid
-        st.session_state.deadline      = time.time() + TIMER_SECONDS
-        st.session_state.assigned_time = datetime.now(timezone.utc)
+    # 6) if nothing remains, signal “done”
+    if not candidates:
+        st.session_state.eligible_id = None
         return
 
-    # nothing left for this intern
-    st.session_state.eligible_id = None
+    # 7) pick one at random, reserve it, and update state
+    cid = random.choice(candidates)
+    assign_col.insert_one({
+        "content_id":  cid,
+        "intern_id":   intern_id,
+        "assigned_at": datetime.now(timezone.utc)
+    })
+    log_user_action(intern_id, "assigned_content", {"content_id": cid})
+
+    st.session_state.eligible_id   = cid
+    st.session_state.deadline      = time.time() + TIMER_SECONDS
+    st.session_state.assigned_time = datetime.now(timezone.utc)
 
 
 # kick things off
