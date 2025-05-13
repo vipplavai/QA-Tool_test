@@ -6,6 +6,7 @@ import re
 from auth0_component import login_button
 import streamlit.components.v1 as components
 import random
+from pymongo import ReturnDocument
 
 # === APP STATE TRACKING ===
 if "profile_step" not in st.session_state:
@@ -14,46 +15,87 @@ if "prev_auth0_id" not in st.session_state:
     st.session_state["prev_auth0_id"] = None
 
 # === CONFIG & STYLING ===
-st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
-st.markdown("""
-    <style>
-    .passage-box {
-        background-color: #fafafa;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 1rem;
-        font-family: sans-serif;
-        color: #333;
-        white-space: pre-wrap;
-        max-height: 1000px;
-        overflow-y: auto;
-    }
-    div.stButton > button {
-        background-color: #00bcd4 !important;
-        color: white !important;
-        border: none !important;
-        padding: 0.5rem 1.2rem !important;
-        border-radius: 5px !important;
-        font-weight: bold !important;
-        margin-top: 1rem !important;
-    }
-    div.stButton > button:hover {
-        background-color: #0097a7 !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
+try:
+    st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
+    st.markdown("""
+        <style>
+        .passage-box {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: sans-serif;
+            color: #333;
+            white-space: pre-wrap;
+            max-height: 1000px;
+            overflow-y: auto;
+        }
+        div.stButton > button {
+            background-color: #00bcd4 !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 5px !important;
+            font-weight: bold !important;
+            margin-top: 1rem !important;
+        }
+        div.stButton > button:hover {
+            background-color: #0097a7 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+except Exception as e:
+    import traceback
+    log_system_event(
+        "unexpected_error",
+        str(e),
+        {"traceback": traceback.format_exc()}
+    )
+    st.error("🔴 An unexpected error occurred. Please reload or contact support.")
+    raise
 
 # Helper: Show Login Screen Title & Description
 def show_login_intro():
     st.title("🔐 Welcome to JNANA QA Auditing Tool")
     st.markdown("Please log in to audit short Q&A pairs.")
 
+ # === SYSTEM / INFRASTRUCTURE LOGGING (standalone) ===
+def log_system_event(event, message, details=None):
+    """
+    Logs directly to MongoDB using a fresh client so that
+    it can be called before `db` is set up.
+    """
+    try:
+        temp_client = MongoClient(
+            st.secrets.get("mongo_uri", ""),
+            serverSelectionTimeoutMS=2000
+        )
+        temp_db = temp_client["Tel_QA"]
+        temp_db["system_logs"].insert_one({
+            "timestamp": datetime.now(timezone.utc),
+            "event":     event,
+            "message":   message,
+            "details":   details or {}
+        })
+    except Exception:
+        # best‐effort only, swallow errors
+        pass
+
 # === MONGO CONNECTION ===
 @st.cache_resource
 def get_client():
-    client = MongoClient(st.secrets["mongo_uri"])
-    client.admin.command("ping")
-    return client
+    try:
+        client = MongoClient(
+            st.secrets["mongo_uri"],
+            serverSelectionTimeoutMS=5000
+        )
+        client.admin.command("ping")
+        return client
+    except Exception as e:
+        # now log_system_event is already defined
+        log_system_event("db_connect_error", str(e))
+        st.error("🔴 Cannot connect to database. Please try again later.")
+        st.stop()
 
 client      = get_client()
 db          = client["Tel_QA"]
@@ -63,6 +105,28 @@ qa_col      = db["QA_pairs"]
 audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
+
+# track “reserved” slots so we can block concurrent assignments
+assign_col = db["assignment_placeholders"]
+
+# === USER ACTION LOGGING ===
+user_logs = db["user_logs"]
+
+ # === SYSTEM / INFRASTRUCTURE LOGGING ===
+system_logs = db["system_logs"]
+
+def log_user_action(intern_id, action, details=None):
+    """
+    Persist a timestamped action for audit.
+    action: str, e.g. "assigned", "skipped", "timeout", "submitted", "next_clicked", "error"
+    details: dict of any extra context (e.g. content_id, time_taken, error message)
+    """
+    user_logs.insert_one({
+        "intern_id": intern_id,
+        "date":      datetime.now(timezone.utc),
+        "action":    action,
+        "details":   details or {}
+    })
 
 
 
@@ -79,8 +143,8 @@ if "user_info" not in st.session_state:
             st.secrets["AUTH0_DOMAIN"],
         )
     except Exception as e:
-        st.error("🔴 Auth0 Login Failed. Check your settings.")
-        st.exception(e)
+        log_system_event("auth0_error", str(e))
+        st.error("🔴 Auth0 Login Failed. Please contact support.")
         st.stop()
 
     if not auth0_user_info:
@@ -225,41 +289,86 @@ if st.session_state.timer_expired:
         st.rerun()
     st.stop()
 
-# === Assign New Content ===
+# === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
-    if not st.session_state.eligible_content_ids:
-        all_ids = qa_col.distinct("content_id")
-        random.shuffle(all_ids)
-        st.session_state.eligible_content_ids = all_ids
+    # 1) get all content IDs
+    all_ids = qa_col.distinct("content_id")
 
-    while st.session_state.eligible_content_ids:
-        cid = st.session_state.eligible_content_ids.pop()
-        # ← use audit_col, not aud_col!
-        judged_by = audit_col.distinct("intern_id", {"content_id": cid})
-        if len(judged_by) < MAX_AUDITORS and intern_id not in judged_by:
-            st.session_state.eligible_id    = cid
-            st.session_state.deadline       = time.time() + TIMER_SECONDS
-            st.session_state.assigned_time  = datetime.now(timezone.utc)
-            return
-    st.session_state.eligible_id = None
+    # 2) aggregate real audit counts once
+    real_counts = {
+        doc["_id"]: doc["count"]
+        for doc in audit_col.aggregate([
+            {"$group": {"_id": "$content_id", "count": {"$sum": 1}}}
+        ])
+    }
+
+    # 3) aggregate pending (placeholder) counts once
+    pending_counts = {
+        doc["_id"]: doc["count"]
+        for doc in assign_col.aggregate([
+            {"$group": {"_id": "$content_id", "count": {"$sum": 1}}}
+        ])
+    }
+
+    # 4) lookup which IDs this intern already saw or reserved
+    seen = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
+    reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+
+    # 5) filter to those under the cap and not yet seen by this intern
+    candidates = []
+    for cid in all_ids:
+        total = real_counts.get(cid, 0) + pending_counts.get(cid, 0)
+        if total < MAX_AUDITORS and cid not in seen and cid not in reserved:
+            candidates.append(cid)
+
+    # 6) if nothing remains, signal “done”
+    if not candidates:
+        st.session_state.eligible_id = None
+        return
+
+    # 7) pick one at random, reserve it, and update state
+    cid = random.choice(candidates)
+    assign_col.insert_one({
+        "content_id":  cid,
+        "intern_id":   intern_id,
+        "assigned_at": datetime.now(timezone.utc)
+    })
+    log_user_action(intern_id, "assigned_content", {"content_id": cid})
+
+    st.session_state.eligible_id   = cid
+    st.session_state.deadline      = time.time() + TIMER_SECONDS
+    st.session_state.assigned_time = datetime.now(timezone.utc)
 
 
-# === Load Content Initially ===
+# kick things off
 if st.session_state.eligible_id is None:
     assign_new_content()
 if st.session_state.eligible_id is None:
     st.success("✅ All content audited!")
     st.stop()
 
+
 cid = st.session_state.eligible_id
 remaining = int(st.session_state.deadline - time.time())
 
 # === Fetch Content & QA ===
-@st.cache_data(ttl=300)
+# @st.cache_data(ttl=300)
 def fetch_content_qa(cid):
-    content = content_col.find_one({"content_id": cid})
-    qa_doc = qa_col.find_one({"content_id": cid})
-    return content, qa_doc
+    try:
+        start = time.time()
+        content = content_col.find_one({"content_id": cid})
+        qa_doc  = qa_col.find_one({"content_id": cid})
+        duration = time.time() - start
+        if duration > 1.0:
+            log_system_event("slow_db_query",
+                             f"fetch_content_qa took {duration:.2f}s",
+                             {"content_id": cid})
+        return content, qa_doc
+    except Exception as e:
+        log_system_event("db_query_error",
+                         f"Error fetching content {cid}: {e}",
+                         {"content_id": cid})
+        raise
 
 content, qa_doc = fetch_content_qa(cid)
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
@@ -287,6 +396,13 @@ if not content or not content_text or not qa_valid:
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
+    assign_col.delete_many({
+        "content_id": cid,
+        "intern_id":  intern_id
+    })
+    # log the skip
+    log_user_action(intern_id, "skipped_invalid", {"content_id": cid})
+
     st.warning(f"⚠️ Skipping ID {cid} — content or valid short QA missing.")
     st.session_state.current_content_id = None
     assign_new_content()
@@ -302,6 +418,12 @@ if remaining <= 0:
         "assigned_at": st.session_state.assigned_time,
         "timestamp": datetime.now(timezone.utc)
     })
+    assign_col.delete_many({
+        "content_id": cid,
+        "intern_id":  intern_id
+    })
+    # log the timeout
+    log_user_action(intern_id, "skipped_timeout", {"content_id": cid})
     st.session_state.timer_expired = True
     st.rerun()
 
@@ -352,17 +474,29 @@ submit = st.button("✅ Submit")
 next_ = st.button("➡️ Next")
 
 if submit:
-    now = datetime.now(timezone.utc)
+    now        = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
+
+    # remove the placeholder reservation
+    assign_col.delete_many({
+        "content_id": cid,
+        "intern_id":  intern_id
+    })
+
+        # log the submission
+    log_user_action(intern_id, "submitted", {
+        "content_id": cid,
+        "time_taken": time_taken
+    })
 
     for entry in judgments:
         entry.update({
-            "content_id": cid,
-            "intern_id": intern_id,
-            "timestamp": now,
-            "assigned_at": st.session_state.assigned_time,
-            "time_taken": time_taken,
-            "length": "short"
+            "content_id":   cid,
+            "intern_id":    intern_id,
+            "timestamp":    now,
+            "assigned_at":  st.session_state.assigned_time,
+            "time_taken":   time_taken,
+            "length":       "short"
         })
         if entry["judgment"] == "Doubt":
             doubt_col.insert_one(entry)
@@ -371,7 +505,10 @@ if submit:
 
     st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
+
 if next_:
+        # log clicking “Next” (content was skipped by intern’s choice)
+    log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
