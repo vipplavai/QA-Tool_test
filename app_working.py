@@ -154,6 +154,10 @@ if "user_info" not in st.session_state:
 
     # store and immediately rerun to clear the login UI
     st.session_state.user_info = auth0_user_info
+        # log successful login
+    log_user_action(auth0_user_info["sub"], "login_success", {
+        "email": auth0_user_info.get("email")
+    })
     st.rerun()
 
 # from here on down, we know user_info is set and login_button() won't be called again
@@ -250,6 +254,15 @@ last = existing_user["last_name"] if existing_user else st.session_state.last_na
 
 st.title("🔍 JNANA – Short Q&A Auditing Tool")
 st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
+
+# warn on page unload (logout/refresh) so they don’t lose progress
+st.components.v1.html("""
+<script>
+  window.onbeforeunload = function() {
+    return "🚨 You have unsaved work. Are you sure you want to leave?";
+  };
+</script>
+""", height=0)
 
 # === MANUAL LOGOUT BUTTON ===
 
@@ -468,40 +481,44 @@ with right:
         st.markdown("---")
 
 # === Buttons ===
-submit = st.button("✅ Submit")
+all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
+submit = st.button("✅ Submit", disabled=not all_answered)
 next_ = st.button("➡️ Next")
 
 if submit:
-    now        = datetime.now(timezone.utc)
-    time_taken = (now - st.session_state.assigned_time).total_seconds()
+    if not all_answered:
+        st.warning("⚠️ Please answer every question before submitting.")
+    else:
+        now        = datetime.now(timezone.utc)
+        time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    # remove the placeholder reservation
-    assign_col.delete_many({
-        "content_id": cid,
-        "intern_id":  intern_id
-    })
-
-        # log the submission
-    log_user_action(intern_id, "submitted", {
-        "content_id": cid,
-        "time_taken": time_taken
-    })
-
-    for entry in judgments:
-        entry.update({
-            "content_id":   cid,
-            "intern_id":    intern_id,
-            "timestamp":    now,
-            "assigned_at":  st.session_state.assigned_time,
-            "time_taken":   time_taken,
-            "length":       "short"
+        # remove the placeholder reservation
+        assign_col.delete_many({
+            "content_id": cid,
+            "intern_id":  intern_id
         })
-        if entry["judgment"] == "Doubt":
-            doubt_col.insert_one(entry)
-        else:
-            audit_col.insert_one(entry)
 
-    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+            # log the submission
+        log_user_action(intern_id, "submitted", {
+            "content_id": cid,
+            "time_taken": time_taken
+        })
+
+        for entry in judgments:
+            entry.update({
+                "content_id":   cid,
+                "intern_id":    intern_id,
+                "timestamp":    now,
+                "assigned_at":  st.session_state.assigned_time,
+                "time_taken":   time_taken,
+                "length":       "short"
+            })
+            if entry["judgment"] == "Doubt":
+                doubt_col.insert_one(entry)
+            else:
+                audit_col.insert_one(entry)
+
+        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
 
 if next_:
