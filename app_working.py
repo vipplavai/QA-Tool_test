@@ -505,7 +505,14 @@ with right:
     for i, pair in enumerate(qa_pairs):
         st.markdown(f"**Q{i+1}:** {pair['question']}")
         st.markdown(f"**A{i+1}:** {pair['answer']}")
-        selected = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}", index=None)
+        selected = st.radio(
+            label="", 
+            options=["Correct", "Incorrect", "Doubt"],
+            key=f"j_{i}",
+            index=None,
+            label_visibility="collapsed"
+        )
+
         judgments.append({
             "qa_index": i,
             "question": pair["question"],
