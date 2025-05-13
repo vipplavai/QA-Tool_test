@@ -291,35 +291,44 @@ if st.session_state.timer_expired:
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
-    # 1) pick a random content_id that has fewer than MAX_AUDITORS audits
-    pipeline = [
-        {"$group": {"_id": "$content_id", "audits": {"$sum": 1}}},
-        {"$match": {"audits": {"$lt": MAX_AUDITORS}}},
-        {"$sample": {"size": 1}}
-    ]
-    res = list(audit_col.aggregate(pipeline))
-    if not res:
-        st.session_state.eligible_id = None
+    # 1) grab every content_id, shuffle for fairness
+    all_ids = qa_col.distinct("content_id")
+    random.shuffle(all_ids)
+
+    for cid in all_ids:
+        # 2) count how many have actually audited it
+        real_count       = audit_col.count_documents({"content_id": cid})
+        #    and how many are currently reserved (placeholders)
+        pending_count    = assign_col.count_documents({"content_id": cid})
+        total_assigned   = real_count + pending_count
+
+        # 3) skip if we've already hit the 5-intern cap
+        if total_assigned >= MAX_AUDITORS:
+            continue
+
+        # 4) skip if this intern already worked on it or has it reserved
+        already_judged   = audit_col.find_one({"content_id": cid, "intern_id": intern_id})
+        already_reserved = assign_col.find_one({"content_id": cid, "intern_id": intern_id})
+        if already_judged or already_reserved:
+            continue
+
+        # 5) reserve it for this intern
+        assign_col.insert_one({
+            "content_id":  cid,
+            "intern_id":   intern_id,
+            "assigned_at": datetime.now(timezone.utc)
+        })
+        log_user_action(intern_id, "assigned_content", {"content_id": cid})
+
+        # 6) set Streamlit state and return
+        st.session_state.eligible_id   = cid
+        st.session_state.deadline      = time.time() + TIMER_SECONDS
+        st.session_state.assigned_time = datetime.now(timezone.utc)
         return
 
-    cid = res[0]["_id"]
-    # 2) ensure this intern hasn’t already judged
-    judged   = audit_col.distinct("intern_id", {"content_id": cid})
-    if intern_id in judged:
-        return assign_new_content()
+    # nothing left for this intern
+    st.session_state.eligible_id = None
 
-    # 3) reserve the slot by inserting a placeholder
-    assign_col.insert_one({
-        "content_id": cid,
-        "intern_id":  intern_id,
-        "assigned_at": datetime.now(timezone.utc)
-    })
-    # log the assignment event
-    log_user_action(intern_id, "assigned_content", {"content_id": cid})
-
-    st.session_state.eligible_id   = cid
-    st.session_state.deadline      = time.time() + TIMER_SECONDS
-    st.session_state.assigned_time = datetime.now(timezone.utc)
 
 # kick things off
 if st.session_state.eligible_id is None:
