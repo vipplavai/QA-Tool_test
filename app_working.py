@@ -268,35 +268,51 @@ st.title("🔍 JNANA – Short Q&A Auditing Tool")
 st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 
 # warn on page unload (logout/refresh) so they don’t lose progress
-st.components.v1.html("""
-<script>
-window.addEventListener("beforeunload", function (e) {
-    e.preventDefault();
-    // Chrome requires returnValue to be set
-    e.returnValue = "";
-});
-</script>
-""", height=0)
+st.components.v1.html(
+    """
+    <script>
+      // Register on the parent window so the browser sees it
+      window.parent.onbeforeunload = function (e) {
+        e.preventDefault();
+        e.returnValue = "";  // must be set to trigger confirmation in Chrome/Firefox
+      }
+    </script>
+    """,
+    height=0,
+    scrolling=False,
+)
 
-# === MANUAL LOGOUT BUTTON ===
 
-if st.button("🔒 Logout"):
-    # Clear only our custom session keys
-    for k in list(st.session_state.keys()):
-        if k not in ["global_config", "secrets"]:
-            del st.session_state[k]
-    domain = st.secrets["AUTH0_DOMAIN"]
-    client_id = st.secrets["AUTH0_CLIENT_ID"]
-    st.components.v1.html(f"""
-        <script>
-          const domain = "{domain}";
-          const clientId = "{client_id}";
-          const returnTo = window.location.origin;
-          alert("🎉 You have been logged out successfully. The app will now reload.");
-          window.top.location.href = `https://${{domain}}/v2/logout?client_id=${{clientId}}&returnTo=${{returnTo}}`;
-        </script>
-    """, height=0)
-    st.rerun()
+# === MANUAL LOGOUT BUTTON WITH CONFIRMATION ===
+if "logout_requested" not in st.session_state:
+    st.session_state.logout_requested = False
+
+if st.session_state.logout_requested:
+    st.warning("🚨 Are you sure you want to log out? Your current audit will be lost.")
+    col_yes, col_no = st.columns(2)
+    if col_yes.button("Yes, log me out"):
+        # Clear only our custom session keys
+        for k in list(st.session_state.keys()):
+            if k not in ["global_config", "secrets"]:
+                del st.session_state[k]
+        domain    = st.secrets["AUTH0_DOMAIN"]
+        client_id = st.secrets["AUTH0_CLIENT_ID"]
+        st.components.v1.html(f"""
+            <script>
+              const domain = "{domain}";
+              const clientId = "{client_id}";
+              const returnTo = window.location.origin;
+              alert("🎉 You have been logged out successfully. The app will now reload.");
+              window.top.location.href = `https://${{domain}}/v2/logout?client_id=${{clientId}}&returnTo=${{returnTo}}`;
+            </script>
+        """, height=0)
+        st.rerun()
+    if col_no.button("Cancel"):
+        st.session_state.logout_requested = False
+else:
+    if st.button("🔒 Logout"):
+        st.session_state.logout_requested = True
+
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
@@ -319,12 +335,9 @@ if st.session_state.timer_expired:
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
     # CLEAN UP any placeholders older than our timeout
+    cutoff = datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
+    assign_col.delete_many({"assigned_at": {"$lt": cutoff}})
 
-    assign_col.delete_many({
-        "assigned_at": {
-            "$lt": datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
-        }
-    })
     # 1) fetch all content IDs
     all_ids = qa_col.distinct("content_id")
 
