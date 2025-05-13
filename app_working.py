@@ -1,6 +1,6 @@
 import streamlit as st
 from pymongo import MongoClient
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import time
 import re
 from auth0_component import login_button
@@ -81,6 +81,9 @@ def log_system_event(event, message, details=None):
         # best‐effort only, swallow errors
         pass
 
+TIMER_SECONDS = 60 * 7
+MAX_AUDITORS  = 5
+
 # === MONGO CONNECTION ===
 @st.cache_resource
 def get_client():
@@ -106,8 +109,19 @@ audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
+
 # track “reserved” slots so we can block concurrent assignments
 assign_col = db["assignment_placeholders"]
+
+
+# 3) create your TTL index once
+if "ttl_index_created" not in st.session_state:
+    assign_col.create_index(
+        "assigned_at",
+        expireAfterSeconds=TIMER_SECONDS
+    )
+    st.session_state["ttl_index_created"] = True
+
 
 # === USER ACTION LOGGING ===
 user_logs = db["user_logs"]
@@ -130,8 +144,6 @@ def log_user_action(intern_id, action, details=None):
 
 
 
-TIMER_SECONDS = 60 * 7
-MAX_AUDITORS  = 5
 
 # === AUTH0 LOGIN ===
 
@@ -258,9 +270,11 @@ st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 # warn on page unload (logout/refresh) so they don’t lose progress
 st.components.v1.html("""
 <script>
-  window.onbeforeunload = function() {
-    return "🚨 You have unsaved work. Are you sure you want to leave?";
-  };
+window.addEventListener("beforeunload", function (e) {
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = "";
+});
 </script>
 """, height=0)
 
@@ -304,6 +318,13 @@ if st.session_state.timer_expired:
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
+    # CLEAN UP any placeholders older than our timeout
+
+    assign_col.delete_many({
+        "assigned_at": {
+            "$lt": datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
+        }
+    })
     # 1) fetch all content IDs
     all_ids = qa_col.distinct("content_id")
 
