@@ -14,6 +14,8 @@ if "profile_step" not in st.session_state:
 if "prev_auth0_id" not in st.session_state:
     st.session_state["prev_auth0_id"] = None
 
+timer_ph = st.empty()
+
 # === CONFIG & STYLING ===
 try:
     st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
@@ -489,13 +491,10 @@ if remaining <= 0 and not st.session_state.submitted:
 
 
 # === Timer Display ===
+remaining = int(st.session_state.deadline - time.time())
 if not st.session_state.submitted:
-    components.html(f"""
-      <div style='text-align:center;margin-bottom:1rem;
-                  font-size:22px;font-weight:bold;color:white;
-                  background-color:#212121;padding:10px 20px;
-                  border-radius:8px;width:fit-content;margin:auto;
-                  border:2px solid #00bcd4;font-family:monospace;'>
+    timer_ph.html(f"""
+      <div style='…'>
         ⏱ Time Left: <span id="timer">
           {remaining//60:02d}:{remaining%60:02d}
         </span>
@@ -511,7 +510,9 @@ if not st.session_state.submitted:
         </script>
       </div>
     """, height=80)
-
+else:
+    # once submitted, remove the timer entirely
+    timer_ph.empty()
 
 # === UI Layout ===
 left, right = st.columns(2)
@@ -558,14 +559,13 @@ submit = st.button(
 next_ = st.button("➡️ Next")
 
 if submit and not st.session_state.submitted:
-    # start submission guard
     st.session_state.is_submitting = True
-
     now        = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    with st.spinner("Saving your judgments…"):
-        # remove the placeholder reservation
+    success = True
+    with st.spinner("Saving your judgments…"):  # show a spinner while writing :contentReference[oaicite:1]{index=1}
+        # remove placeholder reservation
         assign_col.delete_many({
             "content_id": cid,
             "intern_id":  intern_id
@@ -587,36 +587,52 @@ if submit and not st.session_state.submitted:
                 "time_taken":   time_taken,
                 "length":       "short"
             })
-            if entry["judgment"] == "Doubt":
-                doubt_col.insert_one(entry)
-            else:
-                audit_col.insert_one(entry)
+            try:
+                if entry["judgment"] == "Doubt":
+                    res = doubt_col.insert_one(entry)
+                else:
+                    res = audit_col.insert_one(entry)
+                if not res.acknowledged:
+                    raise RuntimeError("Write not acknowledged")
+            except Exception as e:
+                log_system_event("db_write_error", str(e))
+                st.error("🔴 Failed to save your judgments. Please try again.")
+                success = False
+                break
 
-    # mark done
-    st.session_state.is_submitting = False
-    st.session_state.submitted   = True
-    st.session_state.timer_expired = False
-
-    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+    if success:
+        # disable the UI, clear timer, and confirm
+        st.session_state.submitted    = True
+        st.session_state.is_submitting = False
+        timer_ph.empty()  # immediately stop showing the countdown
+        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+    else:
+        # allow retry
+        st.session_state.is_submitting = False                     
 
 
 
 
 if next_:
-    # record a manual skip
-    skip_col.insert_one({
-        "intern_id": intern_id,
-        "content_id": cid,
-        "status": "manual_skip",
-        "timestamp": datetime.now(timezone.utc)
-    })
-    log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
+    if not st.session_state.submitted:
+        skip_col.insert_one({
+            "intern_id": intern_id,
+            "content_id": cid,
+            "status": "manual_skip",
+            "timestamp": datetime.now(timezone.utc)
+        })
+        log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
+    else:
+        # optional: log that they clicked Next _after_ submitting
+        log_user_action(intern_id, "next_after_submit", {"content_id": cid})
+
+    # reset everything and fetch new content
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
     st.session_state.current_content_id = None
     st.session_state.submitted         = False
     st.session_state.is_submitting     = False
-
     assign_new_content()
     st.rerun()
+
