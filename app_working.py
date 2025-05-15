@@ -268,20 +268,15 @@ st.title("🔍 JNANA – Short Q&A Auditing Tool")
 st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 
 # warn on page unload (logout/refresh) so they don’t lose progress
-st.components.v1.html(
-    """
-    <script>
-      // Register on the parent window so the browser sees it
-      window.parent.onbeforeunload = function (e) {
-        e.preventDefault();
-        e.returnValue = "";  // must be set to trigger confirmation in Chrome/Firefox
-      }
-    </script>
-    """,
-    height=0,
-    scrolling=False,
-)
-
+st.components.v1.html("""
+<script>
+  window.addEventListener("beforeunload", function (e) {
+    e.preventDefault();
+    // Chrome requires returnValue to be set
+    e.returnValue = "⚠️ All unsaved changes will be lost. Are you sure you want to leave?";
+  });
+</script>
+""", height=0)
 
 # === MANUAL LOGOUT BUTTON WITH CONFIRMATION ===
 if "logout_requested" not in st.session_state:
@@ -321,16 +316,30 @@ for key in ["eligible_id", "deadline", "assigned_time", "judged",
     if key not in st.session_state:
         st.session_state[key] = None if key in ["eligible_id", "current_content_id"] else False
 
+# 1a) Track whether this content has been submitted
+if "submitted" not in st.session_state:
+    st.session_state["submitted"] = False
+
+
+# 3a) Track whether we’re actively writing to the DB
+if "is_submitting" not in st.session_state:
+    st.session_state["is_submitting"] = False
+
+
+
+
 # === Timer Expired Screen ===
 if st.session_state.timer_expired:
     st.title("⏰ Time Expired")
     st.warning("This content ID has been skipped due to timeout.")
     if st.button("🔄 Fetch New Content"):
-        st.session_state.timer_expired = False
-        st.session_state.eligible_id = None
+        # clear flags before getting a new cid
+        st.session_state.timer_expired      = False
+        st.session_state.eligible_id        = None
         st.session_state.current_content_id = None
+        st.session_state.submitted          = False
+        st.session_state.is_submitting      = False
         st.rerun()
-    st.stop()
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
@@ -354,7 +363,8 @@ def assign_new_content():
 
     # 3) which IDs has this intern already done?
     seen = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
-    # and which IDs are already reserved for them
+    skipped = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
+    seen |= skipped    # and which IDs are already reserved for them
     reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
 
     # 4) build list of all under-5 items they haven’t seen/reserved
@@ -418,11 +428,16 @@ def fetch_content_qa(cid):
 content, qa_doc = fetch_content_qa(cid)
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
-# === Reset radios if content changes ===
+# === Reset radios & flags if content changes ===
 if st.session_state.current_content_id != cid:
     for i in range(len(qa_pairs)):
         st.session_state[f"j_{i}"] = None
     st.session_state.current_content_id = cid
+
+    # ← reset our submission guards for the new content
+    st.session_state.submitted      = False
+    st.session_state.is_submitting  = False
+
     
 # === Handle Invalid or Missing Short QA ===
 content_text = content.get("content_text", "").strip() if content and isinstance(content.get("content_text"), str) else ""
@@ -455,7 +470,7 @@ if not content or not content_text or not qa_valid:
 
 
 # === Timeout Logic ===
-if remaining <= 0:
+if remaining <= 0 and not st.session_state.submitted:
     skip_col.insert_one({
         "intern_id": intern_id,
         "content_id": cid,
@@ -523,28 +538,37 @@ with right:
 
 # === Buttons ===
 all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
-submit = st.button("✅ Submit", disabled=not all_answered)
+submit = st.button(
+    "✅ Submit",
+    disabled=(
+        st.session_state.submitted
+        or st.session_state.is_submitting
+        or not all_answered
+    )
+)
 next_ = st.button("➡️ Next")
 
-if submit:
-    if not all_answered:
-        st.warning("⚠️ Please answer every question before submitting.")
-    else:
-        now        = datetime.now(timezone.utc)
-        time_taken = (now - st.session_state.assigned_time).total_seconds()
+if submit and not st.session_state.submitted:
+    # start submission guard
+    st.session_state.is_submitting = True
 
+    now        = datetime.now(timezone.utc)
+    time_taken = (now - st.session_state.assigned_time).total_seconds()
+
+    with st.spinner("Saving your judgments…"):
         # remove the placeholder reservation
         assign_col.delete_many({
             "content_id": cid,
             "intern_id":  intern_id
         })
 
-            # log the submission
+        # log the submission
         log_user_action(intern_id, "submitted", {
             "content_id": cid,
             "time_taken": time_taken
         })
 
+        # write each judgment
         for entry in judgments:
             entry.update({
                 "content_id":   cid,
@@ -559,15 +583,31 @@ if submit:
             else:
                 audit_col.insert_one(entry)
 
-        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+    # mark done
+    st.session_state.is_submitting = False
+    st.session_state.submitted   = True
+    st.session_state.timer_expired = False
+
+    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+
+
 
 
 if next_:
-        # log clicking “Next” (content was skipped by intern’s choice)
+    # record a manual skip
+    skip_col.insert_one({
+        "intern_id": intern_id,
+        "content_id": cid,
+        "status": "manual_skip",
+        "timestamp": datetime.now(timezone.utc)
+    })
     log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
     st.session_state.current_content_id = None
+    st.session_state.submitted         = False
+    st.session_state.is_submitting     = False
+
     assign_new_content()
     st.rerun()
