@@ -289,16 +289,26 @@ last = existing_user["last_name"] if existing_user else st.session_state.last_na
 st.title("🔍 JNANA – Short Q&A Auditing Tool")
 st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 
-# warn on page unload (logout/refresh) so they don’t lose progress
-st.components.v1.html("""
-<script>
-  window.addEventListener("beforeunload", function (e) {
-    e.preventDefault();
-    e.returnValue = "";
-    return "";
-  });
-</script>
-""", height=0)
+# === WARN ON UNLOAD (refresh, navigate away, tab close) ===
+components.html(
+    """
+    <script>
+      const warn = (e) => {
+        // Cancel the event as stated by the standard.
+        e.preventDefault();
+        // Chrome requires returnValue to be set.
+        e.returnValue = '';
+      };
+
+      // Listen on both the iframe and its parent.
+      window.addEventListener('beforeunload', warn);
+      if (window.parent) {
+        window.parent.addEventListener('beforeunload', warn);
+      }
+    </script>
+    """,
+    height=0,
+)
 
 # === MANUAL LOGOUT BUTTON WITH CONFIRMATION ===
 if "logout_requested" not in st.session_state:
