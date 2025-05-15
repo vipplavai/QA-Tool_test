@@ -308,7 +308,6 @@ else:
     if st.button("🔒 Logout"):
         st.session_state.logout_requested = True
 
-timer_ph = st.empty()
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
@@ -489,20 +488,29 @@ if remaining <= 0 and not st.session_state.submitted:
     st.rerun()
 
 
-timer_ph = st.empty()
-
-# … later, render into that container …
+# === Timer Display ===
 if not st.session_state.submitted:
-    timer_ph.html(f"""
-      <div style='…'>
+    components.html(f"""
+      <div style='text-align:center;margin-bottom:1rem;
+                  font-size:22px;font-weight:bold;color:white;
+                  background-color:#212121;padding:10px 20px;
+                  border-radius:8px;width:fit-content;margin:auto;
+                  border:2px solid #00bcd4;font-family:monospace;'>
         ⏱ Time Left: <span id="timer">
           {remaining//60:02d}:{remaining%60:02d}
         </span>
-        <script> … </script>
+        <script>
+          let total = {remaining};
+          const el = document.getElementById('timer');
+          const interval = setInterval(() => {{
+            let m = Math.floor(total/60), s = total % 60;
+            el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+            total--;
+            if (total < 0) clearInterval(interval);
+          }}, 1000);
+        </script>
       </div>
-    """)
-else:
-    timer_ph.empty()
+    """, height=80)
 
 
 # === UI Layout ===
