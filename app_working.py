@@ -14,6 +14,23 @@ if "profile_step" not in st.session_state:
 if "prev_auth0_id" not in st.session_state:
     st.session_state["prev_auth0_id"] = None
 
+def log_system_event(event, message, details=None):
+    try:
+        temp_client = MongoClient(
+            st.secrets.get("mongo_uri", ""),
+            serverSelectionTimeoutMS=2000
+        )
+        temp_db = temp_client["Tel_QA"]
+        temp_db["system_logs"].insert_one({
+            "timestamp": datetime.now(timezone.utc),
+            "event":     event,
+            "message":   message,
+            "details":   details or {}
+        })
+    except Exception:
+        pass  # best‐effort only
+
+# now your styling/config block can call log_system_event safely
 timer_ph = st.empty()
 
 # === CONFIG & STYLING ===
