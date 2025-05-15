@@ -4,6 +4,7 @@ from datetime import datetime, timezone, timedelta
 import time
 import re
 from auth0_component import login_button
+from streamlit import components
 import streamlit.components.v1 as components
 import random
 from pymongo import ReturnDocument
@@ -513,38 +514,42 @@ if remaining <= 0 and not st.session_state.submitted:
 remaining = int(st.session_state.deadline - time.time())
 
 if not st.session_state.submitted:
-    timer_ph.html(f"""
-      <div style='
-          text-align:center;
-          margin-bottom:1rem;
-          font-size:22px;
-          font-weight:bold;
-          color:white;
-          background-color:#212121;
-          padding:10px 20px;
-          border-radius:8px;
-          width:fit-content;
-          border:2px solid #00bcd4;
-          font-family:monospace;
-          height:80px;        /* move the height into CSS */
-          '>
-        ⏱ Time Left: <span id="timer">
-          {remaining//60:02d}:{remaining%60:02d}
-        </span>
+    components.html(
+        f"""
+        <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            margin-bottom: 1rem;
+        ">
+          <div id="timer" style="
+            font-family: monospace;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            background-color: #212121;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #00bcd4;
+          ">
+            ⏱ Time Left: {remaining//60:02d}:{remaining%60:02d}
+          </div>
+        </div>
         <script>
           let total = {remaining};
-          const el = document.getElementById('timer');
+          const el = document.getElementById("timer");
           const interval = setInterval(() => {{
-            let m = Math.floor(total/60), s = total % 60;
-            el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
+            let m = Math.floor(total / 60),
+                s = total % 60;
+            el.textContent = `⏱ Time Left: ${{m.toString().padStart(2,"0")}}:${{s.toString().padStart(2,"0")}}`;
             total--;
             if (total < 0) clearInterval(interval);
           }}, 1000);
         </script>
-      </div>
-    """)
-else:
-    timer_ph.empty()
+        """,
+        height=100,
+    )
 
 
 # === UI Layout ===
