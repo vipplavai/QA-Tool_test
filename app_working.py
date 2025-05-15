@@ -272,8 +272,8 @@ st.components.v1.html("""
 <script>
   window.addEventListener("beforeunload", function (e) {
     e.preventDefault();
-    // Chrome requires returnValue to be set
-    e.returnValue = "⚠️ All unsaved changes will be lost. Are you sure you want to leave?";
+    e.returnValue = "";
+    return "";
   });
 </script>
 """, height=0)
@@ -308,6 +308,7 @@ else:
     if st.button("🔒 Logout"):
         st.session_state.logout_requested = True
 
+timer_ph = st.empty()
 
 # === Session State Init ===
 for key in ["eligible_id", "deadline", "assigned_time", "judged",
@@ -487,25 +488,22 @@ if remaining <= 0 and not st.session_state.submitted:
     st.session_state.timer_expired = True
     st.rerun()
 
-# === Timer Display ===
-st.components.v1.html(f"""
-<div style='text-align:center;margin-bottom:1rem;font-size:22px;font-weight:bold;color:white;
-    background-color:#212121;padding:10px 20px;border-radius:8px;width:fit-content;margin:auto;
-    border:2px solid #00bcd4;font-family:monospace;'>
-  ⏱ Time Left: <span id="timer">{remaining//60:02d}:{remaining%60:02d}</span>
-  <script>
-    let total = {remaining};
-    const el = document.getElementById('timer');
-    const interval = setInterval(() => {{
-      let m = Math.floor(total/60);
-      let s = total % 60;
-      el.textContent = `${{m.toString().padStart(2,'0')}}:${{s.toString().padStart(2,'0')}}`;
-      total--;
-      if (total < 0) clearInterval(interval);
-    }}, 1000);
-  </script>
-</div>
-""", height=80)
+
+timer_ph = st.empty()
+
+# … later, render into that container …
+if not st.session_state.submitted:
+    timer_ph.html(f"""
+      <div style='…'>
+        ⏱ Time Left: <span id="timer">
+          {remaining//60:02d}:{remaining%60:02d}
+        </span>
+        <script> … </script>
+      </div>
+    """, height=80)
+else:
+    timer_ph.empty()
+
 
 # === UI Layout ===
 left, right = st.columns(2)
@@ -522,12 +520,15 @@ with right:
         st.markdown(f"**A{i+1}:** {pair['answer']}")
         selected = st.radio(
             label="", 
-            options=["Correct", "Incorrect", "Doubt"],
+            options=["Correct","Incorrect","Doubt"],
             key=f"j_{i}",
-            index=None,
-            label_visibility="collapsed"
+            label_visibility="collapsed",
+            disabled=(
+                st.session_state.submitted 
+                or st.session_state.is_submitting
+            )
         )
-
+        
         judgments.append({
             "qa_index": i,
             "question": pair["question"],
