@@ -542,7 +542,7 @@ if not st.session_state.submitted:
           }}, 1000);
         </script>
       </div>
-    """, unsafe_allow_html=True)
+    """)
 else:
     timer_ph.empty()
 
