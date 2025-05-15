@@ -500,7 +500,6 @@ if not st.session_state.submitted:
         </span>
         <script> … </script>
       </div>
-    """, height=80)
 else:
     timer_ph.empty()
 
