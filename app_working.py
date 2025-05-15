@@ -584,26 +584,17 @@ with right:
         })
         st.markdown("---")
 
-# === Buttons ===
-all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
-submit = st.button(
-    "✅ Submit",
-    disabled=(
-        st.session_state.submitted
-        or st.session_state.is_submitting
-        or not all_answered
-    )
-)
-next_ = st.button("➡️ Next")
+def handle_submit():
+    # guard so it only ever runs once per content
+    if st.session_state.submitted:
+        return
 
-if submit and not st.session_state.submitted:
     st.session_state.is_submitting = True
-    now        = datetime.now(timezone.utc)
+    now = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    success = True
-    with st.spinner("Saving your judgments…"):  # show a spinner while writing :contentReference[oaicite:1]{index=1}
-        # remove placeholder reservation
+    with st.spinner("Saving your judgments…"):
+        # remove the placeholder reservation
         assign_col.delete_many({
             "content_id": cid,
             "intern_id":  intern_id
@@ -625,31 +616,31 @@ if submit and not st.session_state.submitted:
                 "time_taken":   time_taken,
                 "length":       "short"
             })
-            try:
-                if entry["judgment"] == "Doubt":
-                    res = doubt_col.insert_one(entry)
-                else:
-                    res = audit_col.insert_one(entry)
-                if not res.acknowledged:
-                    raise RuntimeError("Write not acknowledged")
-            except Exception as e:
-                log_system_event("db_write_error", str(e))
-                st.error("🔴 Failed to save your judgments. Please try again.")
-                success = False
-                break
+            if entry["judgment"] == "Doubt":
+                doubt_col.insert_one(entry)
+            else:
+                audit_col.insert_one(entry)
 
-    if success:
-        # disable the UI, clear timer, and confirm
-        st.session_state.submitted    = True
-        st.session_state.is_submitting = False
-        timer_ph.empty()  # immediately stop showing the countdown
-        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
-    else:
-        # allow retry
-        st.session_state.is_submitting = False                     
+    # stop the timer and disable further input
+    timer_ph.empty()
+    st.session_state.is_submitting = False
+    st.session_state.submitted     = True
+    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
 
+# === Buttons ===
+all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
+submit = st.button(
+    "✅ Submit",
+    on_click=handle_submit,
+    disabled=(
+        st.session_state.submitted
+        or st.session_state.is_submitting
+        or not all_answered
+    )
+)
 
+next_ = st.button("➡️ Next")
 
 if next_:
     if not st.session_state.submitted:
