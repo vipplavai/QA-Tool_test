@@ -304,31 +304,49 @@ st.components.v1.html("""
 if "logout_requested" not in st.session_state:
     st.session_state.logout_requested = False
 
-if st.session_state.logout_requested:
+# 1) Define callbacks
+def request_logout_confirmation():
+    st.session_state.logout_requested = True
+
+def cancel_logout():
+    st.session_state.logout_requested = False
+
+def perform_logout():
+    # 1) Log the logout event
+    #    `intern_id` comes from your app state
+    log_user_action(intern_id, "logout")
+
+    # 2) Clear user‐specific session state
+    for k in list(st.session_state.keys()):
+        if k not in ["global_config", "secrets"]:
+            del st.session_state[k]
+
+    # 3) Show a quick confirmation
+    st.success("🎉 You have been logged out.")
+
+    # 4) Reload the page into your login flow
+    st.components.v1.html(
+        """
+        <script>
+          window.location.reload(true);
+        </script>
+        """,
+        height=0,
+    )
+
+# 2) Render the button / confirmation
+if not st.session_state.logout_requested:
+    st.button(
+        "🔒 Logout",
+        on_click=request_logout_confirmation,
+    )
+else:
     st.warning("🚨 Are you sure you want to log out? Your current audit will be lost.")
     col_yes, col_no = st.columns(2)
-    if col_yes.button("Yes, log me out"):
-        # Clear only our custom session keys
-        for k in list(st.session_state.keys()):
-            if k not in ["global_config", "secrets"]:
-                del st.session_state[k]
-        domain    = st.secrets["AUTH0_DOMAIN"]
-        client_id = st.secrets["AUTH0_CLIENT_ID"]
-        st.components.v1.html(f"""
-            <script>
-              const domain = "{domain}";
-              const clientId = "{client_id}";
-              const returnTo = window.location.origin;
-              alert("🎉 You have been logged out successfully. The app will now reload.");
-              window.top.location.href = `https://${{domain}}/v2/logout?client_id=${{clientId}}&returnTo=${{returnTo}}`;
-            </script>
-        """, height=0)
-        st.rerun()
-    if col_no.button("Cancel"):
-        st.session_state.logout_requested = False
-else:
-    if st.button("🔒 Logout"):
-        st.session_state.logout_requested = True
+    col_yes.button("Yes, log me out", on_click=perform_logout)
+    col_no.button("Cancel", on_click=cancel_logout)
+
+
 
 
 # === Session State Init ===
