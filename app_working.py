@@ -511,9 +511,23 @@ if remaining <= 0 and not st.session_state.submitted:
 
 # === Timer Display ===
 remaining = int(st.session_state.deadline - time.time())
+
 if not st.session_state.submitted:
     timer_ph.html(f"""
-      <div style='…'>
+      <div style='
+          text-align:center;
+          margin-bottom:1rem;
+          font-size:22px;
+          font-weight:bold;
+          color:white;
+          background-color:#212121;
+          padding:10px 20px;
+          border-radius:8px;
+          width:fit-content;
+          border:2px solid #00bcd4;
+          font-family:monospace;
+          height:80px;        /* move the height into CSS */
+          '>
         ⏱ Time Left: <span id="timer">
           {remaining//60:02d}:{remaining%60:02d}
         </span>
@@ -528,10 +542,10 @@ if not st.session_state.submitted:
           }}, 1000);
         </script>
       </div>
-    """, height=80)
+    """, unsafe_allow_html=True)
 else:
-    # once submitted, remove the timer entirely
     timer_ph.empty()
+
 
 # === UI Layout ===
 left, right = st.columns(2)
