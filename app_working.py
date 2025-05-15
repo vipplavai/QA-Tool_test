@@ -8,6 +8,9 @@ from streamlit import components
 import streamlit.components.v1 as components
 import random
 from pymongo import ReturnDocument
+from pymongo.errors import DuplicateKeyError
+
+
 
 # === APP STATE TRACKING ===
 if "profile_step" not in st.session_state:
@@ -130,6 +133,11 @@ qa_col      = db["QA_pairs"]
 audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
+
+audit_col.create_index(
+    [("intern_id", 1), ("content_id", 1), ("qa_index", 1)],
+    unique=True,
+)
 
 
 # track “reserved” slots so we can block concurrent assignments
@@ -393,14 +401,19 @@ if st.session_state.timer_expired:
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
-    # CLEAN UP any placeholders older than our timeout
+    # 1) cleanup old placeholders
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
     assign_col.delete_many({"assigned_at": {"$lt": cutoff}})
 
-    # 1) fetch all content IDs
+    # 2) all content IDs
     all_ids = qa_col.distinct("content_id")
 
-    # 2) compute how many distinct interns have audited each content_id
+    # 3) any content we’ve explicitly retired?
+    retired_ids = set(
+        skip_col.distinct("content_id", {"status": "retired"})
+    )
+
+    # 4) how many audits so far?
     distinct_counts = {
         doc["_id"]: len(doc["interns"])
         for doc in audit_col.aggregate([
@@ -411,26 +424,27 @@ def assign_new_content():
         ])
     }
 
-    # 3) which IDs has this intern already done?
-    seen = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
-    skipped = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
-    seen |= skipped    # and which IDs are already reserved for them
+    # 5) this intern’s seen/skipped/reserved
+    seen     = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
+    skipped  = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
     reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+    seen |= skipped
 
-    # 4) build list of all under-5 items they haven’t seen/reserved
+    # 6) filter down to your candidates
     candidates = [
         cid for cid in all_ids
-        if distinct_counts.get(cid, 0) < MAX_AUDITORS
+        if cid not in retired_ids                 # never assign retired
+        and distinct_counts.get(cid, 0) < MAX_AUDITORS
         and cid not in seen
         and cid not in reserved
     ]
 
-    # 5) if empty, we’re done
+
     if not candidates:
         st.session_state.eligible_id = None
         return
 
-    # 6) randomly pick one and reserve it
+    # 7) pick & reserve
     cid = random.choice(candidates)
     assign_col.insert_one({
         "content_id":  cid,
@@ -439,10 +453,11 @@ def assign_new_content():
     })
     log_user_action(intern_id, "assigned_content", {"content_id": cid})
 
-    # 7) set state
     st.session_state.eligible_id   = cid
     st.session_state.deadline      = time.time() + TIMER_SECONDS
     st.session_state.assigned_time = datetime.now(timezone.utc)
+
+
 
 
 # kick things off
@@ -613,50 +628,59 @@ with right:
         st.markdown("---")
 
 def handle_submit():
-    # guard so it only ever runs once per content
+    # 1) Guard so it only ever runs once per content
     if st.session_state.submitted:
         return
 
+    # 2) Immediately lock down the UI
+    st.session_state.submitted = True
     st.session_state.is_submitting = True
+
     now = datetime.now(timezone.utc)
     time_taken = (now - st.session_state.assigned_time).total_seconds()
 
     with st.spinner("Saving your judgments…"):
-        # remove the placeholder reservation
+        # 3) Remove the placeholder reservation
         assign_col.delete_many({
             "content_id": cid,
             "intern_id":  intern_id
         })
 
-        # log the submission
+        # 4) Log the submission event
         log_user_action(intern_id, "submitted", {
             "content_id": cid,
             "time_taken": time_taken
         })
 
-        # write each judgment
+        # 5) Write each judgment with duplicate‐key protection
         for entry in judgments:
             entry.update({
                 "content_id":   cid,
                 "intern_id":    intern_id,
+                "qa_index":     entry["qa_index"],
                 "timestamp":    now,
                 "assigned_at":  st.session_state.assigned_time,
                 "time_taken":   time_taken,
-                "length":       "short"
+                "length":       "short",
             })
-            if entry["judgment"] == "Doubt":
-                doubt_col.insert_one(entry)
-            else:
-                audit_col.insert_one(entry)
+            try:
+                if entry["judgment"] == "Doubt":
+                    doubt_col.insert_one(entry)
+                else:
+                    audit_col.insert_one(entry)
+            except DuplicateKeyError:
+                # this intern already submitted this exact QA → ignore
+                pass
 
-    # stop the timer and disable further input
+    # 6) Clear the timer and unlock
     timer_ph.empty()
     st.session_state.is_submitting = False
-    st.session_state.submitted     = True
+
+    # 7) Confirm success
     st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
 
-# === Buttons ===
+# === gButtons ===
 all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
 submit = st.button(
     "✅ Submit",
@@ -683,6 +707,24 @@ if next_:
         # optional: log that they clicked Next _after_ submitting
         log_user_action(intern_id, "next_after_submit", {"content_id": cid})
 
+# count how many *manual* skippers
+manual_skippers = skip_col.distinct(
+    "intern_id",
+    {"content_id": cid, "status": "manual_skip"}
+)
+if len(manual_skippers) >= 3:
+    # retire this content for everyone
+    skip_col.update_one(
+        {"content_id": cid, "status": "retired"},
+        {"$set": {
+            "content_id": cid,
+            "status":     "retired",
+            "timestamp":  datetime.now(timezone.utc)
+        }},
+        upsert=True
+    )
+
+
     # reset everything and fetch new content
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
@@ -693,3 +735,25 @@ if next_:
     assign_new_content()
     st.rerun()
 
+# Put this right after you insert a manual skip (or timeout / invalid skip)
+skip_col.insert_one({
+    "intern_id": intern_id,
+    "content_id": cid,
+    "status": "manual_skip",
+    "timestamp": datetime.now(timezone.utc)
+})
+
+# Check how many distinct interns have skipped it
+skip_count = skip_col.distinct("intern_id", {"content_id": cid})
+if len(skip_count) >= 3:
+    # mark the entire content as retired
+    # we upsert a single document with status="retired"
+    skip_col.update_one(
+        {"content_id": cid,   "status": "retired"},
+        {"$set": {
+            "content_id": cid,
+            "status":     "retired",
+            "timestamp":  datetime.now(timezone.utc)
+        }},
+        upsert=True
+    )
