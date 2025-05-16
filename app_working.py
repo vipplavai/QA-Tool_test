@@ -718,9 +718,10 @@ submit = st.button(
     )
 )
 
+# === Next button ===
 next_ = st.button("➡️ Next")
-
 if next_:
+    # 1) Insert a manual skip if they haven’t already submitted
     if not st.session_state.submitted:
         skip_col.insert_one({
             "intern_id": intern_id,
@@ -730,34 +731,32 @@ if next_:
         })
         log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
     else:
-        # optional: log that they clicked Next _after_ submitting
         log_user_action(intern_id, "next_after_submit", {"content_id": cid})
 
-# count how many *manual* skippers
-manual_skippers = skip_col.distinct(
-    "intern_id",
-    {"content_id": cid, "status": "manual_skip"}
-)
-if len(manual_skippers) >= 3:
-    # retire this content for everyone
-    skip_col.update_one(
-        {"content_id": cid, "status": "retired"},
-        {"$set": {
-            "content_id": cid,
-            "status":     "retired",
-            "timestamp":  datetime.now(timezone.utc)
-        }},
-        upsert=True
+    # 2) Check for ≥3 manual skippers → retire if needed
+    manual_skippers = skip_col.distinct(
+        "intern_id",
+        {"content_id": cid, "status": "manual_skip"}
     )
+    if len(manual_skippers) >= 3:
+        skip_col.update_one(
+            {"content_id": cid, "status": "retired"},
+            {"$set": {
+                "content_id": cid,
+                "status":     "retired",
+                "timestamp":  datetime.now(timezone.utc)
+            }},
+            upsert=True
+        )
 
-
-    # reset everything and fetch new content
+    # 3) **Always** clear your per-QA state and grab a new one
     for key in list(st.session_state.keys()):
         if key.startswith("j_"):
             del st.session_state[key]
     st.session_state.current_content_id = None
     st.session_state.submitted         = False
     st.session_state.is_submitting     = False
+
     assign_new_content()
     st.rerun()
 
