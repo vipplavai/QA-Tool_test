@@ -678,100 +678,136 @@ with left:
     st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
 
 with right:
-    # wrap the whole judgment UI in a single form
-    with st.form("judgment_form"):
-        st.subheader("❓ Short Q&A Pairs")
-        judgments = []
-
-        # 1) render each radio exactly as before, but now
-        #    disable it if we've already submitted
-        for i, pair in enumerate(qa_pairs):
-            st.markdown(f"**Q{i+1}:** {pair['question']}")
-            st.markdown(f"**A{i+1}:** {pair['answer']}")
-            selected = st.radio(
-                label="",
-                options=["Correct", "Incorrect", "Doubt"],
-                key=f"j_{i}",
-                label_visibility="collapsed",
-                disabled=(
-                    st.session_state.submitted
-                    or st.session_state.is_submitting
-                )
-            )
-            judgments.append({
-                "qa_index": i,
-                "question": pair["question"],
-                "answer":   pair["answer"],
-                "judgment": selected
-            })
-            st.markdown("---")
-
-        # 2) our “all answered” guard exactly as before
-        all_answered = all(
-            st.session_state.get(f"j_{i}") is not None
-            for i in range(len(qa_pairs))
-        )
-
-        # 3) Submit button stays disabled if
-        #    • already submitted, OR
-        #    • still writing, OR
-        #    • not all answered yet
-        submit_clicked = st.form_submit_button(
-            "✅ Submit",
+    st.subheader("❓ Short Q&A Pairs")
+    judgments = []
+    for i, pair in enumerate(qa_pairs):
+        st.markdown(f"**Q{i+1}:** {pair['question']}")
+        st.markdown(f"**A{i+1}:** {pair['answer']}")
+        selected = st.radio(
+            label="", 
+            options=["Correct","Incorrect","Doubt"],
+            key=f"j_{i}",
+            label_visibility="collapsed",
             disabled=(
-                st.session_state.submitted
+                st.session_state.submitted 
                 or st.session_state.is_submitting
-                or not all_answered
             )
         )
+        
+        judgments.append({
+            "qa_index": i,
+            "question": pair["question"],
+            "answer": pair["answer"],
+            "judgment": selected
+        })
+        st.markdown("---")
 
-    # 4) If they did hit “Submit”:
-    #    • run your handler
-    #    • set submitted=True inside handle_submit()
-    if submit_clicked:
-        handle_submit()
-
-    # 5) **ONLY** once submitted do we show/enable the Next button
+def handle_submit():
+    # 1) Guard so it only ever runs once per content
     if st.session_state.submitted:
-        next_clicked = st.button("➡️ Next")
-        if next_clicked:
-            # your existing “next” logic here
-            skip_col.insert_one({
-                "intern_id": intern_id,
-                "content_id": cid,
-                "status": "manual_skip",
-                "timestamp": datetime.now(timezone.utc)
+        return
+
+    # 2) Immediately lock down the UI
+    st.session_state.submitted = True
+    st.session_state.is_submitting = True
+
+    now = datetime.now(timezone.utc)
+    time_taken = (now - st.session_state.assigned_time).total_seconds()
+
+    with st.spinner("Saving your judgments…"):
+        # 3) Remove the placeholder reservation
+        assign_col.delete_many({
+            "content_id": cid,
+            "intern_id":  intern_id
+        })
+
+        # 4) Log the submission event
+        log_user_action(intern_id, "submitted", {
+            "content_id": cid,
+            "time_taken": time_taken
+        })
+
+        # 5) Write each judgment with duplicate‐key protection
+        for entry in judgments:
+            entry.update({
+                "content_id":   cid,
+                "intern_id":    intern_id,
+                "qa_index":     entry["qa_index"],
+                "timestamp":    now,
+                "assigned_at":  st.session_state.assigned_time,
+                "time_taken":   time_taken,
+                "length":       "short",
             })
-            log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
+            try:
+                if entry["judgment"] == "Doubt":
+                    doubt_col.insert_one(entry)
+                else:
+                    audit_col.insert_one(entry)
+            except DuplicateKeyError:
+                # this intern already submitted this exact QA → ignore
+                pass
 
-            # reset for new content…
-            for key in list(st.session_state.keys()):
-                if key.startswith("j_"):
-                    del st.session_state[key]
-            st.session_state.current_content_id = None
-            st.session_state.submitted          = False
-            st.session_state.is_submitting      = False
-            assign_new_content()
-            st.rerun()
+    # 6) Clear the timer and unlock
+    timer_ph.empty()
+    st.session_state.is_submitting = False
+
+    # 7) Confirm success
+    st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
 
-        # 2) Check for ≥3 manual skippers → retire if needed
-        manual_skippers = skip_col.distinct(
-            "intern_id",
-            {"content_id": cid, "status": "manual_skip"}
+# === gButtons ===
+all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
+submit = st.button(
+    "✅ Submit",
+    on_click=handle_submit,
+    disabled=(
+        st.session_state.submitted
+        or st.session_state.is_submitting
+        or not all_answered
+    )
+)
+
+# === Next button ===
+next_ = st.button("➡️ Next")
+if next_:
+    # 1) Insert a manual skip if they haven’t already submitted
+    if not st.session_state.submitted:
+        skip_col.insert_one({
+            "intern_id": intern_id,
+            "content_id": cid,
+            "status": "manual_skip",
+            "timestamp": datetime.now(timezone.utc)
+        })
+        log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
+    else:
+        log_user_action(intern_id, "next_after_submit", {"content_id": cid})
+
+    # 2) Check for ≥3 manual skippers → retire if needed
+    manual_skippers = skip_col.distinct(
+        "intern_id",
+        {"content_id": cid, "status": "manual_skip"}
+    )
+    if len(manual_skippers) >= 3:
+        skip_col.update_one(
+            {"content_id": cid, "status": "retired"},
+            {"$set": {
+                "content_id": cid,
+                "status":     "retired",
+                "timestamp":  datetime.now(timezone.utc)
+            }},
+            upsert=True
         )
-        if len(manual_skippers) >= 3:
-            skip_col.update_one(
-                {"content_id": cid, "status": "retired"},
-                {"$set": {
-                    "content_id": cid,
-                    "status":     "retired",
-                    "timestamp":  datetime.now(timezone.utc)
-                }},
-                upsert=True
-            )
 
-    
+    # 3) **Always** clear your per-QA state and grab a new one
+    for key in list(st.session_state.keys()):
+        if key.startswith("j_"):
+            del st.session_state[key]
+    st.session_state.current_content_id = None
+    st.session_state.submitted         = False
+    st.session_state.is_submitting     = False
+
+    assign_new_content()
+    st.rerun()
 
 # Put this right after you insert a manual skip (or timeout / invalid skip)
 skip_col.insert_one({
