@@ -678,11 +678,13 @@ with left:
     st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
 
 with right:
+    # wrap the whole judgment UI in a single form
     with st.form("judgment_form"):
         st.subheader("❓ Short Q&A Pairs")
         judgments = []
 
-        # build your radios exactly as before, still disabled when submitted/is_submitting
+        # 1) render each radio exactly as before, but now
+        #    disable it if we've already submitted
         for i, pair in enumerate(qa_pairs):
             st.markdown(f"**Q{i+1}:** {pair['question']}")
             st.markdown(f"**A{i+1}:** {pair['answer']}")
@@ -699,18 +701,21 @@ with right:
             judgments.append({
                 "qa_index": i,
                 "question": pair["question"],
-                "answer": pair["answer"],
+                "answer":   pair["answer"],
                 "judgment": selected
             })
             st.markdown("---")
 
-        # keep your “all answered” guard exactly the same
+        # 2) our “all answered” guard exactly as before
         all_answered = all(
-            st.session_state.get(f"j_{i}") is not None 
+            st.session_state.get(f"j_{i}") is not None
             for i in range(len(qa_pairs))
         )
 
-        # these two become your form’s submit buttons
+        # 3) Submit button stays disabled if
+        #    • already submitted, OR
+        #    • still writing, OR
+        #    • not all answered yet
         submit_clicked = st.form_submit_button(
             "✅ Submit",
             disabled=(
@@ -719,15 +724,18 @@ with right:
                 or not all_answered
             )
         )
-        next_clicked = st.form_submit_button("➡️ Next")
 
-    # outside the form: react to which button was pressed
+    # 4) If they did hit “Submit”:
+    #    • run your handler
+    #    • set submitted=True inside handle_submit()
     if submit_clicked:
         handle_submit()
 
-    if next_clicked:
-        # your existing “next” logic here:
-        if not st.session_state.submitted:
+    # 5) **ONLY** once submitted do we show/enable the Next button
+    if st.session_state.submitted:
+        next_clicked = st.button("➡️ Next")
+        if next_clicked:
+            # your existing “next” logic here
             skip_col.insert_one({
                 "intern_id": intern_id,
                 "content_id": cid,
@@ -735,18 +743,17 @@ with right:
                 "timestamp": datetime.now(timezone.utc)
             })
             log_user_action(intern_id, "next_clicked", {"previous_content_id": cid})
-        else:
-            log_user_action(intern_id, "next_after_submit", {"content_id": cid})
 
-        # reset per-QA state & fetch new
-        for key in list(st.session_state.keys()):
-            if key.startswith("j_"):
-                del st.session_state[key]
-        st.session_state.current_content_id = None
-        st.session_state.submitted         = False
-        st.session_state.is_submitting     = False
-        assign_new_content()
-        st.rerun()
+            # reset for new content…
+            for key in list(st.session_state.keys()):
+                if key.startswith("j_"):
+                    del st.session_state[key]
+            st.session_state.current_content_id = None
+            st.session_state.submitted          = False
+            st.session_state.is_submitting      = False
+            assign_new_content()
+            st.rerun()
+
 
         # 2) Check for ≥3 manual skippers → retire if needed
         manual_skippers = skip_col.distinct(
