@@ -134,6 +134,40 @@ audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
+
+# 5-minute cache on heavy DB reads
+@st.cache_data(ttl=300)
+def get_all_content_ids():
+    return qa_col.distinct("content_id")
+
+@st.cache_data(ttl=300)
+def get_distinct_counts():
+    # { content_id: number_of_distinct_interns_who_audited }
+    pipeline = [
+        {"$group":{
+            "_id": "$content_id",
+            "interns": {"$addToSet": "$intern_id"}
+        }}
+    ]
+    return {doc["_id"]: len(doc["interns"]) for doc in audit_col.aggregate(pipeline)}
+
+@st.cache_data(ttl=300)
+def get_retired_ids():
+    return set(skip_col.distinct("content_id", {"status": "retired"}))
+
+@st.cache_data(ttl=300)
+def get_seen_and_skipped(intern_id: str):
+    seen    = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
+    skipped = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
+    return seen | skipped
+
+@st.cache_data(ttl=300)
+def fetch_content_qa(cid: int):
+    # return a tuple (content_doc, qa_doc)
+    content = content_col.find_one({"content_id": cid})
+    qa_doc  = qa_col.find_one({"content_id": cid})
+    return content, qa_doc
+
 # === MAKE UNIQUE INDEX (but don’t blow up if there are dupes) ===
 try:
     audit_col.create_index(
@@ -415,6 +449,20 @@ def assign_new_content():
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
     assign_col.delete_many({"assigned_at": {"$lt": cutoff}})
 
+    all_ids        = get_all_content_ids()     # cached
+    retired_ids    = get_retired_ids()         # cached
+    distinct_counts= get_distinct_counts()     # cached
+    seen_and_skipped = get_seen_and_skipped(intern_id)  # cached
+
+    # filter …
+    candidates = [
+        cid for cid in all_ids
+        if cid not in retired_ids
+        and distinct_counts.get(cid, 0) < MAX_AUDITORS
+        and cid not in seen_and_skipped
+        and cid not in set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+    ]
+
     # 2) fetch all content IDs
     all_ids = qa_col.distinct("content_id")
 
@@ -516,7 +564,8 @@ def fetch_content_qa(cid):
                          {"content_id": cid})
         raise
 
-content, qa_doc = fetch_content_qa(cid)
+# instead of your custom fetch_content_qa block
+content, qa_doc = fetch_content_qa(cid)   # this is now cached for 5 min per cid
 qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
 # === Reset radios & flags if content changes ===
