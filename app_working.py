@@ -134,10 +134,20 @@ audit_col   = db["audit_logs"]
 doubt_col   = db["doubt_logs"]
 skip_col    = db["skipped_logs"]
 
-audit_col.create_index(
-    [("intern_id", 1), ("content_id", 1), ("qa_index", 1)],
-    unique=True,
-)
+# === MAKE UNIQUE INDEX (but don’t blow up if there are dupes) ===
+try:
+    audit_col.create_index(
+        [("intern_id", 1), ("content_id", 1), ("qa_index", 1)],
+        unique=True,
+        background=True
+    )
+except DuplicateKeyError:
+    # There are existing duplicate documents; index build will skip them.
+    log_system_event(
+        "index_build_warning",
+        "Could not build unique index on audit_logs (duplicates exist).",
+        {}
+    )
 
 
 # track “reserved” slots so we can block concurrent assignments
@@ -401,19 +411,20 @@ if st.session_state.timer_expired:
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
 def assign_new_content():
-    # 1) cleanup old placeholders
+    # 1) clean up stale placeholders
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
     assign_col.delete_many({"assigned_at": {"$lt": cutoff}})
 
-    # 2) all content IDs
+    # 2) fetch all content IDs
     all_ids = qa_col.distinct("content_id")
 
-    # 3) any content we’ve explicitly retired?
+    # 3) load your “retired” IDs out of circulation
     retired_ids = set(
         skip_col.distinct("content_id", {"status": "retired"})
     )
 
-    # 4) how many audits so far?
+    # 4) count how many interns have already audited each ID
+    #    this gives you 0,1,2,3,4 or 5
     distinct_counts = {
         doc["_id"]: len(doc["interns"])
         for doc in audit_col.aggregate([
@@ -424,28 +435,43 @@ def assign_new_content():
         ])
     }
 
-    # 5) this intern’s seen/skipped/reserved
-    seen     = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
-    skipped  = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
-    reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+    # 5) figure out what this intern has already seen or skipped
+    seen    = set(audit_col.distinct("content_id", {"intern_id": intern_id}))
+    skipped = set(skip_col.distinct("content_id", {"intern_id": intern_id}))
+    reserved= set(assign_col.distinct("content_id", {"intern_id": intern_id}))
     seen |= skipped
 
-    # 6) filter down to your candidates
+    # 6) filter out anything that’s retired, fully audited, or already seen/reserved
     candidates = [
         cid for cid in all_ids
-        if cid not in retired_ids                 # never assign retired
+        if cid not in retired_ids
         and distinct_counts.get(cid, 0) < MAX_AUDITORS
         and cid not in seen
         and cid not in reserved
     ]
 
-
     if not candidates:
         st.session_state.eligible_id = None
         return
 
-    # 7) pick & reserve
-    cid = random.choice(candidates)
+    # 7) compute how many more audits each candidate still needs
+    #    e.g. a count of 4 means “one more needed” → highest priority
+    remaining_needed = {
+        cid: MAX_AUDITORS - distinct_counts.get(cid, 0)
+        for cid in candidates
+    }
+
+    # 8) find the *smallest* `remaining_needed` (i.e. closest to done)
+    min_needed = min(remaining_needed.values())
+
+    # 9) pick from only those that have that min_needed
+    top_group = [
+        cid for cid, rem in remaining_needed.items()
+        if rem == min_needed
+    ]
+
+    # 10) finally reserve one at random from that high-priority group
+    cid = random.choice(top_group)
     assign_col.insert_one({
         "content_id":  cid,
         "intern_id":   intern_id,
@@ -453,10 +479,10 @@ def assign_new_content():
     })
     log_user_action(intern_id, "assigned_content", {"content_id": cid})
 
+    # 11) set up the session state
     st.session_state.eligible_id   = cid
     st.session_state.deadline      = time.time() + TIMER_SECONDS
     st.session_state.assigned_time = datetime.now(timezone.utc)
-
 
 
 
