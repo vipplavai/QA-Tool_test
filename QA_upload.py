@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 
 # --- MongoDB setup using Streamlit Secrets ---
-MONGO_URI = st.secrets["MONGO_URI"]
+MONGO_URI = st.secrets["mongo_uri"]
 client = MongoClient(MONGO_URI)
 db = client["Tel_QA"]
 collection = db["QA_pairs"]
