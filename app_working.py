@@ -655,33 +655,59 @@ def main():
     with right:
         st.subheader("❓ Short Q&A Pairs")
         judgments = []
-        # wrap all radios in a form so they don't trigger reruns on change
-        with st.form("judgment_form"):
-            for i, pair in enumerate(qa_pairs):
-                st.markdown(f"**Q{i+1}:** {pair['question']}")
-                st.markdown(f"**A{i+1}:** {pair['answer']}")
-                # these radio inputs now live inside the form
-                sel = st.radio(
-                    "",
-                    ["Correct", "Incorrect", "Doubt"],
-                    key=f"j_{i}"
+
+        # only show the form if this content hasn't been submitted yet
+        if not st.session_state.submitted:
+            with st.form("judgment_form"):
+                # build up your judgments list
+                for i, pair in enumerate(qa_pairs):
+                    st.markdown(f"**Q{i+1}:** {pair['question']}")
+                    st.markdown(f"**A{i+1}:** {pair['answer']}")
+                    sel = st.radio(
+                        "", 
+                        ["Correct", "Incorrect", "Doubt"], 
+                        key=f"j_{i}"
+                    )
+                    judgments.append({
+                        "qa_index": i,
+                        "question": pair["question"],
+                        "answer": pair["answer"],
+                        "judgment": sel
+                    })
+                    st.markdown("---")
+
+                # only enable once every radio has a valid choice
+                all_answered = all(
+                    st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
+                    for i in range(len(qa_pairs))
                 )
-                judgments.append({
-                    "qa_index": i,
-                    "question": pair["question"],
-                    "answer": pair["answer"],
-                    "judgment": sel
-                })
-                st.markdown("---")
-            # always enabled; we’ll enforce in the handler
-            form_submitted = st.form_submit_button("✅ Submit Judgments")
-            
+                form_submitted = st.form_submit_button(
+                    "✅ Submit Judgments",
+                    disabled=not all_answered or st.session_state.is_submitting
+                )
+
+            if form_submitted:
+                # re-check that every QA has been answered
+                all_answered = all(
+                    st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
+                    for i in range(len(qa_pairs))
+                )
+                if not all_answered:
+                    st.error("⚠️ Please answer every question before submitting.")
+                else:
+                    handle_submit()
+
+        else:
+            # once submitted, replace the form with a static confirmation
+            st.success("✅ Judgments saved!")
+
+    # your existing handle_submit() lives here
     def handle_submit():
-        # 1) Guard so it only ever runs once per content
+        # 1) Guard against double‐submit
         if st.session_state.submitted:
             return
 
-        # 2) Immediately lock down the UI
+        # 2) Lock down UI
         st.session_state.submitted = True
         st.session_state.is_submitting = True
 
@@ -689,19 +715,19 @@ def main():
         time_taken = (now - st.session_state.assigned_time).total_seconds()
 
         with st.spinner("Saving your judgments…"):
-            # 3) Remove the placeholder reservation
+            # 3) Remove reservation
             assign_col.delete_many({
                 "content_id": cid,
                 "intern_id":  intern_id
             })
 
-            # 4) Log the submission event
+            # 4) Log submit event
             log_user_action(intern_id, "submitted", {
                 "content_id": cid,
                 "time_taken": time_taken
             })
 
-            # 5) Bulk‐insert all judgments in one go
+            # 5) Bulk insert
             audit_ops, doubt_ops = [], []
             for entry in judgments:
                 doc = {
@@ -733,25 +759,13 @@ def main():
                 except BulkWriteError as bwe:
                     log_system_event("bulk_write_error", str(bwe.details))
 
-
-        # 6) Clear the timer and unlock
+        # 6) Clear timer + unlock
         timer_ph.empty()
         st.session_state.is_submitting = False
 
-        # 7) Confirm success
+        # 7) Show final success
         st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
-    # clears the timer via timer_ph.empty() inside handle_submit)
-    if form_submitted:
-        # re-check that every QA has been answered
-        all_answered = all(
-            st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
-            for i in range(len(qa_pairs))
-        )
-        if not all_answered:
-            st.error("⚠️ Please answer every question before submitting.")
-        else:
-            handle_submit()
 
 
     # === gButtons ===
