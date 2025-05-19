@@ -675,20 +675,7 @@ def main():
                 st.markdown("---")
             # always enabled; we’ll enforce in the handler
             form_submitted = st.form_submit_button("✅ Submit Judgments")
-
-    # clears the timer via timer_ph.empty() inside handle_submit)
-    if form_submitted:
-        # re-check that every QA has been answered
-        all_answered = all(
-            st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
-            for i in range(len(qa_pairs))
-        )
-        if not all_answered:
-            st.error("⚠️ Please answer every question before submitting.")
-        else:
-            handle_submit()
-
-
+            
     def handle_submit():
         # 1) Guard so it only ever runs once per content
         if st.session_state.submitted:
@@ -753,6 +740,18 @@ def main():
 
         # 7) Confirm success
         st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+
+    # clears the timer via timer_ph.empty() inside handle_submit)
+    if form_submitted:
+        # re-check that every QA has been answered
+        all_answered = all(
+            st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
+            for i in range(len(qa_pairs))
+        )
+        if not all_answered:
+            st.error("⚠️ Please answer every question before submitting.")
+        else:
+            handle_submit()
 
 
     # === gButtons ===
