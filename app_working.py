@@ -676,15 +676,8 @@ def main():
                     })
                     st.markdown("---")
 
-                # only enable once every radio has a valid choice
-                all_answered = all(
-                    st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
-                    for i in range(len(qa_pairs))
-                )
-                form_submitted = st.form_submit_button(
-                    "✅ Submit Judgments",
-                    disabled=not all_answered or st.session_state.is_submitting
-                )
+                # always enable the button
+                form_submitted = st.form_submit_button("✅ Submit Judgments")
 
             if form_submitted:
                 # re-check that every QA has been answered
@@ -695,11 +688,12 @@ def main():
                 if not all_answered:
                     st.error("⚠️ Please answer every question before submitting.")
                 else:
-                    handle_submit()
+                    handle_submit()  # this will clear the timer and set submitted=True
 
         else:
-            # once submitted, replace the form with a static confirmation
+            # once submitted, replace the form (and timer) with a static confirmation
             st.success("✅ Judgments saved!")
+
 
     # your existing handle_submit() lives here
     def handle_submit():
