@@ -9,6 +9,8 @@ from auth0_component import login_button
 TIMER_SECONDS = 60 * 7
 MAX_AUDITORS  = 5
 
+
+
 def log_system_event(event, message, details=None):
         try:
             temp_client = MongoClient(
@@ -24,6 +26,47 @@ def log_system_event(event, message, details=None):
             })
         except Exception:
             pass  # best‐effort only
+
+# === CONFIG & STYLING ===
+try:
+    st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
+    st.markdown("""
+        <style>
+        .passage-box {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: sans-serif;
+            color: #333;
+            white-space: pre-wrap;
+            max-height: 1000px;
+            overflow-y: auto;
+        }
+        div.stButton > button {
+            background-color: #00bcd4 !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 5px !important;
+            font-weight: bold !important;
+            margin-top: 1rem !important;
+        }
+        div.stButton > button:hover {
+            background-color: #0097a7 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+except Exception as e:
+    import traceback
+    log_system_event(
+        "unexpected_error",
+        str(e),
+        {"traceback": traceback.format_exc()}
+    )
+    st.error("🔴 An unexpected error occurred. Please reload or contact support.")
+    raise
+
 
 # Helper: Show Login Screen Title & Description
 def show_login_intro():
@@ -244,46 +287,7 @@ def main():
     if "prev_auth0_id" not in st.session_state:
         st.session_state["prev_auth0_id"] = None
 
-    # === CONFIG & STYLING ===
-    try:
-        st.set_page_config(page_title="JNANA Auditing", layout="wide", initial_sidebar_state="collapsed")
-        st.markdown("""
-            <style>
-            .passage-box {
-                background-color: #fafafa;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                padding: 1rem;
-                font-family: sans-serif;
-                color: #333;
-                white-space: pre-wrap;
-                max-height: 1000px;
-                overflow-y: auto;
-            }
-            div.stButton > button {
-                background-color: #00bcd4 !important;
-                color: white !important;
-                border: none !important;
-                padding: 0.5rem 1.2rem !important;
-                border-radius: 5px !important;
-                font-weight: bold !important;
-                margin-top: 1rem !important;
-            }
-            div.stButton > button:hover {
-                background-color: #0097a7 !important;
-            }
-            </style>
-        """, unsafe_allow_html=True)
-    except Exception as e:
-        import traceback
-        log_system_event(
-            "unexpected_error",
-            str(e),
-            {"traceback": traceback.format_exc()}
-        )
-        st.error("🔴 An unexpected error occurred. Please reload or contact support.")
-        raise
-
+    
     # now your styling/config block can call log_system_event safely
     timer_ph = st.empty()
     
