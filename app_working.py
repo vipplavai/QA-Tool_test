@@ -138,6 +138,41 @@ def main():
     skip_col.create_index([("intern_id", 1), ("content_id", 1)])
     skip_col.create_index([("status", 1), ("content_id", 1)])
 
+    def build_candidate_queue(intern_id):
+        """
+        Run once per session to build the full,
+        priority-sorted list of content IDs.
+        """
+        all_ids         = get_all_content_ids()
+        retired_ids     = get_retired_ids()
+        distinct_counts = get_distinct_counts()
+        seen_skipped    = get_seen_and_skipped(intern_id)
+        reserved        = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+
+        # filter out ineligible IDs
+        candidates = [
+            cid for cid in all_ids
+            if cid not in retired_ids
+            and distinct_counts.get(cid, 0) < MAX_AUDITORS
+            and cid not in seen_skipped
+            and cid not in reserved
+        ]
+        if not candidates:
+            return []
+
+        # group by fewest audits remaining & shuffle within each group
+        remaining = {cid: MAX_AUDITORS - distinct_counts.get(cid, 0) for cid in candidates}
+        grouped = {}
+        for cid, rem in remaining.items():
+            grouped.setdefault(rem, []).append(cid)
+
+        queue = []
+        for rem in sorted(grouped):
+            random.shuffle(grouped[rem])
+            queue.extend(grouped[rem])
+        return queue
+
+
 
     # 5-minute cache on heavy DB reads
     @st.cache_data(ttl=300)
@@ -494,58 +529,37 @@ def main():
 
     # === ATOMIC ASSIGNMENT via placeholder collection ===
     def assign_new_content():
-        # 1) Batched stale-placeholder cleanup, once per minute
-        now = time.time()
-        last = st.session_state.get("last_cleanup", 0)
-        if now - last > 60:
-            batch_cleanup_placeholders(batch_size=1000)
-            st.session_state["last_cleanup"] = now
+        queue = st.session_state.candidate_queue
 
-
-        # 2) Grab all the cached info
-        all_ids         = get_all_content_ids()
-        retired_ids     = get_retired_ids()
-        distinct_counts = get_distinct_counts()
-        seen_and_skipped= get_seen_and_skipped(intern_id)
-        reserved        = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
-
-        # 3) Build candidate list in one pass
-        candidates = [
-            cid for cid in all_ids
-            if cid not in retired_ids
-            and distinct_counts.get(cid, 0) < MAX_AUDITORS
-            and cid not in seen_and_skipped
-            and cid not in reserved
-        ]
-        if not candidates:
+        # no more candidates?
+        if not queue:
             st.session_state.eligible_id = None
             return
 
-        # 4) Prioritize those closest to completion
-        remaining_needed = {
-            cid: MAX_AUDITORS - distinct_counts.get(cid, 0)
-            for cid in candidates
-        }
-        min_needed = min(remaining_needed.values())
-        top_group  = [cid for cid, rem in remaining_needed.items() if rem == min_needed]
+        # pop next ID
+        cid = queue.pop(0)
 
-        # 5) Reserve one at random
-        chosen = random.choice(top_group)
+        # reserve it
         assign_col.insert_one({
-            "content_id":  chosen,
+            "content_id":  cid,
             "intern_id":   intern_id,
             "assigned_at": datetime.now(timezone.utc)
         })
-        log_user_action(intern_id, "assigned_content", {"content_id": chosen})
+        log_user_action(intern_id, "assigned_content", {"content_id": cid})
 
-        # 6) Store in session
-        st.session_state.eligible_id   = chosen
+        # session state for timer & rendering
+        st.session_state.eligible_id   = cid
         st.session_state.deadline      = time.time() + TIMER_SECONDS
         st.session_state.assigned_time = datetime.now(timezone.utc)
 
+
     # kick things off
+    if "candidate_queue" not in st.session_state:
+        st.session_state.candidate_queue = build_candidate_queue(intern_id)
+
     if st.session_state.eligible_id is None:
         assign_new_content()
+
     if st.session_state.eligible_id is None:
         st.success("✅ All content audited!")
         st.stop()
