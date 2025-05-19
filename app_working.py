@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit import components
+import streamlit.components.v1 as components
 from pymongo import MongoClient, InsertOne, ReturnDocument
 from pymongo.errors import DuplicateKeyError, BulkWriteError
 from datetime import datetime, timezone
