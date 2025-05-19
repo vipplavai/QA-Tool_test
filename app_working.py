@@ -1,14 +1,240 @@
 import streamlit as st
-from pymongo import MongoClient
-from datetime import datetime, timezone, timedelta
-import time
-import re
-from auth0_component import login_button
 from streamlit import components
-import streamlit.components.v1 as components
-import random
-from pymongo import ReturnDocument
-from pymongo.errors import DuplicateKeyError
+from pymongo import MongoClient, InsertOne, ReturnDocument
+from pymongo.errors import DuplicateKeyError, BulkWriteError
+from datetime import datetime, timezone
+import time, re, random
+from auth0_component import login_button
+
+TIMER_SECONDS = 60 * 7
+MAX_AUDITORS  = 5
+
+def log_system_event(event, message, details=None):
+        try:
+            temp_client = MongoClient(
+                st.secrets.get("mongo_uri", ""),
+                serverSelectionTimeoutMS=2000
+            )
+            temp_db = temp_client["Tel_QA"]
+            temp_db["system_logs"].insert_one({
+                "timestamp": datetime.now(timezone.utc),
+                "event":     event,
+                "message":   message,
+                "details":   details or {}
+            })
+        except Exception:
+            pass  # best‐effort only
+
+# Helper: Show Login Screen Title & Description
+def show_login_intro():
+    st.title("🔐 Welcome to JNANA QA Auditing Tool")
+    st.markdown("Please log in to audit short Q&A pairs.")
+
+# === MONGO CONNECTION ===
+@st.cache_resource
+def get_client():
+    try:
+        client = MongoClient(
+            st.secrets["mongo_uri"],
+            serverSelectionTimeoutMS=5000
+        )
+        client.admin.command("ping")
+        return client
+    except Exception as e:
+        # now log_system_event is already defined
+        log_system_event("db_connect_error", str(e))
+        st.error("🔴 Cannot connect to database. Please try again later.")
+        st.stop()
+
+client      = get_client()
+db          = client["Tel_QA"]
+users_col   = db["users"]
+content_col = db["Content"]
+qa_col      = db["QA_pairs"]
+audit_col   = db["audit_logs"]
+doubt_col   = db["doubt_logs"]
+skip_col    = db["skipped_logs"]
+
+audit_col.create_index([("content_id", 1), ("intern_id", 1)])
+skip_col.create_index([("intern_id", 1), ("content_id", 1)])
+skip_col.create_index([("status", 1), ("content_id", 1)])
+
+
+# === MAKE UNIQUE INDEX (but don’t blow up if there are dupes) ===
+try:
+    audit_col.create_index(
+        [("intern_id", 1), ("content_id", 1), ("qa_index", 1)],
+        unique=True,
+        background=True
+    )
+except DuplicateKeyError:
+    # There are existing duplicate documents; index build will skip them.
+    log_system_event(
+        "index_build_warning",
+        "Could not build unique index on audit_logs (duplicates exist).",
+        {}
+    )
+
+
+# track “reserved” slots so we can block concurrent assignments
+assign_col = db["assignment_placeholders"]
+# automatically expire stale placeholders after the timer elapses
+assign_col.create_index("assigned_at", expireAfterSeconds=TIMER_SECONDS)
+
+# for fast “distinct” and count_documents on reservations
+assign_col.create_index([("intern_id", 1), ("content_id", 1)])
+
+
+
+
+# === USER ACTION LOGGING ===
+user_logs = db["user_logs"]
+
+# === SYSTEM / INFRASTRUCTURE LOGGING ===
+system_logs = db["system_logs"]
+
+# 5-minute cache on heavy DB reads
+@st.cache_data(ttl=60)
+def get_all_content_ids():
+    """
+    Return a set of all content IDs for O(1) membership tests.
+    """
+    return set(qa_col.distinct("content_id"))
+
+@st.cache_data(ttl=60)
+def get_distinct_counts():
+    # { content_id: number_of_distinct_interns_who_audited }
+    pipeline = [
+        {"$group":{
+            "_id": "$content_id",
+            "interns": {"$addToSet": "$intern_id"}
+        }}
+    ]
+    return {doc["_id"]: len(doc["interns"]) for doc in audit_col.aggregate(pipeline)}
+
+@st.cache_data(ttl=60)
+def get_retired_ids():
+    """
+    Only scan documents where status='retired', then group by content_id.
+    """
+    pipeline = [
+        {"$match": {"status": "retired"}},
+        {"$group": {"_id": "$content_id"}}
+    ]
+    return {doc["_id"] for doc in skip_col.aggregate(pipeline)}
+
+
+@st.cache_data(ttl=60)
+def get_seen_and_skipped(intern_id: str):
+    """
+    Use aggregation to pull only docs for this intern, then group by content_id.
+    """
+    seen_pipeline = [
+        {"$match": {"intern_id": intern_id}},
+        {"$group": {"_id": "$content_id"}}
+    ]
+    seen = {doc["_id"] for doc in audit_col.aggregate(seen_pipeline)}
+
+    skipped_pipeline = [
+        {"$match": {"intern_id": intern_id}},
+        {"$group": {"_id": "$content_id"}}
+    ]
+    skipped = {doc["_id"] for doc in skip_col.aggregate(skipped_pipeline)}
+
+    return seen | skipped
+
+
+@st.cache_data(ttl=60)
+def fetch_content_qa(cid: int):
+    """
+    Returns (content_doc, qa_doc) and logs if the DB call is slow.
+    Cached for 5 minutes per cid.
+    """
+    start = time.time()
+    content = content_col.find_one({"content_id": cid})
+    qa_doc  = qa_col.find_one({"content_id": cid})
+    duration = time.time() - start
+    if duration > 1.0:
+        log_system_event(
+            "slow_db_query",
+            f"fetch_content_qa took {duration:.2f}s",
+            {"content_id": cid}
+        )
+    return content, qa_doc
+
+def build_candidate_queue(intern_id):
+        """
+        Run once per session to build the full,
+        priority-sorted list of content IDs.
+        """
+        all_ids         = get_all_content_ids()
+        retired_ids     = get_retired_ids()
+        distinct_counts = get_distinct_counts()
+        seen_skipped    = get_seen_and_skipped(intern_id)
+        reserved        = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+
+        # filter out ineligible IDs
+        candidates = [
+            cid for cid in all_ids
+            if cid not in retired_ids
+            and distinct_counts.get(cid, 0) < MAX_AUDITORS
+            and cid not in seen_skipped
+            and cid not in reserved
+        ]
+        if not candidates:
+            return []
+
+        # group by fewest audits remaining & shuffle within each group
+        remaining = {cid: MAX_AUDITORS - distinct_counts.get(cid, 0) for cid in candidates}
+        grouped = {}
+        for cid, rem in remaining.items():
+            grouped.setdefault(rem, []).append(cid)
+
+        queue = []
+        for rem in sorted(grouped):
+            random.shuffle(grouped[rem])
+            queue.extend(grouped[rem])
+        return queue
+
+def log_user_action(intern_id, action, details=None):
+        """
+        Persist a timestamped action for audit.
+        action: str, e.g. "assigned", "skipped", "timeout", "submitted", "next_clicked", "error"
+        details: dict of any extra context (e.g. content_id, time_taken, error message)
+        """
+        user_logs.insert_one({
+            "intern_id": intern_id,
+            "date":      datetime.now(timezone.utc),
+            "action":    action,
+            "details":   details or {}
+        })
+
+# === ATOMIC ASSIGNMENT via placeholder collection ===
+def assign_new_content():
+    queue = st.session_state.candidate_queue
+    if not queue:
+        st.session_state.eligible_id = None
+        return
+
+    cid = queue.pop(0)
+
+    # final MAX_AUDITORS guard
+    current  = audit_col.count_documents({"content_id": cid})
+    reserved = assign_col.count_documents({"content_id": cid})
+    if current + reserved >= MAX_AUDITORS:
+        return assign_new_content()
+
+    assign_col.insert_one({
+        "content_id":  cid,
+        "intern_id":   intern_id,
+        "assigned_at": datetime.now(timezone.utc)
+    })
+    log_user_action(intern_id, "assigned_content", {"content_id": cid})
+
+    st.session_state.eligible_id   = cid
+    st.session_state.deadline      = time.time() + TIMER_SECONDS
+    st.session_state.assigned_time = datetime.now(timezone.utc)
+
 
 
 def main():
@@ -58,236 +284,10 @@ def main():
         st.error("🔴 An unexpected error occurred. Please reload or contact support.")
         raise
 
-    def log_system_event(event, message, details=None):
-        try:
-            temp_client = MongoClient(
-                st.secrets.get("mongo_uri", ""),
-                serverSelectionTimeoutMS=2000
-            )
-            temp_db = temp_client["Tel_QA"]
-            temp_db["system_logs"].insert_one({
-                "timestamp": datetime.now(timezone.utc),
-                "event":     event,
-                "message":   message,
-                "details":   details or {}
-            })
-        except Exception:
-            pass  # best‐effort only
-
     # now your styling/config block can call log_system_event safely
     timer_ph = st.empty()
-
-
-
-    # Helper: Show Login Screen Title & Description
-    def show_login_intro():
-        st.title("🔐 Welcome to JNANA QA Auditing Tool")
-        st.markdown("Please log in to audit short Q&A pairs.")
-
-    # === SYSTEM / INFRASTRUCTURE LOGGING (standalone) ===
-    def log_system_event(event, message, details=None):
-        """
-        Logs directly to MongoDB using a fresh client so that
-        it can be called before `db` is set up.
-        """
-        try:
-            temp_client = MongoClient(
-                st.secrets.get("mongo_uri", ""),
-                serverSelectionTimeoutMS=2000
-            )
-            temp_db = temp_client["Tel_QA"]
-            temp_db["system_logs"].insert_one({
-                "timestamp": datetime.now(timezone.utc),
-                "event":     event,
-                "message":   message,
-                "details":   details or {}
-            })
-        except Exception:
-            # best‐effort only, swallow errors
-            pass
-
-    TIMER_SECONDS = 60 * 7
-    MAX_AUDITORS  = 5
-
-    # === MONGO CONNECTION ===
-    @st.cache_resource
-    def get_client():
-        try:
-            client = MongoClient(
-                st.secrets["mongo_uri"],
-                serverSelectionTimeoutMS=5000
-            )
-            client.admin.command("ping")
-            return client
-        except Exception as e:
-            # now log_system_event is already defined
-            log_system_event("db_connect_error", str(e))
-            st.error("🔴 Cannot connect to database. Please try again later.")
-            st.stop()
-
-    client      = get_client()
-    db          = client["Tel_QA"]
-    users_col   = db["users"]
-    content_col = db["Content"]
-    qa_col      = db["QA_pairs"]
-    audit_col   = db["audit_logs"]
-    doubt_col   = db["doubt_logs"]
-    skip_col    = db["skipped_logs"]
-
-    audit_col.create_index([("content_id", 1), ("intern_id", 1)])
-    skip_col.create_index([("intern_id", 1), ("content_id", 1)])
-    skip_col.create_index([("status", 1), ("content_id", 1)])
-
-    def build_candidate_queue(intern_id):
-        """
-        Run once per session to build the full,
-        priority-sorted list of content IDs.
-        """
-        all_ids         = get_all_content_ids()
-        retired_ids     = get_retired_ids()
-        distinct_counts = get_distinct_counts()
-        seen_skipped    = get_seen_and_skipped(intern_id)
-        reserved        = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
-
-        # filter out ineligible IDs
-        candidates = [
-            cid for cid in all_ids
-            if cid not in retired_ids
-            and distinct_counts.get(cid, 0) < MAX_AUDITORS
-            and cid not in seen_skipped
-            and cid not in reserved
-        ]
-        if not candidates:
-            return []
-
-        # group by fewest audits remaining & shuffle within each group
-        remaining = {cid: MAX_AUDITORS - distinct_counts.get(cid, 0) for cid in candidates}
-        grouped = {}
-        for cid, rem in remaining.items():
-            grouped.setdefault(rem, []).append(cid)
-
-        queue = []
-        for rem in sorted(grouped):
-            random.shuffle(grouped[rem])
-            queue.extend(grouped[rem])
-        return queue
-
-
-
-    # 5-minute cache on heavy DB reads
-    @st.cache_data(ttl=300)
-    def get_all_content_ids():
-        """
-        Return a set of all content IDs for O(1) membership tests.
-        """
-        return set(qa_col.distinct("content_id"))
-
-
-    @st.cache_data(ttl=300)
-    def get_distinct_counts():
-        # { content_id: number_of_distinct_interns_who_audited }
-        pipeline = [
-            {"$group":{
-                "_id": "$content_id",
-                "interns": {"$addToSet": "$intern_id"}
-            }}
-        ]
-        return {doc["_id"]: len(doc["interns"]) for doc in audit_col.aggregate(pipeline)}
-
-    @st.cache_data(ttl=300)
-    def get_retired_ids():
-        """
-        Only scan documents where status='retired', then group by content_id.
-        """
-        pipeline = [
-            {"$match": {"status": "retired"}},
-            {"$group": {"_id": "$content_id"}}
-        ]
-        return {doc["_id"] for doc in skip_col.aggregate(pipeline)}
-
-
-    @st.cache_data(ttl=300)
-    def get_seen_and_skipped(intern_id: str):
-        """
-        Use aggregation to pull only docs for this intern, then group by content_id.
-        """
-        seen_pipeline = [
-            {"$match": {"intern_id": intern_id}},
-            {"$group": {"_id": "$content_id"}}
-        ]
-        seen = {doc["_id"] for doc in audit_col.aggregate(seen_pipeline)}
-
-        skipped_pipeline = [
-            {"$match": {"intern_id": intern_id}},
-            {"$group": {"_id": "$content_id"}}
-        ]
-        skipped = {doc["_id"] for doc in skip_col.aggregate(skipped_pipeline)}
-
-        return seen | skipped
-
-
-    @st.cache_data(ttl=300)
-    def fetch_content_qa(cid: int):
-        """
-        Returns (content_doc, qa_doc) and logs if the DB call is slow.
-        Cached for 5 minutes per cid.
-        """
-        start = time.time()
-        content = content_col.find_one({"content_id": cid})
-        qa_doc  = qa_col.find_one({"content_id": cid})
-        duration = time.time() - start
-        if duration > 1.0:
-            log_system_event(
-                "slow_db_query",
-                f"fetch_content_qa took {duration:.2f}s",
-                {"content_id": cid}
-            )
-        return content, qa_doc
-
-
-    # === MAKE UNIQUE INDEX (but don’t blow up if there are dupes) ===
-    try:
-        audit_col.create_index(
-            [("intern_id", 1), ("content_id", 1), ("qa_index", 1)],
-            unique=True,
-            background=True
-        )
-    except DuplicateKeyError:
-        # There are existing duplicate documents; index build will skip them.
-        log_system_event(
-            "index_build_warning",
-            "Could not build unique index on audit_logs (duplicates exist).",
-            {}
-        )
-
-
-    # track “reserved” slots so we can block concurrent assignments
-    assign_col = db["assignment_placeholders"]
-
-
-    # === USER ACTION LOGGING ===
-    user_logs = db["user_logs"]
-
-    # === SYSTEM / INFRASTRUCTURE LOGGING ===
-    system_logs = db["system_logs"]
-
-    def log_user_action(intern_id, action, details=None):
-        """
-        Persist a timestamped action for audit.
-        action: str, e.g. "assigned", "skipped", "timeout", "submitted", "next_clicked", "error"
-        details: dict of any extra context (e.g. content_id, time_taken, error message)
-        """
-        user_logs.insert_one({
-            "intern_id": intern_id,
-            "date":      datetime.now(timezone.utc),
-            "action":    action,
-            "details":   details or {}
-        })
-
-
-
-
-    # === AUTH0 LOGIN ===
+    
+ # === AUTH0 LOGIN ===
 
     # only call login_button() until we have user_info
     if "user_info" not in st.session_state:
@@ -511,48 +511,7 @@ def main():
             st.session_state.is_submitting      = False
             st.rerun()
 
-
-    def batch_cleanup_placeholders(batch_size: int = 1000):
-        """
-        Delete up to `batch_size` stale placeholders in one go
-        so we don’t overload Mongo’s TTL thread.
-        """
-        cutoff = datetime.now(timezone.utc) - timedelta(seconds=TIMER_SECONDS)
-        to_delete = list(assign_col.find(
-            {"assigned_at": {"$lt": cutoff}},
-            {"_id": 1}
-        ).limit(batch_size))
-        if to_delete:
-            ids = [doc["_id"] for doc in to_delete]
-            assign_col.delete_many({"_id": {"$in": ids}})
-
-
-    # === ATOMIC ASSIGNMENT via placeholder collection ===
-    def assign_new_content():
-        queue = st.session_state.candidate_queue
-
-        # no more candidates?
-        if not queue:
-            st.session_state.eligible_id = None
-            return
-
-        # pop next ID
-        cid = queue.pop(0)
-
-        # reserve it
-        assign_col.insert_one({
-            "content_id":  cid,
-            "intern_id":   intern_id,
-            "assigned_at": datetime.now(timezone.utc)
-        })
-        log_user_action(intern_id, "assigned_content", {"content_id": cid})
-
-        # session state for timer & rendering
-        st.session_state.eligible_id   = cid
-        st.session_state.deadline      = time.time() + TIMER_SECONDS
-        st.session_state.assigned_time = datetime.now(timezone.utc)
-
-
+    
     # kick things off
     if "candidate_queue" not in st.session_state:
         st.session_state.candidate_queue = build_candidate_queue(intern_id)
@@ -570,6 +529,11 @@ def main():
 
     # instead of your custom fetch_content_qa block
     content, qa_doc = fetch_content_qa(cid)   # this is now cached for 5 min per cid
+        # — pre-warm next item’s cache for an instant “Next” —
+    queue = st.session_state.get("candidate_queue", [])
+    if len(queue) > 1:
+        fetch_content_qa(queue[1])
+
     qa_pairs = qa_doc.get("questions", {}).get("short", []) if qa_doc else []
 
     # === Reset radios & flags if content changes ===
@@ -731,25 +695,38 @@ def main():
                 "time_taken": time_taken
             })
 
-            # 5) Write each judgment with duplicate‐key protection
+            # 5) Bulk‐insert all judgments in one go
+            audit_ops, doubt_ops = [], []
             for entry in judgments:
-                entry.update({
+                doc = {
                     "content_id":   cid,
                     "intern_id":    intern_id,
                     "qa_index":     entry["qa_index"],
+                    "question":     entry["question"],
+                    "answer":       entry["answer"],
+                    "judgment":     entry["judgment"],
                     "timestamp":    now,
                     "assigned_at":  st.session_state.assigned_time,
                     "time_taken":   time_taken,
                     "length":       "short",
-                })
+                }
+                if entry["judgment"] == "Doubt":
+                    doubt_ops.append(InsertOne(doc))
+                else:
+                    audit_ops.append(InsertOne(doc))
+
+            if audit_ops:
                 try:
-                    if entry["judgment"] == "Doubt":
-                        doubt_col.insert_one(entry)
-                    else:
-                        audit_col.insert_one(entry)
-                except DuplicateKeyError:
-                    # this intern already submitted this exact QA → ignore
-                    pass
+                    audit_col.bulk_write(audit_ops, ordered=False)
+                except BulkWriteError as bwe:
+                    log_system_event("bulk_write_error", str(bwe.details))
+
+            if doubt_ops:
+                try:
+                    doubt_col.bulk_write(doubt_ops, ordered=False)
+                except BulkWriteError as bwe:
+                    log_system_event("bulk_write_error", str(bwe.details))
+
 
         # 6) Clear the timer and unlock
         timer_ph.empty()
