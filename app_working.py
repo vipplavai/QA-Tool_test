@@ -253,7 +253,7 @@ def log_user_action(intern_id, action, details=None):
         })
 
 # === ATOMIC ASSIGNMENT via placeholder collection ===
-def assign_new_content():
+def assign_new_content(intern_id):
     queue = st.session_state.candidate_queue
     if not queue:
         st.session_state.eligible_id = None
@@ -265,7 +265,8 @@ def assign_new_content():
     current  = audit_col.count_documents({"content_id": cid})
     reserved = assign_col.count_documents({"content_id": cid})
     if current + reserved >= MAX_AUDITORS:
-        return assign_new_content()
+        # skip this one and try the next
+        return assign_new_content(intern_id)
 
     assign_col.insert_one({
         "content_id":  cid,
@@ -521,7 +522,7 @@ def main():
         st.session_state.candidate_queue = build_candidate_queue(intern_id)
 
     if st.session_state.eligible_id is None:
-        assign_new_content()
+        assign_new_content(intern_id)
 
     if st.session_state.eligible_id is None:
         st.success("✅ All content audited!")
@@ -577,7 +578,7 @@ def main():
 
         st.warning(f"⚠️ Skipping ID {cid} — content or valid short QA missing.")
         st.session_state.current_content_id = None
-        assign_new_content()
+        assign_new_content(intern_id)
         st.rerun()
 
 
@@ -792,7 +793,7 @@ def main():
         st.session_state.submitted         = False
         st.session_state.is_submitting     = False
 
-        assign_new_content()
+        assign_new_content(intern_id)
         st.rerun()
 
 if __name__ == "__main__":
