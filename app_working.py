@@ -651,50 +651,6 @@ def main():
     with left:
         st.subheader(f"📄 Content ID: {cid}")
         st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
-
-    with right:
-        st.subheader("❓ Short Q&A Pairs")
-        judgments = []
-
-        # only show the form if this content hasn't been submitted yet
-        if not st.session_state.submitted:
-            with st.form("judgment_form"):
-                # build up your judgments list
-                for i, pair in enumerate(qa_pairs):
-                    st.markdown(f"**Q{i+1}:** {pair['question']}")
-                    st.markdown(f"**A{i+1}:** {pair['answer']}")
-                    sel = st.radio(
-                        "", 
-                        ["Correct", "Incorrect", "Doubt"], 
-                        key=f"j_{i}"
-                    )
-                    judgments.append({
-                        "qa_index": i,
-                        "question": pair["question"],
-                        "answer": pair["answer"],
-                        "judgment": sel
-                    })
-                    st.markdown("---")
-
-                # always enable the button
-                form_submitted = st.form_submit_button("✅ Submit Judgments")
-
-            if form_submitted:
-                # re-check that every QA has been answered
-                all_answered = all(
-                    st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
-                    for i in range(len(qa_pairs))
-                )
-                if not all_answered:
-                    st.error("⚠️ Please answer every question before submitting.")
-                else:
-                    handle_submit()  # this will clear the timer and set submitted=True
-
-        else:
-            # once submitted, replace the form (and timer) with a static confirmation
-            st.success("✅ Judgments saved!")
-
-
     # your existing handle_submit() lives here
     def handle_submit():
         # 1) Guard against double‐submit
@@ -760,6 +716,51 @@ def main():
         # 7) Show final success
         st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
+    with right:
+        st.subheader("❓ Short Q&A Pairs")
+        judgments = []
+
+        # only show the form if this content hasn't been submitted yet
+        if not st.session_state.submitted:
+            with st.form("judgment_form"):
+                # build up your judgments list
+                for i, pair in enumerate(qa_pairs):
+                    st.markdown(f"**Q{i+1}:** {pair['question']}")
+                    st.markdown(f"**A{i+1}:** {pair['answer']}")
+                    sel = st.radio(
+                        "", 
+                        ["Correct", "Incorrect", "Doubt"], 
+                        key=f"j_{i}"
+                    )
+                    judgments.append({
+                        "qa_index": i,
+                        "question": pair["question"],
+                        "answer": pair["answer"],
+                        "judgment": sel
+                    })
+                    st.markdown("---")
+
+                # always enable the button
+                form_submitted = st.form_submit_button("✅ Submit Judgments")
+
+    
+            if form_submitted:
+                # re-check that every QA has been answered
+                all_answered = all(
+                    st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
+                    for i in range(len(qa_pairs))
+                )
+                if not all_answered:
+                    st.error("⚠️ Please answer every question before submitting.")
+                else:
+                    handle_submit()  # this will clear the timer and set submitted=True
+
+        else:
+            # once submitted, replace the form (and timer) with a static confirmation
+            st.success("✅ Judgments saved!")
+
+
+    
 
 
     # === gButtons ===
