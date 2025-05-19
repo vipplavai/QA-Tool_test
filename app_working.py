@@ -516,6 +516,8 @@ def main():
             st.session_state.is_submitting      = False
             st.rerun()
 
+        st.stop()
+
     
     # kick things off
     if "candidate_queue" not in st.session_state:
@@ -653,27 +655,37 @@ def main():
     with right:
         st.subheader("❓ Short Q&A Pairs")
         judgments = []
-        for i, pair in enumerate(qa_pairs):
-            st.markdown(f"**Q{i+1}:** {pair['question']}")
-            st.markdown(f"**A{i+1}:** {pair['answer']}")
-            selected = st.radio(
-                label="", 
-                options=["Correct","Incorrect","Doubt"],
-                key=f"j_{i}",
-                label_visibility="collapsed",
-                disabled=(
-                    st.session_state.submitted 
-                    or st.session_state.is_submitting
+        # wrap all radios in a form so they don't trigger reruns on change
+        with st.form("judgment_form"):
+            for i, pair in enumerate(qa_pairs):
+                st.markdown(f"**Q{i+1}:** {pair['question']}")
+                st.markdown(f"**A{i+1}:** {pair['answer']}")
+                # these radio inputs now live inside the form
+                sel = st.radio(
+                    "",
+                    ["Correct", "Incorrect", "Doubt"],
+                    key=f"j_{i}"
                 )
+                judgments.append({
+                    "qa_index": i,
+                    "question": pair["question"],
+                    "answer": pair["answer"],
+                    "judgment": sel
+                })
+                st.markdown("---")
+            # explicit submit button for the form
+            # only enable once every radio has been set
+            all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
+            form_submitted = st.form_submit_button(
+                "✅ Submit Judgments",
+                disabled=not all_answered
             )
-            
-            judgments.append({
-                "qa_index": i,
-                "question": pair["question"],
-                "answer": pair["answer"],
-                "judgment": selected
-            })
-            st.markdown("---")
+
+        # once the form is submitted, this will fire your existing logic (which also
+    # clears the timer via timer_ph.empty() inside handle_submit)
+    if form_submitted:
+        handle_submit()
+
 
     def handle_submit():
         # 1) Guard so it only ever runs once per content
@@ -743,15 +755,7 @@ def main():
 
     # === gButtons ===
     all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
-    submit = st.button(
-        "✅ Submit",
-        on_click=handle_submit,
-        disabled=(
-            st.session_state.submitted
-            or st.session_state.is_submitting
-            or not all_answered
-        )
-    )
+
 
     # === Next button ===
     next_ = st.button("➡️ Next")
