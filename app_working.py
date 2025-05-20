@@ -652,6 +652,7 @@ def main():
         st.subheader(f"📄 Content ID: {cid}")
         st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
     # your existing handle_submit() lives here
+    
     def handle_submit():
         # 1) Guard against double‐submit
         if st.session_state.submitted:
@@ -709,12 +710,7 @@ def main():
                 except BulkWriteError as bwe:
                     log_system_event("bulk_write_error", str(bwe.details))
 
-        # 6) Clear timer + unlock
-        timer_ph.empty()
-        st.session_state.is_submitting = False
-
-        # 7) Show final success
-        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+        
 
     with right:
         st.subheader("❓ Short Q&A Pairs")
@@ -760,7 +756,12 @@ def main():
             st.success("✅ Judgments saved!")
 
 
-    
+        # 6) Clear timer + unlock
+        timer_ph.empty()
+        st.session_state.is_submitting = False
+
+        # 7) Show final success
+        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
 
     # === gButtons ===
