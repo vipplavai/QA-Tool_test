@@ -294,12 +294,13 @@ def assign_new_content(intern_id):
 
     cid = queue.pop(0)
 
-    # final MAX_AUDITORS guard
-    current  = audit_col.count_documents({"content_id": cid})
+        # final MAX_AUDITORS guard — count *distinct* interns, not docs
+    current  = len(audit_col.distinct("intern_id", {"content_id": cid}))
     reserved = assign_col.count_documents({"content_id": cid})
     if current + reserved >= MAX_AUDITORS:
         # skip this one and try the next
         return assign_new_content(intern_id)
+
 
     assign_col.insert_one({
         "content_id":  cid,
