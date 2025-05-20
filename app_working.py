@@ -734,6 +734,9 @@ def main():
         lt = st.session_state.last_time_taken
         st.success(f"✅ Judgments saved in {lt:.1f}s")
 
+        # === FORCE A RERUN HERE ===
+        st.rerun()
+
 
     # render columns exactly once
     left, right = st.columns(2)
