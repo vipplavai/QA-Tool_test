@@ -552,6 +552,7 @@ def main():
         # ← reset our submission guards for the new content
         st.session_state.submitted      = False
         st.session_state.is_submitting  = False
+        st.session_state.submit_error  = False
 
         
     # === Handle Invalid or Missing Short QA ===
@@ -653,7 +654,7 @@ def main():
         st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
 
     # your existing handle_submit() lives here
-    def handle_submit():
+    def handle_submit(judgements):
         # 1) Guard against double‐submit
         if st.session_state.submitted:
             return
@@ -661,6 +662,10 @@ def main():
         # 2) Lock down UI
         st.session_state.submitted = True
         st.session_state.is_submitting = True
+
+        if "submit_error" not in st.session_state:
+            st.session_state.submit_error = False
+
 
         now = datetime.now(timezone.utc)
         time_taken = (now - st.session_state.assigned_time).total_seconds()
@@ -719,8 +724,25 @@ def main():
         # 3) show the success with time
         st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
-        
+    def on_submit():
+        # 1) validate that every radio is answered
+        all_answered = all(
+            st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
+            for i in range(len(qa_pairs))
+        )
+        if not all_answered:
+            # signal an error
+            st.session_state.submit_error = True
+            return
 
+        # 2) clear any previous error
+        st.session_state.submit_error = False
+
+        # 3) call your existing DB logic / timer clear / success
+        handle_submit(judgments)
+    
+
+    
     with right:
         st.subheader("❓ Short Q&A Pairs")
         judgments = []
@@ -730,31 +752,30 @@ def main():
                 for i, pair in enumerate(qa_pairs):
                     st.markdown(f"**Q{i+1}:** {pair['question']}")
                     st.markdown(f"**A{i+1}:** {pair['answer']}")
-                    sel = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
+                    st.radio("", ["Correct","Incorrect","Doubt"], key=f"j_{i}")
                     judgments.append({
                         "qa_index": i,
                         "question": pair["question"],
-                        "answer": pair["answer"],
-                        "judgment": sel
+                        "answer":   pair["answer"],
+                        "judgment": st.session_state[f"j_{i}"]
                     })
                     st.markdown("---")
 
-                form_submitted = st.form_submit_button("✅ Submit Judgments")
-
-            if form_submitted:
-                all_answered = all(
-                    st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
-                    for i in range(len(qa_pairs))
+                # **the magic**: run on_submit(judgments) in one click
+                st.form_submit_button(
+                    "✅ Submit Judgments",
+                    on_click=on_submit,
+                    args=(judgments,)
                 )
-                if not all_answered:
-                    st.error("⚠️ Please answer every question before submitting.")
-                else:
-                    handle_submit()  # now also clears timer & shows success
+
+            # show validation error if any
+            if st.session_state.submit_error:
+                st.error("⚠️ Please answer every question before submitting.")
 
         else:
-            # form hidden by submission; nothing more here
-            pass
-
+            # once submitted, hide the form & show success
+            elapsed = (datetime.now(timezone.utc) - st.session_state.assigned_time).total_seconds()
+            st.success(f"✅ Judgments saved in {elapsed:.1f}s")
 
 
     # === gButtons ===
