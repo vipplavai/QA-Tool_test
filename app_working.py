@@ -205,39 +205,61 @@ def fetch_content_qa(cid: int):
         )
     return content, qa_doc
 
+@st.cache_data(ttl=3600)
+def get_eligible_ids():
+    """
+    Return all content_ids with < MAX_AUDITORS audits and < 3 manual skips.
+    Cached for one hour.
+    """
+    pipeline = [
+        {"$group": {
+            "_id": "$content_id",
+            "audit_count": {"$sum": 1}
+        }},
+        {"$lookup": {
+            "from": "skipped_logs",
+            "let": {"cid": "$_id"},
+            "pipeline": [
+                {"$match": {
+                    "$expr": {
+                        "$and": [
+                            {"$eq": ["$content_id", "$$cid"]},
+                            {"$eq": ["$status", "manual_skip"]}
+                        ]
+                    }
+                }}
+            ],
+            "as": "manual_skips"
+        }},
+        {"$addFields": {
+            "skip_count": {"$size": "$manual_skips"}
+        }},
+        {"$match": {
+            "audit_count": {"$lt": MAX_AUDITORS},
+            "skip_count":  {"$lt": 3}
+        }},
+        {"$project": {"content_id": "$_id", "_id": 0}}
+    ]
+    return [doc["content_id"] for doc in audit_col.aggregate(pipeline)]
+
 def build_candidate_queue(intern_id):
-        """
-        Run once per session to build the full,
-        priority-sorted list of content IDs.
-        """
-        all_ids         = get_all_content_ids()
-        retired_ids     = get_retired_ids()
-        distinct_counts = get_distinct_counts()
-        seen_skipped    = get_seen_and_skipped(intern_id)
-        reserved        = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+    """
+    Build and shuffle the list of content_ids eligible for auditing,
+    excluding items already seen/skipped or reserved by this intern.
+    """
+    eligible = get_eligible_ids()
+    seen_skipped = get_seen_and_skipped(intern_id)
+    reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
 
-        # filter out ineligible IDs
-        candidates = [
-            cid for cid in all_ids
-            if cid not in retired_ids
-            and distinct_counts.get(cid, 0) < MAX_AUDITORS
-            and cid not in seen_skipped
-            and cid not in reserved
-        ]
-        if not candidates:
-            return []
+    # filter out content already seen, skipped, or reserved
+    pool = [
+        cid for cid in eligible
+        if cid not in seen_skipped and cid not in reserved
+    ]
 
-        # group by fewest audits remaining & shuffle within each group
-        remaining = {cid: MAX_AUDITORS - distinct_counts.get(cid, 0) for cid in candidates}
-        grouped = {}
-        for cid, rem in remaining.items():
-            grouped.setdefault(rem, []).append(cid)
+    random.shuffle(pool)
+    return pool
 
-        queue = []
-        for rem in sorted(grouped):
-            random.shuffle(grouped[rem])
-            queue.extend(grouped[rem])
-        return queue
 
 def log_user_action(intern_id, action, details=None):
         """
@@ -523,12 +545,14 @@ def main():
     if "candidate_queue" not in st.session_state:
         st.session_state.candidate_queue = build_candidate_queue(intern_id)
 
-    if st.session_state.eligible_id is None:
-        assign_new_content(intern_id)
-
-    if st.session_state.eligible_id is None:
+    # if no eligible items left, we’re done
+    if not st.session_state.candidate_queue:
         st.success("✅ All content audited!")
         st.stop()
+
+    # otherwise, if we haven’t already picked one, grab the next
+    if st.session_state.eligible_id is None:
+        assign_new_content(intern_id)
 
 
     cid = st.session_state.eligible_id
