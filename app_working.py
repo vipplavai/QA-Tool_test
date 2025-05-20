@@ -208,57 +208,62 @@ def fetch_content_qa(cid: int):
 @st.cache_data(ttl=3600)
 def get_eligible_ids():
     """
-    Return all content_ids with < MAX_AUDITORS audits and < 3 manual skips.
-    Cached for one hour.
+    Return every content_id from QA_pairs with < MAX_AUDITORS audits 
+    and < 3 manual skips. Cached for one hour.
     """
     pipeline = [
-        {"$group": {
-            "_id": "$content_id",
-            "audit_count": {"$sum": 1}
-        }},
+        # 1) start from all QA_pairs content_ids
+        {"$project": {"content_id": 1, "_id": 0}},
+        # 2) lookup how many audits each has
         {"$lookup": {
-            "from": "skipped_logs",
-            "let": {"cid": "$_id"},
+            "from": "audit_logs",
+            "let": {"cid": "$content_id"},
             "pipeline": [
                 {"$match": {
-                    "$expr": {
-                        "$and": [
-                            {"$eq": ["$content_id", "$$cid"]},
-                            {"$eq": ["$status", "manual_skip"]}
-                        ]
-                    }
+                    "$expr": {"$eq": ["$content_id", "$$cid"]}
                 }}
             ],
-            "as": "manual_skips"
+            "as": "audits"
         }},
+        # 3) lookup how many manual skips each has
+        {"$lookup": {
+            "from": "skipped_logs",
+            "let": {"cid": "$content_id"},
+            "pipeline": [
+                {"$match": {
+                    "$expr": {"$and": [
+                        {"$eq": ["$content_id", "$$cid"]},
+                        {"$eq": ["$status", "manual_skip"]}
+                    ]}
+                }}
+            ],
+            "as": "skips"
+        }},
+        # 4) compute counts
         {"$addFields": {
-            "skip_count": {"$size": "$manual_skips"}
+            "audit_count": {"$size": "$audits"},
+            "skip_count":  {"$size": "$skips"}
         }},
+        # 5) filter by thresholds
         {"$match": {
             "audit_count": {"$lt": MAX_AUDITORS},
             "skip_count":  {"$lt": 3}
         }},
-        {"$project": {"content_id": "$_id", "_id": 0}}
+        # 6) emit just the content_id
+        {"$project": {"content_id": 1, "_id": 0}}
     ]
-    return [doc["content_id"] for doc in audit_col.aggregate(pipeline)]
+    return [d["content_id"] for d in qa_col.aggregate(pipeline)]
+
 
 def build_candidate_queue(intern_id):
-    """
-    Build and shuffle the list of content_ids eligible for auditing,
-    excluding items already seen/skipped or reserved by this intern.
-    """
-    eligible = get_eligible_ids()
+    eligible     = get_eligible_ids()
     seen_skipped = get_seen_and_skipped(intern_id)
-    reserved = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
+    reserved     = set(assign_col.distinct("content_id", {"intern_id": intern_id}))
 
-    # filter out content already seen, skipped, or reserved
-    pool = [
-        cid for cid in eligible
-        if cid not in seen_skipped and cid not in reserved
-    ]
-
+    pool = [cid for cid in eligible if cid not in seen_skipped and cid not in reserved]
     random.shuffle(pool)
     return pool
+
 
 
 def log_user_action(intern_id, action, details=None):
