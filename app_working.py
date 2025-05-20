@@ -715,8 +715,7 @@ def main():
         # 2) unlock submitting flag
         st.session_state.is_submitting = False
 
-        # 3) show the success with time
-        st.success(f"✅ Judgments saved in {time_taken:.1f}s")
+        
 
     def on_submit(judgments):
         # 1) validate that every radio is answered
@@ -773,8 +772,8 @@ def main():
 
         else:
             # once submitted, hide the form & show success
-            elapsed = (datetime.now(timezone.utc) - st.session_state.assigned_time).total_seconds()
-            st.success(f"✅ Judgments saved in {elapsed:.1f}s")
+            lt = st.session_state.get("last_time_taken", 0.0)
+            st.success(f"✅ Judgments saved in {lt:.1f}s")
 
 
     # === gButtons ===
