@@ -647,12 +647,6 @@ def main():
 
 
     # === UI Layout ===
-    left, right = st.columns(2)
-
-    with left:
-        st.subheader(f"📄 Content ID: {cid}")
-        st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
-
     # your existing handle_submit() lives here
     def handle_submit(judgements):
         # 1) Guard against double‐submit
@@ -724,7 +718,7 @@ def main():
         # 3) show the success with time
         st.success(f"✅ Judgments saved in {time_taken:.1f}s")
 
-    def on_submit():
+    def on_submit(judgments):
         # 1) validate that every radio is answered
         all_answered = all(
             st.session_state.get(f"j_{i}") in ("Correct","Incorrect","Doubt")
@@ -740,7 +734,12 @@ def main():
 
         # 3) call your existing DB logic / timer clear / success
         handle_submit(judgments)
-    
+
+    left, right = st.columns(2)
+
+    with left:
+        st.subheader(f"📄 Content ID: {cid}")
+        st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
 
     
     with right:
