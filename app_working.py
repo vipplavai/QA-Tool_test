@@ -721,39 +721,39 @@ def main():
 
         
 
-        with right:
-            st.subheader("❓ Short Q&A Pairs")
-            judgments = []
+    with right:
+        st.subheader("❓ Short Q&A Pairs")
+        judgments = []
 
-            if not st.session_state.submitted:
-                with st.form("judgment_form"):
-                    for i, pair in enumerate(qa_pairs):
-                        st.markdown(f"**Q{i+1}:** {pair['question']}")
-                        st.markdown(f"**A{i+1}:** {pair['answer']}")
-                        sel = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
-                        judgments.append({
-                            "qa_index": i,
-                            "question": pair["question"],
-                            "answer": pair["answer"],
-                            "judgment": sel
-                        })
-                        st.markdown("---")
+        if not st.session_state.submitted:
+            with st.form("judgment_form"):
+                for i, pair in enumerate(qa_pairs):
+                    st.markdown(f"**Q{i+1}:** {pair['question']}")
+                    st.markdown(f"**A{i+1}:** {pair['answer']}")
+                    sel = st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
+                    judgments.append({
+                        "qa_index": i,
+                        "question": pair["question"],
+                        "answer": pair["answer"],
+                        "judgment": sel
+                    })
+                    st.markdown("---")
 
-                    form_submitted = st.form_submit_button("✅ Submit Judgments")
+                form_submitted = st.form_submit_button("✅ Submit Judgments")
 
-                if form_submitted:
-                    all_answered = all(
-                        st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
-                        for i in range(len(qa_pairs))
-                    )
-                    if not all_answered:
-                        st.error("⚠️ Please answer every question before submitting.")
-                    else:
-                        handle_submit()  # now also clears timer & shows success
+            if form_submitted:
+                all_answered = all(
+                    st.session_state.get(f"j_{i}") in ("Correct", "Incorrect", "Doubt")
+                    for i in range(len(qa_pairs))
+                )
+                if not all_answered:
+                    st.error("⚠️ Please answer every question before submitting.")
+                else:
+                    handle_submit()  # now also clears timer & shows success
 
-            else:
-                # form hidden by submission; nothing more here
-                pass
+        else:
+            # form hidden by submission; nothing more here
+            pass
 
 
 
