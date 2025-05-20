@@ -205,27 +205,30 @@ def fetch_content_qa(cid: int):
         )
     return content, qa_doc
 
-@st.cache_data(ttl=3600)
+@st.cache_data(ttl=120)  # shorten to 2 minutes so you see updates quickly
 def get_eligible_ids():
     """
-    Return every content_id from QA_pairs with < MAX_AUDITORS audits 
-    and < 3 manual skips. Cached for one hour.
+    Return every content_id with < MAX_AUDITORS distinct intern audits
+    and < 3 manual skips.
     """
     pipeline = [
-        # 1) start from all QA_pairs content_ids
+        # start from all QA_pairs content_ids
         {"$project": {"content_id": 1, "_id": 0}},
-        # 2) lookup how many audits each has
+
+        # group audit_logs by content_id + distinct intern_id
         {"$lookup": {
             "from": "audit_logs",
             "let": {"cid": "$content_id"},
             "pipeline": [
                 {"$match": {
                     "$expr": {"$eq": ["$content_id", "$$cid"]}
-                }}
+                }},
+                {"$group": {"_id": "$intern_id"}}
             ],
-            "as": "audits"
+            "as": "distinct_interns"
         }},
-        # 3) lookup how many manual skips each has
+
+        # group skipped_logs by content_id where status=manual_skip
         {"$lookup": {
             "from": "skipped_logs",
             "let": {"cid": "$content_id"},
@@ -237,22 +240,25 @@ def get_eligible_ids():
                     ]}
                 }}
             ],
-            "as": "skips"
+            "as": "manual_skips"
         }},
-        # 4) compute counts
+
+        # compute counts of each
         {"$addFields": {
-            "audit_count": {"$size": "$audits"},
-            "skip_count":  {"$size": "$skips"}
+            "audit_count": {"$size": "$distinct_interns"},
+            "skip_count":  {"$size": "$manual_skips"}
         }},
-        # 5) filter by thresholds
+
+        # filter out those at capacity
         {"$match": {
             "audit_count": {"$lt": MAX_AUDITORS},
             "skip_count":  {"$lt": 3}
         }},
-        # 6) emit just the content_id
+
+        # return only the content_id
         {"$project": {"content_id": 1, "_id": 0}}
     ]
-    return [d["content_id"] for d in qa_col.aggregate(pipeline)]
+    return [doc["content_id"] for doc in qa_col.aggregate(pipeline)]
 
 
 def build_candidate_queue(intern_id):
@@ -788,9 +794,6 @@ def main():
             # only one success message, using saved time
             lt = st.session_state.get("last_time_taken", 0.0)
             st.success(f"✅ Judgments saved in {lt:.1f}s")
-
-
-
 
     # === gButtons ===
     all_answered = all(st.session_state.get(f"j_{i}") is not None for i in range(len(qa_pairs)))
