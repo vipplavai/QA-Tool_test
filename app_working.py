@@ -676,115 +676,115 @@ def main():
 
 
     # === UI Layout ===
-def handle_submit(judgments):
-    # 1) Guard against double‐submit
-    if st.session_state.submitted:
-        return
+    def handle_submit(judgments):
+        # 1) Guard against double‐submit
+        if st.session_state.submitted:
+            return
 
-    # 2) Lock down UI
-    st.session_state.submitted = True
-    st.session_state.is_submitting = True
+        # 2) Lock down UI
+        st.session_state.submitted = True
+        st.session_state.is_submitting = True
 
-    now = datetime.now(timezone.utc)
-    time_taken = (now - st.session_state.assigned_time).total_seconds()
+        now = datetime.now(timezone.utc)
+        time_taken = (now - st.session_state.assigned_time).total_seconds()
 
-    with st.spinner("Saving your judgments…"):
-        # 3) Remove reservation
-        assign_col.delete_many({"content_id": cid, "intern_id": intern_id})
+        with st.spinner("Saving your judgments…"):
+            # 3) Remove reservation
+            assign_col.delete_many({"content_id": cid, "intern_id": intern_id})
 
-        # 4) Log submit event
-        log_user_action(intern_id, "submitted", {
-            "content_id": cid,
-            "time_taken": time_taken
-        })
-
-        # 5) Bulk insert
-        audit_ops, doubt_ops = [], []
-        for entry in judgments:
-            doc = {
+            # 4) Log submit event
+            log_user_action(intern_id, "submitted", {
                 "content_id": cid,
-                "intern_id": intern_id,
-                "qa_index": entry["qa_index"],
-                "question": entry["question"],
-                "answer": entry["answer"],
-                "judgment": entry["judgment"],
-                "timestamp": now,
-                "assigned_at": st.session_state.assigned_time,
-                "time_taken": time_taken,
-                "length": "short",
-            }
-            (doubt_ops if entry["judgment"] == "Doubt" else audit_ops).append(InsertOne(doc))
+                "time_taken": time_taken
+            })
 
-        if audit_ops:
-            try:
-                audit_col.bulk_write(audit_ops, ordered=False)
-            except BulkWriteError as bwe:
-                log_system_event("bulk_write_error", str(bwe.details))
-        if doubt_ops:
-            try:
-                doubt_col.bulk_write(doubt_ops, ordered=False)
-            except BulkWriteError as bwe:
-                log_system_event("bulk_write_error", str(bwe.details))
+            # 5) Bulk insert
+            audit_ops, doubt_ops = [], []
+            for entry in judgments:
+                doc = {
+                    "content_id": cid,
+                    "intern_id": intern_id,
+                    "qa_index": entry["qa_index"],
+                    "question": entry["question"],
+                    "answer": entry["answer"],
+                    "judgment": entry["judgment"],
+                    "timestamp": now,
+                    "assigned_at": st.session_state.assigned_time,
+                    "time_taken": time_taken,
+                    "length": "short",
+                }
+                (doubt_ops if entry["judgment"] == "Doubt" else audit_ops).append(InsertOne(doc))
 
-    # 6) clear timer
-    timer_ph.empty()
-    st.session_state.is_submitting = False
+            if audit_ops:
+                try:
+                    audit_col.bulk_write(audit_ops, ordered=False)
+                except BulkWriteError as bwe:
+                    log_system_event("bulk_write_error", str(bwe.details))
+            if doubt_ops:
+                try:
+                    doubt_col.bulk_write(doubt_ops, ordered=False)
+                except BulkWriteError as bwe:
+                    log_system_event("bulk_write_error", str(bwe.details))
 
-    # 7) immediately show success (before rerun)
-    lt = st.session_state.last_time_taken
-    st.success(f"✅ Judgments saved in {lt:.1f}s")
+        # 6) clear timer
+        timer_ph.empty()
+        st.session_state.is_submitting = False
 
-
-# render columns exactly once
-left, right = st.columns(2)
-
-with left:
-    st.subheader(f"📄 Content ID: {cid}")
-    st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
-
-with right:
-    st.subheader("❓ Short Q&A Pairs")
-
-    if not st.session_state.submitted:
-        with st.form("judgment_form"):
-            # render all radios
-            for i, pair in enumerate(qa_pairs):
-                st.markdown(f"**Q{i+1}:** {pair['question']}")
-                st.markdown(f"**A{i+1}:** {pair['answer']}")
-                st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
-                st.markdown("---")
-
-            form_submitted = st.form_submit_button("✅ Submit Judgments")
-
-        if form_submitted:
-            # validate
-            missing = [
-                i for i in range(len(qa_pairs))
-                if st.session_state.get(f"j_{i}") not in ("Correct", "Incorrect", "Doubt")
-            ]
-            if missing:
-                st.error("⚠️ Please answer every question before submitting.")
-            else:
-                # build judgments and record time
-                judgments = [
-                    {
-                        "qa_index": i,
-                        "question": qa_pairs[i]["question"],
-                        "answer": qa_pairs[i]["answer"],
-                        "judgment": st.session_state[f"j_{i}"]
-                    }
-                    for i in range(len(qa_pairs))
-                ]
-                now = datetime.now(timezone.utc)
-                st.session_state["last_time_taken"] = (now - st.session_state.assigned_time).total_seconds()
-
-                # do the insert + success
-                handle_submit(judgments)
-
-    else:
-        # only one success message, using saved time
-        lt = st.session_state.get("last_time_taken", 0.0)
+        # 7) immediately show success (before rerun)
+        lt = st.session_state.last_time_taken
         st.success(f"✅ Judgments saved in {lt:.1f}s")
+
+
+    # render columns exactly once
+    left, right = st.columns(2)
+
+    with left:
+        st.subheader(f"📄 Content ID: {cid}")
+        st.markdown(f"<div class='passage-box'>{content_text}</div>", unsafe_allow_html=True)
+
+    with right:
+        st.subheader("❓ Short Q&A Pairs")
+
+        if not st.session_state.submitted:
+            with st.form("judgment_form"):
+                # render all radios
+                for i, pair in enumerate(qa_pairs):
+                    st.markdown(f"**Q{i+1}:** {pair['question']}")
+                    st.markdown(f"**A{i+1}:** {pair['answer']}")
+                    st.radio("", ["Correct", "Incorrect", "Doubt"], key=f"j_{i}")
+                    st.markdown("---")
+
+                form_submitted = st.form_submit_button("✅ Submit Judgments")
+
+            if form_submitted:
+                # validate
+                missing = [
+                    i for i in range(len(qa_pairs))
+                    if st.session_state.get(f"j_{i}") not in ("Correct", "Incorrect", "Doubt")
+                ]
+                if missing:
+                    st.error("⚠️ Please answer every question before submitting.")
+                else:
+                    # build judgments and record time
+                    judgments = [
+                        {
+                            "qa_index": i,
+                            "question": qa_pairs[i]["question"],
+                            "answer": qa_pairs[i]["answer"],
+                            "judgment": st.session_state[f"j_{i}"]
+                        }
+                        for i in range(len(qa_pairs))
+                    ]
+                    now = datetime.now(timezone.utc)
+                    st.session_state["last_time_taken"] = (now - st.session_state.assigned_time).total_seconds()
+
+                    # do the insert + success
+                    handle_submit(judgments)
+
+        else:
+            # only one success message, using saved time
+            lt = st.session_state.get("last_time_taken", 0.0)
+            st.success(f"✅ Judgments saved in {lt:.1f}s")
 
 
 
