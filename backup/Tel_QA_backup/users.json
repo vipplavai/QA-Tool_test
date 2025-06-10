@@ -1,0 +1,212 @@
+[
+    {
+        "_id": {
+            "$oid": "68184276af29661a893fc5b2"
+        },
+        "auth0_id": "google-oauth2|117560694215950088396",
+        "first_name": "Yeshwanth",
+        "last_name": "Sada",
+        "phone": "7337222744",
+        "email": "sadayeshwanth@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocIB8tLribS4F0rNgn6eiJClHPpVOzE3b_nvMYlv6TK4r_tNIA=s96-c",
+        "intern_id": "ysadax",
+        "created_at": {
+            "$date": "2025-05-05T04:45:42.646Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681842c7af29661a893fc5b3"
+        },
+        "auth0_id": "auth0|68184295276e74059f28a1b4",
+        "first_name": "Goutham Reddy",
+        "last_name": "Chellapuram",
+        "phone": "9515259081",
+        "email": "goutham922005@gmail.com",
+        "picture": "https://s.gravatar.com/avatar/d844f2e29654a94e055eec7fa31cd4d3?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fgo.png",
+        "intern_id": "gchell",
+        "created_at": {
+            "$date": "2025-05-05T04:47:03.335Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681842ddaf29661a893fc5b4"
+        },
+        "auth0_id": "google-oauth2|106860431097624152369",
+        "first_name": "Meena",
+        "last_name": "sree",
+        "phone": "9493054886",
+        "email": "meenasree9346@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocIOR9WC7G59sEqqJXueMX3HsABgFZ0KTkaYbyJIKtJ8VEKmBw=s96-c",
+        "intern_id": "meesrx",
+        "created_at": {
+            "$date": "2025-05-05T04:47:25.768Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681842eeaf29661a893fc5b5"
+        },
+        "auth0_id": "google-oauth2|111998070337988025175",
+        "first_name": "Pranathi",
+        "last_name": "Devulapally",
+        "phone": "6281446575",
+        "email": "pranathidevulapally@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJcVfoEsUXLgy8gA17qBZTNAiJBGuWzPmx0KL9gOx95APE8YOwH=s96-c",
+        "intern_id": "pradex",
+        "created_at": {
+            "$date": "2025-05-05T04:47:42.862Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681842f2af29661a893fc5b6"
+        },
+        "auth0_id": "google-oauth2|111639740348018362570",
+        "first_name": "Sriram Pranav",
+        "last_name": "Vinjamuri",
+        "phone": "8639906820",
+        "email": "srirampranavvinjamuri.in@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJoH3Gh0goO5In_35ipVAsAzGSKO3p7xPiOQk9wYqzHL61teg=s96-c",
+        "intern_id": "vinsrx",
+        "created_at": {
+            "$date": "2025-05-05T04:47:46.556Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681842fbaf29661a893fc5b7"
+        },
+        "auth0_id": "google-oauth2|103558960168758921530",
+        "first_name": "Aahlad Karthik",
+        "last_name": "Khandrika",
+        "phone": "9030242544",
+        "email": "kkhandri@gitam.in",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocL0B0KuKwqPemPcoWWbpLojGFMv8BL8R0slvgEkNlU-uydx8w=s96-c",
+        "intern_id": "aakhax",
+        "created_at": {
+            "$date": "2025-05-05T04:47:55.229Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184330af29661a893fc5ba"
+        },
+        "auth0_id": "google-oauth2|109987472743155080170",
+        "first_name": "charan",
+        "last_name": "kunasani",
+        "phone": "9398655959",
+        "email": "kunasanicharan@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKhq-auRPEop5aYpUHUv72g8cDsvkJD-xOIatFCF_Jij8CQH5s=s96-c",
+        "intern_id": "ckunas",
+        "created_at": {
+            "$date": "2025-05-05T04:48:48.712Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184355af29661a893fc5bc"
+        },
+        "auth0_id": "google-oauth2|101136198738778849531",
+        "first_name": "Laahiri",
+        "last_name": "Maganti",
+        "phone": "7981790308",
+        "email": "magantilaahiri@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKOalmc7zgsEUNZRkL3b4DUUgVYXp4nkAnM-afMC3oxDlO52w=s96-c",
+        "intern_id": "laamax",
+        "created_at": {
+            "$date": "2025-05-05T04:49:25.153Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818437caf29661a893fc5be"
+        },
+        "auth0_id": "google-oauth2|105055939801029690396",
+        "first_name": "Adarsh",
+        "last_name": "Repaka",
+        "phone": "9392982954",
+        "email": "adarshtwin12@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJN7YU1N6KP2m0IWaRxnD8tlLoGQExwl2wxMo-hrbcqXDaddvc=s96-c",
+        "intern_id": "adarex",
+        "created_at": {
+            "$date": "2025-05-05T04:50:04.863Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818437eaf29661a893fc5bf"
+        },
+        "auth0_id": "google-oauth2|116362952775147197039",
+        "first_name": "Alekhya",
+        "last_name": "Madiraju",
+        "phone": "7993125886",
+        "email": "alekhyamadiraju07@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocJD6mSw5DmUMG9WWk747GyaSCVAUrRXgIZ8ce0mZhBy1EIxWMbjcw=s96-c",
+        "intern_id": "alemax",
+        "created_at": {
+            "$date": "2025-05-05T04:50:06.734Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184381af29661a893fc5c0"
+        },
+        "auth0_id": "google-oauth2|103437554368507158663",
+        "first_name": "Manaswini",
+        "last_name": "Mullapudi",
+        "phone": "9959272837",
+        "email": "mullapudimanaswini29@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKNdOqWI5oOAZdGtUcWbV6siwFV2Uljk3PazGFT64mu0-Nvvg=s96-c",
+        "intern_id": "manmux",
+        "created_at": {
+            "$date": "2025-05-05T04:50:09.544Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681843e8af29661a893fc5c3"
+        },
+        "auth0_id": "google-oauth2|100168851341030817750",
+        "first_name": "SRI ABHIRAMA",
+        "last_name": "Maganti",
+        "phone": "7032689473",
+        "email": "sriabhiramachowdary@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKqlMUOVyv8xm6KEx0maN9Q1g6wl1kLXoerWKaZRTHYiBm6a4LY=s96-c",
+        "intern_id": "srimax",
+        "created_at": {
+            "$date": "2025-05-05T04:51:52.455Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818948627da0a6f24aad2ab"
+        },
+        "auth0_id": "google-oauth2|115081539600501885487",
+        "first_name": "Peddada NSSHR ",
+        "last_name": "Shubhank",
+        "phone": "7893689106",
+        "email": "shubhank856914@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKNJ1SOy-croqKg267hIGl4EHYpMtf72s72P0XbVd3CjRJ0_w=s96-c",
+        "intern_id": "pshubh",
+        "created_at": {
+            "$date": "2025-05-05T10:35:50.632Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68189c3d27da0a6f24aad2b8"
+        },
+        "auth0_id": "google-oauth2|112576852172432119620",
+        "first_name": "Prashanth",
+        "last_name": "Katakam",
+        "phone": "9492443995",
+        "email": "prashanth01071995@gmail.com",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocIN2eTNLnDZw2OGvbMhF0Up9lJJQdYulEwoG-l2XIYjy5Ib2Bu-=s96-c",
+        "intern_id": "katprx",
+        "created_at": {
+            "$date": "2025-05-05T11:08:45.344Z"
+        }
+    }
+]

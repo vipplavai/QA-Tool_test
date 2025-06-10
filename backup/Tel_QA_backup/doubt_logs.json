@@ -1,0 +1,4714 @@
+[
+    {
+        "_id": {
+            "$oid": "68184a5227da0a6f24aacae3"
+        },
+        "qa_index": 4,
+        "question": "నరసింహం ప్రధానంగా ఏ భాషలో ఉపన్యాసకుడిగా పనిచేశాడు?",
+        "answer": "ఆంధ్ర",
+        "judgment": "Doubt",
+        "content_id": 162,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T05:19:13.927Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:16:34.381Z"
+        },
+        "time_taken": 159.546218,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184a5427da0a6f24aacae9"
+        },
+        "qa_index": 4,
+        "question": "నరసింహం ప్రధానంగా ఏ భాషలో ఉపన్యాసకుడిగా పనిచేశాడు?",
+        "answer": "ఆంధ్ర",
+        "judgment": "Doubt",
+        "content_id": 162,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T05:19:15.867Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:16:34.381Z"
+        },
+        "time_taken": 161.485416,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184b2727da0a6f24aacb24"
+        },
+        "qa_index": 3,
+        "question": "2011 జనాభా లెక్కల ప్రకారం చండూరు జనాభా ఎంత?",
+        "answer": "12,889",
+        "judgment": "Doubt",
+        "content_id": 127,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T05:22:46.930Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:14:49.874Z"
+        },
+        "time_taken": 477.056238,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184b5c27da0a6f24aacb28"
+        },
+        "qa_index": 1,
+        "question": "అరారియా జిల్లా ప్రధాన కేంద్రం ఏ పట్టణం?",
+        "answer": "అరారియా పట్టణం",
+        "judgment": "Doubt",
+        "content_id": 190,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-05T05:23:40.361Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:20:37.198Z"
+        },
+        "time_taken": 183.163012,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184bf527da0a6f24aacb5c"
+        },
+        "qa_index": 5,
+        "question": "పెద్ద ఎత్తున వ్యవసాయం చిన్న పొలాల కంటే ఏ విషయంలో తక్కువ ఉంటుంది?",
+        "answer": "సామర్థ్యం",
+        "judgment": "Doubt",
+        "content_id": 108,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-05T05:26:12.065Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:20:12.001Z"
+        },
+        "time_taken": 360.063696,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184c0127da0a6f24aacb62"
+        },
+        "qa_index": 5,
+        "question": "పెద్ద ఎత్తున వ్యవసాయం చిన్న పొలాల కంటే ఏ విషయంలో తక్కువ ఉంటుంది?",
+        "answer": "సామర్థ్యం",
+        "judgment": "Doubt",
+        "content_id": 108,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-05T05:26:23.903Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:20:12.001Z"
+        },
+        "time_taken": 371.901145,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184d3327da0a6f24aacb9d"
+        },
+        "qa_index": 4,
+        "question": "గన్నేరు విషప్రభావానికి ప్రధాన కారక రసాయనాలు?",
+        "answer": "ఒలియాండ్రిన్, ఒలియాండ్రిజిన్",
+        "judgment": "Doubt",
+        "content_id": 63,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T05:31:30.910Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:24:43.828Z"
+        },
+        "time_taken": 407.082142,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184d3427da0a6f24aacb9e"
+        },
+        "qa_index": 5,
+        "question": "గన్నేరు చెట్టు సాధారణంగా పెరిగే ప్రాంతం?",
+        "answer": "ఉష్ణమండల ప్రాంతాలు",
+        "judgment": "Doubt",
+        "content_id": 63,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T05:31:30.910Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:24:43.828Z"
+        },
+        "time_taken": 407.082142,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68184f2527da0a6f24aacc0f"
+        },
+        "qa_index": 5,
+        "question": "సహదేవుడు దక్షిణ దండయాత్రలో ఏ రాష్ట్రాన్ని జయించాడు?",
+        "answer": "కిష్కింధ",
+        "judgment": "Doubt",
+        "content_id": 191,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T05:39:48.209Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:31:41.854Z"
+        },
+        "time_taken": 486.354663,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818514f27da0a6f24aaccb0"
+        },
+        "qa_index": 5,
+        "question": "రాయగిరి కోట ప్రాచీన మట్టి ఇటుకలతో నిర్మించబడి ఉండవచ్చునని భావించేది ఏ నిర్మాణం?",
+        "answer": "స్తూపం",
+        "judgment": "Doubt",
+        "content_id": 45,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T05:49:02.533Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:44:35.124Z"
+        },
+        "time_taken": 267.409792,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818519e27da0a6f24aaccc8"
+        },
+        "qa_index": 5,
+        "question": "వ్యాపార పవనాల జోన్ ఎక్కడ ఉంటుంది?",
+        "answer": "30° N - 30° S మధ్య",
+        "judgment": "Doubt",
+        "content_id": 111,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T05:50:21.405Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:49:07.221Z"
+        },
+        "time_taken": 74.184211,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818522227da0a6f24aaccdd"
+        },
+        "qa_index": 2,
+        "question": "టుమారో పాట రచనలో క్రిస్ యంగ్ తో సహకరించినవారు?",
+        "answer": "ఆంథోనీ ఎల్. స్మిత్, ఫ్రాంక్ జె. మైయర్స్",
+        "judgment": "Doubt",
+        "content_id": 144,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T05:52:33.896Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:49:08.147Z"
+        },
+        "time_taken": 205.748843,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818522427da0a6f24aacce3"
+        },
+        "qa_index": 2,
+        "question": "టుమారో పాట రచనలో క్రిస్ యంగ్ తో సహకరించినవారు?",
+        "answer": "ఆంథోనీ ఎల్. స్మిత్, ఫ్రాంక్ జె. మైయర్స్",
+        "judgment": "Doubt",
+        "content_id": 144,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T05:52:35.735Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:49:08.147Z"
+        },
+        "time_taken": 207.587689,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818526c27da0a6f24aacceb"
+        },
+        "qa_index": 4,
+        "question": "భారతరత్న పొందిన మాజీ రాష్ట్రపతి?",
+        "answer": "అబ్దుల్ కలామ్",
+        "judgment": "Doubt",
+        "content_id": 3,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-05T05:53:47.463Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T05:48:40.522Z"
+        },
+        "time_taken": 306.941016,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818569d27da0a6f24aacdc8"
+        },
+        "qa_index": 3,
+        "question": "ఐసోటోపులు అంటే ఏమిటి?",
+        "answer": "సమస్థాన మూలకాలు",
+        "judgment": "Doubt",
+        "content_id": 78,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-05T06:11:41.178Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:09:27.820Z"
+        },
+        "time_taken": 133.358404,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818599927da0a6f24aace90"
+        },
+        "qa_index": 2,
+        "question": "సురేష్ చవాన్కే జన్మించినప్పుడు మొదటి సంబందం ఉన్న సంఘం?",
+        "answer": "ఆర్‌ఎస్‌ఎస్",
+        "judgment": "Doubt",
+        "content_id": 196,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-05T06:24:25.021Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:20:20.965Z"
+        },
+        "time_taken": 244.056765,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a7127da0a6f24aacebf"
+        },
+        "qa_index": 1,
+        "question": "చక్రవర్తిలో అత్యున్నత స్థాయి ఏది?",
+        "answer": "చక్రవల చక్రవర్తి",
+        "judgment": "Doubt",
+        "content_id": 65,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:00.817Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:24:23.913Z"
+        },
+        "time_taken": 216.903387,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a7127da0a6f24aacec3"
+        },
+        "qa_index": 5,
+        "question": "దక్షిణ భారతదేశంలో చక్రవర్తి నమూనా రాజ్యాన్ని ఎవరు స్థాపించారు?",
+        "answer": "పల్లవులు",
+        "judgment": "Doubt",
+        "content_id": 65,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:00.817Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:24:23.913Z"
+        },
+        "time_taken": 216.903387,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a7327da0a6f24aacec5"
+        },
+        "qa_index": 1,
+        "question": "చక్రవర్తిలో అత్యున్నత స్థాయి ఏది?",
+        "answer": "చక్రవల చక్రవర్తి",
+        "judgment": "Doubt",
+        "content_id": 65,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:03.075Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:24:23.913Z"
+        },
+        "time_taken": 219.161467,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a7427da0a6f24aacec9"
+        },
+        "qa_index": 5,
+        "question": "దక్షిణ భారతదేశంలో చక్రవర్తి నమూనా రాజ్యాన్ని ఎవరు స్థాపించారు?",
+        "answer": "పల్లవులు",
+        "judgment": "Doubt",
+        "content_id": 65,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:03.075Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:24:23.913Z"
+        },
+        "time_taken": 219.161467,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a8e27da0a6f24aacecd"
+        },
+        "qa_index": 3,
+        "question": "గోపాల్‌కు కాశీలో పెంచినది ఎవరు?",
+        "answer": "కాత్యాయిని",
+        "judgment": "Doubt",
+        "content_id": 13,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:29.911Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:21:30.756Z"
+        },
+        "time_taken": 419.154992,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a8f27da0a6f24aacecf"
+        },
+        "qa_index": 5,
+        "question": "హీరోగా తొలిసారి అవకాశం పొందిన నటుడు?",
+        "answer": "కౌశిక్",
+        "judgment": "Doubt",
+        "content_id": 13,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:29.911Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:21:30.756Z"
+        },
+        "time_taken": 419.154992,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185a9227da0a6f24aaced3"
+        },
+        "qa_index": 3,
+        "question": "గోపాల్‌కు కాశీలో పెంచినది ఎవరు?",
+        "answer": "కాత్యాయిని",
+        "judgment": "Doubt",
+        "content_id": 13,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:28:33.400Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:21:30.756Z"
+        },
+        "time_taken": 422.643308,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185bd827da0a6f24aacf23"
+        },
+        "qa_index": 5,
+        "question": "అహసాన్ రజా ఏ మైలురాయిని చేరుకున్నాడు?",
+        "answer": "50వ T20I అంపైరింగ్",
+        "judgment": "Doubt",
+        "content_id": 19,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-05T06:33:59.889Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:32:01.718Z"
+        },
+        "time_taken": 118.170651,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185cae27da0a6f24aacf4c"
+        },
+        "qa_index": 4,
+        "question": "ప్రపంచంలోని మూడవ ప్రముఖ దర్గా?",
+        "answer": "కాజీపేట దర్గా",
+        "judgment": "Doubt",
+        "content_id": 21,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-05T06:37:33.940Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:32:31.217Z"
+        },
+        "time_taken": 302.723336,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185caf27da0a6f24aacf4d"
+        },
+        "qa_index": 5,
+        "question": "ఉర్సు ఉత్సవాలు ఏ స్థాయిలో జరుగుతాయి?",
+        "answer": "ఘనంగా",
+        "judgment": "Doubt",
+        "content_id": 21,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-05T06:37:33.940Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:32:31.217Z"
+        },
+        "time_taken": 302.723336,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185d8027da0a6f24aacf79"
+        },
+        "qa_index": 1,
+        "question": "మంజూర్ ఎలాహి ఏ దేశానికి చెందినవాడు?",
+        "answer": "పాకిస్తాన్",
+        "judgment": "Doubt",
+        "content_id": 76,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:41:03.966Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:31:56.849Z"
+        },
+        "time_taken": 547.116767,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185db727da0a6f24aacf81"
+        },
+        "qa_index": 3,
+        "question": "డ్రేపర్ ఎప్పుడు టెస్ట్ అరంగేట్రం చేశాడు?",
+        "answer": "1950",
+        "judgment": "Doubt",
+        "content_id": 119,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T06:41:58.493Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:32:17.558Z"
+        },
+        "time_taken": 580.935578,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185ddb27da0a6f24aacf8b"
+        },
+        "qa_index": 4,
+        "question": "రాయగిరి కోటలోని దేవాలయం ఏ స్వామికి అంకితం?",
+        "answer": "లక్ష్మీనారసింహస్వామి",
+        "judgment": "Doubt",
+        "content_id": 45,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-05T06:42:34.691Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:37:40.016Z"
+        },
+        "time_taken": 294.674319,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185f0127da0a6f24aacfc7"
+        },
+        "qa_index": 1,
+        "question": "నిహార్ గుప్తా డెర్మటాలజీలో ఏ దేశంలో స్పెషలైజేషన్ చేశాడు?",
+        "answer": "ఇంగ్లాండ్",
+        "judgment": "Doubt",
+        "content_id": 188,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:47:29.219Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:43:58.090Z"
+        },
+        "time_taken": 211.128483,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68185f4f27da0a6f24aacfe4"
+        },
+        "qa_index": 2,
+        "question": "తాళ్లగూడెంలో ప్రధాన విద్యా సంస్థ ఏది?",
+        "answer": "మండల ప్రాథమిక పాఠశాల",
+        "judgment": "Doubt",
+        "content_id": 140,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T06:48:47.110Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:42:02.987Z"
+        },
+        "time_taken": 404.122997,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818616527da0a6f24aad024"
+        },
+        "qa_index": 4,
+        "question": "సహజీవనం చేసిన జంటలు చివరికి ఏమవుతారు?",
+        "answer": "వివాహ బంధంలో చేరుతారు",
+        "judgment": "Doubt",
+        "content_id": 104,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-05T06:57:40.445Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:51:21.450Z"
+        },
+        "time_taken": 378.995005,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681861bc27da0a6f24aad02a"
+        },
+        "qa_index": 4,
+        "question": "ఆర్. నారాయణమూర్తి సినిమాలతో ఇతడు ఎలాగా గుర్తింపు పొందాడు?",
+        "answer": "సంగీత దర్శకుడిగా",
+        "judgment": "Doubt",
+        "content_id": 18,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T06:59:07.192Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:49:21.090Z"
+        },
+        "time_taken": 586.101964,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681861e827da0a6f24aad037"
+        },
+        "qa_index": 5,
+        "question": "నిహార్ రంజన్ గుప్తా మరణించిన సంవత్సరం ఏది?",
+        "answer": "1986",
+        "judgment": "Doubt",
+        "content_id": 188,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-05T06:59:51.431Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:50:36.575Z"
+        },
+        "time_taken": 554.855864,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681863e327da0a6f24aad084"
+        },
+        "qa_index": 4,
+        "question": "నరసింహం ప్రధానంగా ఏ భాషలో ఉపన్యాసకుడిగా పనిచేశాడు?",
+        "answer": "ఆంధ్ర",
+        "judgment": "Doubt",
+        "content_id": 162,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T07:08:18.948Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:05:03.433Z"
+        },
+        "time_taken": 195.515089,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818641827da0a6f24aad090"
+        },
+        "qa_index": 4,
+        "question": "ఆర్. నారాయణమూర్తి సినిమాలతో ఇతడు ఎలాగా గుర్తింపు పొందాడు?",
+        "answer": "సంగీత దర్శకుడిగా",
+        "judgment": "Doubt",
+        "content_id": 18,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-05T07:09:12.025Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T06:59:16.120Z"
+        },
+        "time_taken": 595.905531,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681864a927da0a6f24aad0ae"
+        },
+        "qa_index": 3,
+        "question": "చిరంతన్ భట్‌కు సంబంధించి ప్రముఖ బాలీవుడ్ సినిమా?",
+        "answer": "గబ్బర్ ఈజ్ బ్యాక్",
+        "judgment": "Doubt",
+        "content_id": 29,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-05T07:11:36.754Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:06:02.979Z"
+        },
+        "time_taken": 333.774504,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681865c627da0a6f24aad0e1"
+        },
+        "qa_index": 5,
+        "question": "చార్మినార్‌ను ఏ జాబితాలో చేర్చారు?",
+        "answer": "పురావస్తు కట్టడాల జాబితా",
+        "judgment": "Doubt",
+        "content_id": 6,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T07:16:21.779Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:11:50.837Z"
+        },
+        "time_taken": 270.942739,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818663727da0a6f24aad0f0"
+        },
+        "qa_index": 2,
+        "question": "అమికా శైల్ మొదటి టీవీ షో ఏది?",
+        "answer": "స రే గ మ ప",
+        "judgment": "Doubt",
+        "content_id": 120,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-05T07:18:15.250Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:14:20.951Z"
+        },
+        "time_taken": 234.29919,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6818698327da0a6f24aad160"
+        },
+        "qa_index": 3,
+        "question": "సలీమ్ ఇలాహి వన్డే సగటు ఎంత?",
+        "answer": "28",
+        "judgment": "Doubt",
+        "content_id": 113,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T07:32:18.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:25:31.446Z"
+        },
+        "time_taken": 407.204337,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681869d427da0a6f24aad16b"
+        },
+        "qa_index": 2,
+        "question": "హిందూ మున్నాని ప్రధాన కార్యరంగం ఏ రాష్ట్రం?",
+        "answer": "తమిళనాడు",
+        "judgment": "Doubt",
+        "content_id": 81,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-05T07:33:40.360Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:27:14.656Z"
+        },
+        "time_taken": 385.704512,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68186b4c27da0a6f24aad1c9"
+        },
+        "qa_index": 4,
+        "question": "APEDA రిజిస్ట్రేషన్ ఎందుకు అవసరం?",
+        "answer": "ఎగుమతుల కోసం",
+        "judgment": "Doubt",
+        "content_id": 121,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T07:39:55.377Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:32:21.981Z"
+        },
+        "time_taken": 453.396823,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68186e0127da0a6f24aad249"
+        },
+        "qa_index": 4,
+        "question": "సేంద్రియ నత్రజని ఎక్కడ కనిపిస్తుంది?",
+        "answer": "జీవుల్లో, ఎరువుల్లో",
+        "judgment": "Doubt",
+        "content_id": 22,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-05T07:51:28.365Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T07:44:18.808Z"
+        },
+        "time_taken": 429.557068,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681896d027da0a6f24aad2b1"
+        },
+        "qa_index": 5,
+        "question": "దుంపరాష్ట్రము పూవులకు ఉన్న ప్రత్యేకత ఏమిటి?",
+        "answer": "సువాసన కలిగి ఉంటాయి",
+        "judgment": "Doubt",
+        "content_id": 82,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-05T10:45:35.391Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T10:35:51.589Z"
+        },
+        "time_taken": 583.801994,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681896db27da0a6f24aad2b7"
+        },
+        "qa_index": 5,
+        "question": "దుంపరాష్ట్రము పూవులకు ఉన్న ప్రత్యేకత ఏమిటి?",
+        "answer": "సువాసన కలిగి ఉంటాయి",
+        "judgment": "Doubt",
+        "content_id": 82,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-05T10:45:46.412Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-05T10:35:51.589Z"
+        },
+        "time_taken": 594.823313,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199ae727da0a6f24aad35d"
+        },
+        "qa_index": 2,
+        "question": "ఆర్టోకార్పస్ హెటిరోఫిల్లస్ అనే జాతి ఏమి పిలుస్తారు?",
+        "answer": "పనస",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:15:18.749Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:07:59.693Z"
+        },
+        "time_taken": 439.055709,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199ae727da0a6f24aad35e"
+        },
+        "qa_index": 3,
+        "question": "A. altilis కు మరో పేరు?",
+        "answer": "బ్రెడ్ ఫ్రూట్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:15:18.749Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:07:59.693Z"
+        },
+        "time_taken": 439.055709,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199ae727da0a6f24aad35f"
+        },
+        "qa_index": 4,
+        "question": "A. hypargyreus కు పిలిచే పేరు ఏమిటి?",
+        "answer": "క్వాయి మక్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:15:18.749Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:07:59.693Z"
+        },
+        "time_taken": 439.055709,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199ae727da0a6f24aad360"
+        },
+        "qa_index": 5,
+        "question": "A. odoratissimus పండును ఏమంటారు?",
+        "answer": "మరాంగ్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:15:18.749Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:07:59.693Z"
+        },
+        "time_taken": 439.055709,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199af127da0a6f24aad365"
+        },
+        "qa_index": 4,
+        "question": "స్వరూప్ సంపత్acted in which popular TV serial?",
+        "answer": "యే జో హై జిందగీ",
+        "judgment": "Doubt",
+        "content_id": 46,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T05:15:28.659Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:11:34.795Z"
+        },
+        "time_taken": 233.863219,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199b5727da0a6f24aad383"
+        },
+        "qa_index": 5,
+        "question": "స్టేట్ బ్యాంక్ జట్టు ఎక్కువ సెంచరీలు సాధించిన దశకమేమిటి?",
+        "answer": "1980లు",
+        "judgment": "Doubt",
+        "content_id": 228,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-06T05:17:10.914Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:07:44.432Z"
+        },
+        "time_taken": 566.482248,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199c8427da0a6f24aad3fd"
+        },
+        "qa_index": 2,
+        "question": "రౌడీ ఫెలో కథలో హీరో పేరు ఏమిటి?",
+        "answer": "రానా ప్రతాప్ జయదేవ్",
+        "judgment": "Doubt",
+        "content_id": 297,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:22:11.994Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:19:45.364Z"
+        },
+        "time_taken": 146.630548,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199cac27da0a6f24aad40e"
+        },
+        "qa_index": 1,
+        "question": "నిహార్ గుప్తా డెర్మటాలజీలో ఏ దేశంలో స్పెషలైజేషన్ చేశాడు?",
+        "answer": "ఇంగ్లాండ్",
+        "judgment": "Doubt",
+        "content_id": 188,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-06T05:22:52.267Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:20:23.219Z"
+        },
+        "time_taken": 149.047963,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68199f5b27da0a6f24aad4c6"
+        },
+        "qa_index": 1,
+        "question": "తొక్కుడుబిళ్ళను ఎక్కడ ఎక్కువగా ఆడతారు?",
+        "answer": "గ్రామీణ ప్రాంతాల్లో",
+        "judgment": "Doubt",
+        "content_id": 273,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T05:34:19.697Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:29:53.380Z"
+        },
+        "time_taken": 266.317064,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a00f27da0a6f24aad4e4"
+        },
+        "qa_index": 4,
+        "question": "మార్టన్ ఎలా మరణించాడు?",
+        "answer": "కారు ప్రమాదం",
+        "judgment": "Doubt",
+        "content_id": 225,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-06T05:37:18.702Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:35:01.304Z"
+        },
+        "time_taken": 137.398734,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a00f27da0a6f24aad4e5"
+        },
+        "qa_index": 5,
+        "question": "మార్టన్ బౌలింగ్ శైలి ఏమిటి?",
+        "answer": "ఆఫ్ బ్రేక్",
+        "judgment": "Doubt",
+        "content_id": 225,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-06T05:37:18.702Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:35:01.304Z"
+        },
+        "time_taken": 137.398734,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a01127da0a6f24aad4e8"
+        },
+        "qa_index": 2,
+        "question": "ఆర్యభట్ట రచించిన ప్రాముఖ్యమైన గ్రంథం?",
+        "answer": "ఆర్యభట్టీయం",
+        "judgment": "Doubt",
+        "content_id": 5,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-06T05:37:21.248Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:34:05.745Z"
+        },
+        "time_taken": 195.503281,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a09227da0a6f24aad4f8"
+        },
+        "qa_index": 0,
+        "question": "మల్లికా శ్రీనివాసన్ ఏ కంపెనీకి సీఎండీ?",
+        "answer": "టాఫే",
+        "judgment": "Doubt",
+        "content_id": 12,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-06T05:39:30.344Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:34:28.816Z"
+        },
+        "time_taken": 301.527918,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a19427da0a6f24aad535"
+        },
+        "qa_index": 0,
+        "question": "మిరప ఏ జీనస్‌కు చెందింది?",
+        "answer": "కేప్సికమ్",
+        "judgment": "Doubt",
+        "content_id": 48,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T05:43:48.752Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:36:43.716Z"
+        },
+        "time_taken": 425.036035,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a28b27da0a6f24aad576"
+        },
+        "qa_index": 5,
+        "question": "లంఖం పుట్టిన తేది ఏమిటి?",
+        "answer": "1861, డిసెంబరు 4",
+        "judgment": "Doubt",
+        "content_id": 229,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T05:47:54.580Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:43:52.511Z"
+        },
+        "time_taken": 242.069292,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a3e327da0a6f24aad5bd"
+        },
+        "qa_index": 1,
+        "question": "రాబర్ట్ కాల్డ్వెల్ రచించిన ముఖ్య గ్రంథం పేరు?",
+        "answer": "Comparative Grammar of Dravidian Languages",
+        "judgment": "Doubt",
+        "content_id": 145,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-06T05:53:39.660Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:45:54.398Z"
+        },
+        "time_taken": 465.26266,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a3e427da0a6f24aad5bf"
+        },
+        "qa_index": 3,
+        "question": "కాల్డ్వెల్ ద్రవిడ భాషల ప్రాధాన్యతను ఏ సంవత్సరంలో ప్రచురించాడు?",
+        "answer": "1856",
+        "judgment": "Doubt",
+        "content_id": 145,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-06T05:53:39.660Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:45:54.398Z"
+        },
+        "time_taken": 465.26266,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a41e27da0a6f24aad5ca"
+        },
+        "qa_index": 2,
+        "question": "చిత్రంలో కథానాయకుడు ఎవరు?",
+        "answer": "వినోద్ కుమార్",
+        "judgment": "Doubt",
+        "content_id": 128,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T05:54:37.952Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:52:24.208Z"
+        },
+        "time_taken": 133.744044,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a53127da0a6f24aad619"
+        },
+        "qa_index": 3,
+        "question": "చిరంతన్ భట్‌కు సంబంధించి ప్రముఖ బాలీవుడ్ సినిమా?",
+        "answer": "గబ్బర్ ఈజ్ బ్యాక్",
+        "judgment": "Doubt",
+        "content_id": 29,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-06T05:59:12.440Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:50:38.267Z"
+        },
+        "time_taken": 514.17326,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a67727da0a6f24aad681"
+        },
+        "qa_index": 3,
+        "question": "IICT ఎన్ని పేటెంట్లు పొందింది?",
+        "answer": "56",
+        "judgment": "Doubt",
+        "content_id": 284,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T06:04:39.046Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:56:55.406Z"
+        },
+        "time_taken": 463.639828,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a69627da0a6f24aad694"
+        },
+        "qa_index": 4,
+        "question": "ఎ.పి. కోమలకు కళైమாமణి బిరుదు ఇచ్చిన రాష్ట్రం ఏది?",
+        "answer": "తమిళనాడు",
+        "judgment": "Doubt",
+        "content_id": 74,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-06T06:05:09.140Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T05:57:08.013Z"
+        },
+        "time_taken": 481.126445,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819a72127da0a6f24aad6c5"
+        },
+        "qa_index": 5,
+        "question": "హైమవతి ఏ ప్రాముఖ్యమైన అవార్డు పొందారు?",
+        "answer": "సినారె పురస్కారం",
+        "judgment": "Doubt",
+        "content_id": 50,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-06T06:07:28.034Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T06:02:52.969Z"
+        },
+        "time_taken": 275.065037,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819ab2f27da0a6f24aad7b7"
+        },
+        "qa_index": 0,
+        "question": "శీలా వీర్రాజు అసలు పేరు?",
+        "answer": "శీలా వీర్రాజు",
+        "judgment": "Doubt",
+        "content_id": 59,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-06T06:24:47.655Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T06:18:01.112Z"
+        },
+        "time_taken": 406.542589,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819adf327da0a6f24aad860"
+        },
+        "qa_index": 5,
+        "question": "ఈ శిల్పం ప్రతీకంగా ఏమి సూచిస్తుంది?",
+        "answer": "శాంతి, ఐక్యత",
+        "judgment": "Doubt",
+        "content_id": 276,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-06T06:36:34.178Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T06:26:35.450Z"
+        },
+        "time_taken": 598.727937,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819b03527da0a6f24aad8d2"
+        },
+        "qa_index": 4,
+        "question": "నత్తంలో వసతులు ఎలా ఉంటాయి?",
+        "answer": "స్వల్పంగా",
+        "judgment": "Doubt",
+        "content_id": 201,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-06T06:46:12.892Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T06:36:44.289Z"
+        },
+        "time_taken": 568.602385,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819b03d27da0a6f24aad8d8"
+        },
+        "qa_index": 4,
+        "question": "నత్తంలో వసతులు ఎలా ఉంటాయి?",
+        "answer": "స్వల్పంగా",
+        "judgment": "Doubt",
+        "content_id": 201,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-06T06:46:20.899Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T06:36:44.289Z"
+        },
+        "time_taken": 576.609542,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819b9d227da0a6f24aadbc7"
+        },
+        "qa_index": 2,
+        "question": "ఎ.పి. కోమల మొదటి సినిమా ఏది?",
+        "answer": "త్యాగయ్య",
+        "judgment": "Doubt",
+        "content_id": 74,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-06T07:27:14.066Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T07:24:25.205Z"
+        },
+        "time_taken": 168.86123,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819b9d227da0a6f24aadbc9"
+        },
+        "qa_index": 4,
+        "question": "ఎ.పి. కోమలకు కళైమாமణి బిరుదు ఇచ్చిన రాష్ట్రం ఏది?",
+        "answer": "తమిళనాడు",
+        "judgment": "Doubt",
+        "content_id": 74,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-06T07:27:14.066Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T07:24:25.205Z"
+        },
+        "time_taken": 168.86123,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819be8827da0a6f24aadd6a"
+        },
+        "qa_index": 2,
+        "question": "కథలో ప్రధాన వ్యతిరేక పాత్ర ఎవరు?",
+        "answer": "ప్రచండుడు",
+        "judgment": "Doubt",
+        "content_id": 277,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-06T07:47:19.694Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T07:40:53.018Z"
+        },
+        "time_taken": 386.675592,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819c03927da0a6f24aaddbc"
+        },
+        "qa_index": 4,
+        "question": "2017–18 టోర్నమెంట్‌లో పెర్మాల్ ఎంత మంది ఆటగాళ్లను అవుట్ చేశాడు?",
+        "answer": "50",
+        "judgment": "Doubt",
+        "content_id": 246,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-06T07:54:32.657Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T07:49:03.832Z"
+        },
+        "time_taken": 328.825043,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6819c22d27da0a6f24aade27"
+        },
+        "qa_index": 2,
+        "question": "అనుక్షణం చిత్రానికి దర్శకత్వం వహించినది ఎవరు?",
+        "answer": "రామ్ గోపాల్ వర్మ",
+        "judgment": "Doubt",
+        "content_id": 137,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-06T08:02:53.288Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-06T08:00:33.091Z"
+        },
+        "time_taken": 140.196517,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681ae9df27da0a6f24aadeff"
+        },
+        "qa_index": 2,
+        "question": "గీత వుల్ఫ్ ఏ సంవత్సరంలో తారా బుక్స్ ప్రారంభించారు?",
+        "answer": "1994",
+        "judgment": "Doubt",
+        "content_id": 293,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-07T05:04:30.701Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:01:54.611Z"
+        },
+        "time_taken": 156.089975,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aebbf27da0a6f24aadf88"
+        },
+        "qa_index": 0,
+        "question": "హరిత జి. నాయర్ జన్మించిన జిల్లా?",
+        "answer": "కొట్టాయం",
+        "judgment": "Doubt",
+        "content_id": 54,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T05:12:31.296Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:08:55.964Z"
+        },
+        "time_taken": 215.332825,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aec3327da0a6f24aadfb5"
+        },
+        "qa_index": 2,
+        "question": "వ్యోమ నంది哪 విశ్వవిద్యాలయం నుండి పట్టభద్రురాలైంది?",
+        "answer": "యార్క్ విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 99,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-07T05:14:27.463Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:11:08.022Z"
+        },
+        "time_taken": 199.441268,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aed2727da0a6f24aadff7"
+        },
+        "qa_index": 3,
+        "question": "సుధేష్ణ సిన్హా కుమార్తె పుట్టిన తరువాత ఎంత కాలం విరామం తీసుకుంది?",
+        "answer": "4 సంవత్సరాలు",
+        "judgment": "Doubt",
+        "content_id": 112,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T05:18:30.661Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:12:34.886Z"
+        },
+        "time_taken": 355.775355,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aee7a27da0a6f24aae04b"
+        },
+        "qa_index": 3,
+        "question": "సర్వసాధారణంగా ఆల్బమ్ పరిమాణం ఎంత?",
+        "answer": "12 అంగుళాలు",
+        "judgment": "Doubt",
+        "content_id": 268,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-07T05:24:10.070Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:21:02.032Z"
+        },
+        "time_taken": 188.038843,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aef7727da0a6f24aae0b7"
+        },
+        "qa_index": 3,
+        "question": "అతడి టెస్ట్ అరంగేట్ర సంవత్సరం?",
+        "answer": "1992",
+        "judgment": "Doubt",
+        "content_id": 11,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-07T05:28:23.259Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:26:29.321Z"
+        },
+        "time_taken": 113.937678,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aefd227da0a6f24aae0c3"
+        },
+        "qa_index": 3,
+        "question": "లింబాద్రి గుట్ట దేనివల్ల ప్రసిద్ధి?",
+        "answer": "వేప చెట్లు",
+        "judgment": "Doubt",
+        "content_id": 266,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T05:29:53.361Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:27:01.704Z"
+        },
+        "time_taken": 171.65671,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af29727da0a6f24aae1a1"
+        },
+        "qa_index": 3,
+        "question": "త్యాగరాజు ఎవరి భక్తుడు?",
+        "answer": "రాముని",
+        "judgment": "Doubt",
+        "content_id": 205,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T05:41:42.411Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:38:09.102Z"
+        },
+        "time_taken": 213.308869,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af39b27da0a6f24aae1ea"
+        },
+        "qa_index": 4,
+        "question": "WHO ఏప్రిల్ 2020లో ఏ కార్యక్రమం ప్రారంభించింది?",
+        "answer": "ACT అక్సిలరేటర్",
+        "judgment": "Doubt",
+        "content_id": 84,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-07T05:46:02.346Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T05:36:25.907Z"
+        },
+        "time_taken": 576.439168,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9c027da0a6f24aae39d"
+        },
+        "qa_index": 3,
+        "question": "A. altilis కు మరో పేరు?",
+        "answer": "బ్రెడ్ ఫ్రూట్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:16.228Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:07:01.731Z"
+        },
+        "time_taken": 314.496586,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9c127da0a6f24aae39e"
+        },
+        "qa_index": 4,
+        "question": "A. hypargyreus కు పిలిచే పేరు ఏమిటి?",
+        "answer": "క్వాయి మక్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:16.228Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:07:01.731Z"
+        },
+        "time_taken": 314.496586,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9c127da0a6f24aae39f"
+        },
+        "qa_index": 5,
+        "question": "A. odoratissimus పండును ఏమంటారు?",
+        "answer": "మరాంగ్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:16.228Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:07:01.731Z"
+        },
+        "time_taken": 314.496586,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9ce27da0a6f24aae3a3"
+        },
+        "qa_index": 3,
+        "question": "A. altilis కు మరో పేరు?",
+        "answer": "బ్రెడ్ ఫ్రూట్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:30.215Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:05:20.594Z"
+        },
+        "time_taken": 429.621403,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9cf27da0a6f24aae3a4"
+        },
+        "qa_index": 4,
+        "question": "A. hypargyreus కు పిలిచే పేరు ఏమిటి?",
+        "answer": "క్వాయి మక్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:30.215Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:05:20.594Z"
+        },
+        "time_taken": 429.621403,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681af9cf27da0a6f24aae3a5"
+        },
+        "qa_index": 5,
+        "question": "A. odoratissimus పండును ఏమంటారు?",
+        "answer": "మరాంగ్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-07T06:12:30.215Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:05:20.594Z"
+        },
+        "time_taken": 429.621403,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681afa5b27da0a6f24aae3cf"
+        },
+        "qa_index": 3,
+        "question": "రాజ్‌మాలో ప్రధాన పోషకపదార్థం?",
+        "answer": "ప్రోటీన్",
+        "judgment": "Doubt",
+        "content_id": 252,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T06:14:51.267Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:12:53.594Z"
+        },
+        "time_taken": 117.673221,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681afc4527da0a6f24aae47c"
+        },
+        "qa_index": 4,
+        "question": "తెరేష్ బాబు ఎంత వయస్సులో మృతి చెందారు?",
+        "answer": "50 సంవత్సరాలు",
+        "judgment": "Doubt",
+        "content_id": 285,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-07T06:23:00.519Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:21:23.875Z"
+        },
+        "time_taken": 96.644821,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681afd1627da0a6f24aae4b7"
+        },
+        "qa_index": 2,
+        "question": "హీరో మధుగా నటించిన నటుడు ఎవరు?",
+        "answer": "నాగ శౌర్య",
+        "judgment": "Doubt",
+        "content_id": 214,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-07T06:26:30.015Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:24:47.050Z"
+        },
+        "time_taken": 102.965635,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681afee527da0a6f24aae511"
+        },
+        "qa_index": 1,
+        "question": "అద్దంగి గ్రామం యొక్క జనాభా ఎంత?",
+        "answer": "3113",
+        "judgment": "Doubt",
+        "content_id": 167,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-07T06:34:12.886Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:32:14.713Z"
+        },
+        "time_taken": 118.173704,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681afee527da0a6f24aae513"
+        },
+        "qa_index": 3,
+        "question": "గ్రామంలో మొత్తం ఇళ్ల సంఖ్య ఎంత?",
+        "answer": "730",
+        "judgment": "Doubt",
+        "content_id": 167,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-07T06:34:12.886Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:32:14.713Z"
+        },
+        "time_taken": 118.173704,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aff2127da0a6f24aae521"
+        },
+        "qa_index": 5,
+        "question": "గదగ్ లో ప్రసిద్ధ ఆలయం పేరు ఏమిటి?",
+        "answer": "త్రికూటేశ్వర ఆలయం",
+        "judgment": "Doubt",
+        "content_id": 275,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-07T06:35:12.387Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:27:24.792Z"
+        },
+        "time_taken": 467.595283,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aff5127da0a6f24aae531"
+        },
+        "qa_index": 3,
+        "question": "A. altilis కు మరో పేరు?",
+        "answer": "బ్రెడ్ ఫ్రూట్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:36:00.781Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:28:20.395Z"
+        },
+        "time_taken": 460.385404,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aff5127da0a6f24aae532"
+        },
+        "qa_index": 4,
+        "question": "A. hypargyreus కు పిలిచే పేరు ఏమిటి?",
+        "answer": "క్వాయి మక్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:36:00.781Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:28:20.395Z"
+        },
+        "time_taken": 460.385404,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681aff5127da0a6f24aae533"
+        },
+        "qa_index": 5,
+        "question": "A. odoratissimus పండును ఏమంటారు?",
+        "answer": "మరాంగ్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-07T06:36:00.781Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:28:20.395Z"
+        },
+        "time_taken": 460.385404,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681affb327da0a6f24aae544"
+        },
+        "qa_index": 4,
+        "question": "సిమ్లా పార్లమెంటు నియోజకవర్గంలో సోలన్ జిల్లాలో ఎన్ని అసెంబ్లీ నియోజకవర్గాలు ఉన్నాయి?",
+        "answer": "5",
+        "judgment": "Doubt",
+        "content_id": 134,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-07T06:37:38.726Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:31:29.310Z"
+        },
+        "time_taken": 369.415977,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b01b127da0a6f24aae5af"
+        },
+        "qa_index": 1,
+        "question": "మెక్ కిన్నన్ ఏ టెస్టు జట్టుకు ఆడాడు?",
+        "answer": "ఇంగ్లాండ్",
+        "judgment": "Doubt",
+        "content_id": 265,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-07T06:46:09.634Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:43:39.776Z"
+        },
+        "time_taken": 149.857901,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b05a427da0a6f24aae6b5"
+        },
+        "qa_index": 0,
+        "question": "ఢావ్లో అంటే ఏమిటి?",
+        "answer": "కన్నీటి గానం",
+        "judgment": "Doubt",
+        "content_id": 203,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-07T07:03:00.402Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:01:10.522Z"
+        },
+        "time_taken": 109.88003,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b05b227da0a6f24aae6c0"
+        },
+        "qa_index": 5,
+        "question": "తలనీలాలు అర్పణానికి సాధారణ ఆధారం ఉందా?",
+        "answer": "లేదు",
+        "judgment": "Doubt",
+        "content_id": 230,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-07T07:03:12.936Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:00:54.319Z"
+        },
+        "time_taken": 138.61753,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b067927da0a6f24aae6db"
+        },
+        "qa_index": 2,
+        "question": "హరిత బెస్ న్యూ ఫేస్ అవార్డు ఏ సంవత్సరంలో పొందింది?",
+        "answer": "2018",
+        "judgment": "Doubt",
+        "content_id": 54,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-07T07:06:32.850Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:04:25.314Z"
+        },
+        "time_taken": 127.535714,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b06a427da0a6f24aae6ed"
+        },
+        "qa_index": 2,
+        "question": "ఖెత్రి కాపర్ కాంప్లెక్స్ ఏ ముడి పదార్థాన్ని ఉత్పత్తి చేస్తుంది?",
+        "answer": "రాగి",
+        "judgment": "Doubt",
+        "content_id": 199,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-07T07:07:15.621Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T06:59:14.771Z"
+        },
+        "time_taken": 480.849673,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b06f227da0a6f24aae70b"
+        },
+        "qa_index": 2,
+        "question": "యువరాజ్ ఏ సంవత్సరం క్రికెట్ రిటైర్మెంట్ ప్రకటించాడు?",
+        "answer": "2019",
+        "judgment": "Doubt",
+        "content_id": 234,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-07T07:08:34.163Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:06:34.982Z"
+        },
+        "time_taken": 119.180638,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b092327da0a6f24aae799"
+        },
+        "qa_index": 0,
+        "question": "సాపేక్షత వాదాలను ప్రతిపాదించిన శాస్త్రవేత్త ఎవరు?",
+        "answer": "ఆల్బర్ట్ ఐన్‌స్టైన్",
+        "judgment": "Doubt",
+        "content_id": 219,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-07T07:17:55.183Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:11:22.154Z"
+        },
+        "time_taken": 393.028422,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b0dd127da0a6f24aae8c9"
+        },
+        "qa_index": 2,
+        "question": "పీటర్ క్లిఫోర్డ్ ఏ జట్లకు ఆడాడు?",
+        "answer": "న్యూ సౌత్ వేల్స్, క్వీన్స్‌లాండ్",
+        "judgment": "Doubt",
+        "content_id": 109,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-07T07:37:53.377Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:32:22.535Z"
+        },
+        "time_taken": 330.842136,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681b120527da0a6f24aae98f"
+        },
+        "qa_index": 5,
+        "question": "డాల్ఫిన్స్ తరఫున ఆడిన ప్రసిద్ధ బౌలర్ ఎవరు?",
+        "answer": "షాన్ పొలాక్",
+        "judgment": "Doubt",
+        "content_id": 34,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-07T07:55:48.421Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-07T07:52:11.767Z"
+        },
+        "time_taken": 216.653981,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c3a8b27da0a6f24aaea24"
+        },
+        "qa_index": 3,
+        "question": "A. altilis కు మరో పేరు?",
+        "answer": "బ్రెడ్ ఫ్రూట్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-08T05:00:58.395Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T04:57:20.953Z"
+        },
+        "time_taken": 217.441624,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c3a8b27da0a6f24aaea25"
+        },
+        "qa_index": 4,
+        "question": "A. hypargyreus కు పిలిచే పేరు ఏమిటి?",
+        "answer": "క్వాయి మక్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-08T05:00:58.395Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T04:57:20.953Z"
+        },
+        "time_taken": 217.441624,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c3a8b27da0a6f24aaea26"
+        },
+        "qa_index": 5,
+        "question": "A. odoratissimus పండును ఏమంటారు?",
+        "answer": "మరాంగ్",
+        "judgment": "Doubt",
+        "content_id": 267,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-08T05:00:58.395Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T04:57:20.953Z"
+        },
+        "time_taken": 217.441624,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c3b5127da0a6f24aaea32"
+        },
+        "qa_index": 5,
+        "question": "కరణ్哪 డిగ్రీ ఏ కోర్సులో?",
+        "answer": "హోటల్ మేనేజ్‌మెంట్",
+        "judgment": "Doubt",
+        "content_id": 260,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-08T05:04:16.269Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T05:02:31.459Z"
+        },
+        "time_taken": 104.810074,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c869127da0a6f24aaebc1"
+        },
+        "qa_index": 2,
+        "question": "భూపతికి మిక్స్‌డ్ డబుల్స్ గ్రాండ్ స్లామ్ పూర్తయిన సంవత్సరం?",
+        "answer": "2006",
+        "judgment": "Doubt",
+        "content_id": 20,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-08T10:25:20.791Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:18:20.574Z"
+        },
+        "time_taken": 420.217264,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c869127da0a6f24aaebc4"
+        },
+        "qa_index": 5,
+        "question": "భూపతికి మొత్తం మిక్స్‌డ్ డబుల్స్ టైటిల్స్ ఎంత?",
+        "answer": "12",
+        "judgment": "Doubt",
+        "content_id": 20,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-08T10:25:20.791Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:18:20.574Z"
+        },
+        "time_taken": 420.217264,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c86ac27da0a6f24aaebd3"
+        },
+        "qa_index": 3,
+        "question": "రాజ్‌మాలో ప్రధాన పోషకపదార్థం?",
+        "answer": "ప్రోటీన్",
+        "judgment": "Doubt",
+        "content_id": 252,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-08T10:25:47.928Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:22:42.587Z"
+        },
+        "time_taken": 185.341271,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c88c927da0a6f24aaec42"
+        },
+        "qa_index": 2,
+        "question": "వ్యోమ నంది哪 విశ్వవిద్యాలయం నుండి పట్టభద్రురాలైంది?",
+        "answer": "యార్క్ విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 99,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-08T10:34:48.879Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:30:36.537Z"
+        },
+        "time_taken": 252.342479,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c8bed27da0a6f24aaed0e"
+        },
+        "qa_index": 4,
+        "question": "స్వరూప్ సంపత్acted in which popular TV serial?",
+        "answer": "యే జో హై జిందగీ",
+        "judgment": "Doubt",
+        "content_id": 46,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-08T10:48:12.532Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:45:00.623Z"
+        },
+        "time_taken": 191.908585,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c8cf227da0a6f24aaed3f"
+        },
+        "qa_index": 5,
+        "question": "చెక్కు తిరస్కరించబడితే మొదట సివిల్ కేసు వేసే అవకాశం ఎప్పుడు వచ్చిందీ?",
+        "answer": "1989లో",
+        "judgment": "Doubt",
+        "content_id": 88,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-08T10:52:33.877Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:42:39.391Z"
+        },
+        "time_taken": 594.486488,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c8d9427da0a6f24aaed7a"
+        },
+        "qa_index": 5,
+        "question": "కరణ్哪 డిగ్రీ ఏ కోర్సులో?",
+        "answer": "హోటల్ మేనేజ్‌మెంట్",
+        "judgment": "Doubt",
+        "content_id": 260,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-08T10:55:15.828Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:52:51.899Z"
+        },
+        "time_taken": 143.929775,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c8e0927da0a6f24aaeda2"
+        },
+        "qa_index": 3,
+        "question": "డెబ్యూట్ ట్వంటీ20 మ్యాచ్ ఎప్పుడు?",
+        "answer": "2004 ఆగస్టు 17",
+        "judgment": "Doubt",
+        "content_id": 202,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-08T10:57:13.295Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T10:54:25.613Z"
+        },
+        "time_taken": 167.682085,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c8fe027da0a6f24aaedfb"
+        },
+        "qa_index": 1,
+        "question": "భగవద్గీతలో భగవంతుడిని మరో పేరుతో ఏమంటారు?",
+        "answer": "గీతోపనిషత్తు",
+        "judgment": "Doubt",
+        "content_id": 41,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-08T11:05:04.683Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T11:03:26.134Z"
+        },
+        "time_taken": 98.54901,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681c94a127da0a6f24aaef22"
+        },
+        "qa_index": 5,
+        "question": "రౌడీ ఫెలోలో ఎం.ఎల్.ఏ ప్రతినాయకుడి పేరు?",
+        "answer": "దుర్గాప్రసాద్",
+        "judgment": "Doubt",
+        "content_id": 297,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-08T11:25:20.736Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-08T11:18:16.324Z"
+        },
+        "time_taken": 424.412196,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681d83e027da0a6f24aaf01a"
+        },
+        "qa_index": 2,
+        "question": "సదాశివ పాటిల్ ఎంతమంది టెస్ట్ మ్యాచ్‌లు ఆడాడు?",
+        "answer": "ఒకటి",
+        "judgment": "Doubt",
+        "content_id": 391,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-09T04:26:08.417Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T04:21:35.302Z"
+        },
+        "time_taken": 273.115173,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dcf0a27da0a6f24aaf053"
+        },
+        "qa_index": 2,
+        "question": "రమ్య సురేష్ విద్య qual?",
+        "answer": "నర్సింగ్ డిగ్రీ",
+        "judgment": "Doubt",
+        "content_id": 463,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-09T09:46:50.466Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T09:41:33.976Z"
+        },
+        "time_taken": 316.48995,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dd07027da0a6f24aaf08a"
+        },
+        "qa_index": 3,
+        "question": "ఈ గ్రామానికి చెందిన సురేష్ ఏ అవార్డు పొందారు?",
+        "answer": "Dr.K.V.Rao Young Scientist Award",
+        "judgment": "Doubt",
+        "content_id": 444,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-09T09:52:47.612Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T09:49:29.335Z"
+        },
+        "time_taken": 198.277677,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dd27d27da0a6f24aaf10e"
+        },
+        "qa_index": 2,
+        "question": "వ్యోమ నంది哪 విశ్వవిద్యాలయం నుండి పట్టభద్రురాలైంది?",
+        "answer": "యార్క్ విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 99,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-09T10:01:32.964Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T09:58:33.641Z"
+        },
+        "time_taken": 179.323675,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dd4eb27da0a6f24aaf1bc"
+        },
+        "qa_index": 2,
+        "question": "సదాశివ పాటిల్ ఎంతమంది టెస్ట్ మ్యాచ్‌లు ఆడాడు?",
+        "answer": "ఒకటి",
+        "judgment": "Doubt",
+        "content_id": 391,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-09T10:11:55.392Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T10:08:40.694Z"
+        },
+        "time_taken": 194.698645,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dd8ae27da0a6f24aaf2dd"
+        },
+        "qa_index": 2,
+        "question": "రమ్య సురేష్ విద్య qual?",
+        "answer": "నర్సింగ్ డిగ్రీ",
+        "judgment": "Doubt",
+        "content_id": 463,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-09T10:27:58.253Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T10:26:50.484Z"
+        },
+        "time_taken": 67.768999,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681dd8fa27da0a6f24aaf2f1"
+        },
+        "qa_index": 2,
+        "question": "రమణను మঞ্চంపైకి తీసుకొచ్చిన గురువు ఎవరు?",
+        "answer": "పి. సత్యనారాయణ రెడ్డి",
+        "judgment": "Doubt",
+        "content_id": 321,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-09T10:29:14.181Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T10:26:08.360Z"
+        },
+        "time_taken": 185.821464,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681ddaec27da0a6f24aaf387"
+        },
+        "qa_index": 4,
+        "question": "అవినాష్ చందర్ ఎక్కడ బీఈ చదివారు?",
+        "answer": "IIT ఢిల్లీ",
+        "judgment": "Doubt",
+        "content_id": 344,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-09T10:37:31.691Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T10:34:35.395Z"
+        },
+        "time_taken": 176.296104,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681ddb6c27da0a6f24aaf3b8"
+        },
+        "qa_index": 5,
+        "question": "పుష్పగిరి శాసనాల ద్వారా ముల్కినాడు ఎవరి కాలంలో ప్రస్తావించబడింది?",
+        "answer": "రాష్ట్రకూట కృష్ణుడు",
+        "judgment": "Doubt",
+        "content_id": 403,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-09T10:39:38.962Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T10:38:08.474Z"
+        },
+        "time_taken": 90.488161,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "681de4ad27da0a6f24aaf60c"
+        },
+        "qa_index": 5,
+        "question": "భారతదేశం మొత్తం భూమి ఎంత?",
+        "answer": "328.2 మిలియన్ హెక్టార్లు",
+        "judgment": "Doubt",
+        "content_id": 408,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-09T11:19:08.220Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-09T11:17:05.887Z"
+        },
+        "time_taken": 122.332387,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682186a5135c7a6d61ca91ca"
+        },
+        "qa_index": 2,
+        "question": "రమ్య సురేష్ విద్య qual?",
+        "answer": "నర్సింగ్ డిగ్రీ",
+        "judgment": "Doubt",
+        "content_id": 463,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-12T05:27:01.179Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:25:18.422Z"
+        },
+        "time_taken": 102.756975,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68218a54135c7a6d61ca92f1"
+        },
+        "qa_index": 2,
+        "question": "ఆమె ఎంఏ లో ఏ مضمون చదివారు?",
+        "answer": "హిస్టరీ",
+        "judgment": "Doubt",
+        "content_id": 494,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-12T05:42:43.790Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:40:25.892Z"
+        },
+        "time_taken": 137.898382,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68218b2b135c7a6d61ca9325"
+        },
+        "qa_index": 5,
+        "question": "ఎమ్మెల్యే స్థానాల్లో ఎన్ని రిజర్వ్?",
+        "answer": "39",
+        "judgment": "Doubt",
+        "content_id": 580,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-12T05:46:18.659Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:41:21.675Z"
+        },
+        "time_taken": 296.984106,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68218bc9135c7a6d61ca935d"
+        },
+        "qa_index": 1,
+        "question": "బాచుపల్లి మండల కేంద్రంగా ఏ సంవత్సరం గుర్తింపు పొందింది?",
+        "answer": "2016",
+        "judgment": "Doubt",
+        "content_id": 417,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-12T05:48:57.098Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:42:33.317Z"
+        },
+        "time_taken": 383.780233,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68218cf2135c7a6d61ca93a7"
+        },
+        "qa_index": 2,
+        "question": "జిందాల్ ఎన్ని సార్లు ఎమ్మెల్యేగా ఎన్నికయ్యారు?",
+        "answer": "మూడు సార్లు",
+        "judgment": "Doubt",
+        "content_id": 471,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T05:53:53.765Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:51:51.257Z"
+        },
+        "time_taken": 122.507611,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68218d38135c7a6d61ca93c3"
+        },
+        "qa_index": 4,
+        "question": "ఊర్మిళacted in which film for her Bollywood debut?",
+        "answer": "పరేషాన్‌పూర్",
+        "judgment": "Doubt",
+        "content_id": 545,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-12T05:55:03.379Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T05:53:33.982Z"
+        },
+        "time_taken": 89.39684,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682190d0135c7a6d61ca94a9"
+        },
+        "qa_index": 5,
+        "question": "రాధ తండ్రి ఎవరిలో పెళ్లి చేస్తాడు?",
+        "answer": "వేణు",
+        "judgment": "Doubt",
+        "content_id": 491,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-12T06:10:23.352Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:04:31.466Z"
+        },
+        "time_taken": 351.885764,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68219288135c7a6d61ca9519"
+        },
+        "qa_index": 3,
+        "question": "అంజలి ఏ مضمون బోధిస్తుంది?",
+        "answer": "సంగీతం",
+        "judgment": "Doubt",
+        "content_id": 507,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T06:17:44.292Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:16:31.109Z"
+        },
+        "time_taken": 73.182414,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821933f135c7a6d61ca954e"
+        },
+        "qa_index": 3,
+        "question": "అంజలి ఏ مضمون బోధిస్తుంది?",
+        "answer": "సంగీతం",
+        "judgment": "Doubt",
+        "content_id": 507,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-12T06:20:47.325Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:19:18.094Z"
+        },
+        "time_taken": 89.231667,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682195ce135c7a6d61ca9601"
+        },
+        "qa_index": 3,
+        "question": "నారాయణ్ సరోవర్ నిర్మించిన రాజు ఎవరు?",
+        "answer": "మహారావు దేశాల్ జి",
+        "judgment": "Doubt",
+        "content_id": 346,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-12T06:31:41.926Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:28:41.261Z"
+        },
+        "time_taken": 180.665601,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68219856135c7a6d61ca96a2"
+        },
+        "qa_index": 3,
+        "question": "ఆమె చదువుకున్న డిజైన్ సంస్థ పేరు?",
+        "answer": "School of Design, మాడ్రిడ్",
+        "judgment": "Doubt",
+        "content_id": 423,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-12T06:42:30.328Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:39:21.272Z"
+        },
+        "time_taken": 189.055427,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68219a8e135c7a6d61ca973f"
+        },
+        "qa_index": 4,
+        "question": "రామరాజీయమునకు ఆంగ్లంలో ముందుమాట వ్రాసిన వ్యక్తి?",
+        "answer": "గుస్తావ్ ఆపర్ట్",
+        "judgment": "Doubt",
+        "content_id": 535,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-12T06:51:57.198Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:46:03.582Z"
+        },
+        "time_taken": 353.616489,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68219c69135c7a6d61ca97b3"
+        },
+        "qa_index": 5,
+        "question": "రాధ తండ్రి ఎవరిలో పెళ్లి చేస్తాడు?",
+        "answer": "వేణు",
+        "judgment": "Doubt",
+        "content_id": 491,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T06:59:52.650Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T06:57:35.571Z"
+        },
+        "time_taken": 137.079212,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68219f5b135c7a6d61ca9820"
+        },
+        "qa_index": 4,
+        "question": "హిమాలయన్ ఎండెమిక్ గొయిత్రి పరిష్కార మార్గం ఏమిటి?",
+        "answer": "అయొడైజ్డ్ ఉప్పు వాడకం",
+        "judgment": "Doubt",
+        "content_id": 307,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-12T07:12:26.201Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:09:33.205Z"
+        },
+        "time_taken": 172.996497,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a15b135c7a6d61ca986c"
+        },
+        "qa_index": 2,
+        "question": "రమణను మঞ্চంపైకి తీసుకొచ్చిన గురువు ఎవరు?",
+        "answer": "పి. సత్యనారాయణ రెడ్డి",
+        "judgment": "Doubt",
+        "content_id": 321,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T07:20:58.921Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:16:44.589Z"
+        },
+        "time_taken": 254.332218,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a245135c7a6d61ca98ae"
+        },
+        "qa_index": 2,
+        "question": "రమ్య సురేష్ విద్య qual?",
+        "answer": "నర్సింగ్ డిగ్రీ",
+        "judgment": "Doubt",
+        "content_id": 463,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-12T07:24:52.756Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:22:18.580Z"
+        },
+        "time_taken": 154.175291,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a267135c7a6d61ca98b7"
+        },
+        "qa_index": 5,
+        "question": "సెలీనియం సాధారణ రూపం ఏమిటి?",
+        "answer": "పర్పుల్-గ్రే సెమి మెటల్",
+        "judgment": "Doubt",
+        "content_id": 304,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T07:25:26.722Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:21:42.803Z"
+        },
+        "time_taken": 223.91906,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a31d135c7a6d61ca98e1"
+        },
+        "qa_index": 4,
+        "question": "ఊర్మిళacted in which film for her Bollywood debut?",
+        "answer": "పరేషాన్‌పూర్",
+        "judgment": "Doubt",
+        "content_id": 545,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-12T07:28:28.976Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:26:44.350Z"
+        },
+        "time_taken": 104.626185,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a32e135c7a6d61ca98ea"
+        },
+        "qa_index": 4,
+        "question": "ఊర్మిళacted in which film for her Bollywood debut?",
+        "answer": "పరేషాన్‌పూర్",
+        "judgment": "Doubt",
+        "content_id": 545,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-12T07:28:45.739Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:26:44.350Z"
+        },
+        "time_taken": 121.388634,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a335135c7a6d61ca98f7"
+        },
+        "qa_index": 5,
+        "question": "రాధ తండ్రి ఎవరిలో పెళ్లి చేస్తాడు?",
+        "answer": "వేణు",
+        "judgment": "Doubt",
+        "content_id": 491,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-12T07:28:52.769Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:26:53.964Z"
+        },
+        "time_taken": 118.805127,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a487135c7a6d61ca9936"
+        },
+        "qa_index": 1,
+        "question": "యోగితా మొదటి టీవీ సీరియల్ పేరు ఏమిటి?",
+        "answer": "దిల్ హై తోహ్ హై",
+        "judgment": "Doubt",
+        "content_id": 559,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-12T07:34:31.149Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:32:22.468Z"
+        },
+        "time_taken": 128.681822,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a65d135c7a6d61ca9975"
+        },
+        "qa_index": 3,
+        "question": "ఆమె ఎం.బీ.ఏ చదువుతోంది ఎక్కడ?",
+        "answer": "హైదరాబాద్",
+        "judgment": "Doubt",
+        "content_id": 433,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-12T07:42:20.656Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:41:01.631Z"
+        },
+        "time_taken": 79.025921,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6821a9cd135c7a6d61ca9a35"
+        },
+        "qa_index": 3,
+        "question": "ఘంటసాల ఎవరి شاిష్యుడు?",
+        "answer": "పట్రాయని సీతారామశాస్త్రి",
+        "judgment": "Doubt",
+        "content_id": 581,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-12T07:57:00.687Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-12T07:53:45.708Z"
+        },
+        "time_taken": 194.978543,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822d8e3135c7a6d61ca9d5a"
+        },
+        "qa_index": 3,
+        "question": "ఘంటసాల ఎవరి شاిష్యుడు?",
+        "answer": "పట్రాయని సీతారామశాస్త్రి",
+        "judgment": "Doubt",
+        "content_id": 581,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-13T05:30:11.212Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:25:44.079Z"
+        },
+        "time_taken": 267.133413,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822d9a7135c7a6d61ca9d9e"
+        },
+        "qa_index": 3,
+        "question": "ఘంటసాల ఎవరి شاిష్యుడు?",
+        "answer": "పట్రాయని సీతారామశాస్త్రి",
+        "judgment": "Doubt",
+        "content_id": 581,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-13T05:33:26.509Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:29:40.031Z"
+        },
+        "time_taken": 226.478134,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dc28135c7a6d61ca9e92"
+        },
+        "qa_index": 3,
+        "question": "హోల్డ్‌షిప్ న్యాయవాదిగా ఏ నగరంలో పనిచేశాడు?",
+        "answer": "వెల్లింగ్టన్",
+        "judgment": "Doubt",
+        "content_id": 556,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-13T05:44:07.447Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:40:36.235Z"
+        },
+        "time_taken": 211.211086,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dc41135c7a6d61ca9e9f"
+        },
+        "qa_index": 4,
+        "question": "ఊర్మిళacted in which film for her Bollywood debut?",
+        "answer": "పరేషాన్‌పూర్",
+        "judgment": "Doubt",
+        "content_id": 545,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-13T05:44:32.431Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:41:22.651Z"
+        },
+        "time_taken": 189.779477,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dd36135c7a6d61ca9f0b"
+        },
+        "qa_index": 4,
+        "question": "ఈ గ్రామపు జనాభా ఎంత?",
+        "answer": "సుమారు 400",
+        "judgment": "Doubt",
+        "content_id": 339,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-13T05:48:37.758Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:46:51.518Z"
+        },
+        "time_taken": 106.240048,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dd65135c7a6d61ca9f21"
+        },
+        "qa_index": 2,
+        "question": "సANTOషం చిత్రానికి సంగీతం ఎవరు అందించారు?",
+        "answer": "విశ్వనాథన్-రామమూర్తి",
+        "judgment": "Doubt",
+        "content_id": 135,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-13T05:49:24.661Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:47:38.577Z"
+        },
+        "time_taken": 106.084726,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dd65135c7a6d61ca9f22"
+        },
+        "qa_index": 3,
+        "question": "సANTOషం సినిమాలో హీరో పాత్రలో నటించిన వ్యక్తి ఎవరు?",
+        "answer": "ఎన్.టి. రామారావు",
+        "judgment": "Doubt",
+        "content_id": 135,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-13T05:49:24.661Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:47:38.577Z"
+        },
+        "time_taken": 106.084726,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822dd65135c7a6d61ca9f24"
+        },
+        "qa_index": 5,
+        "question": "సANTOషం సినిమాను కన్నడలో ఏ పేరుతో పునర్నిర్మించారు?",
+        "answer": "మల్లి మదువె",
+        "judgment": "Doubt",
+        "content_id": 135,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-13T05:49:24.661Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:47:38.577Z"
+        },
+        "time_taken": 106.084726,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822ddd7135c7a6d61ca9f5d"
+        },
+        "qa_index": 2,
+        "question": "రమణను మঞ্চంపైకి తీసుకొచ్చిన గురువు ఎవరు?",
+        "answer": "పి. సత్యనారాయణ రెడ్డి",
+        "judgment": "Doubt",
+        "content_id": 321,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T05:51:18.876Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:50:35.321Z"
+        },
+        "time_taken": 43.555083,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822df22135c7a6d61ca9fdc"
+        },
+        "qa_index": 3,
+        "question": "అంజలి ఏ مضمون బోధిస్తుంది?",
+        "answer": "సంగీతం",
+        "judgment": "Doubt",
+        "content_id": 507,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T05:56:49.706Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T05:55:16.099Z"
+        },
+        "time_taken": 93.607078,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e05c135c7a6d61caa06f"
+        },
+        "qa_index": 4,
+        "question": "రామరాజీయమునకు ఆంగ్లంలో ముందుమాట వ్రాసిన వ్యక్తి?",
+        "answer": "గుస్తావ్ ఆపర్ట్",
+        "judgment": "Doubt",
+        "content_id": 535,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T06:02:03.180Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:00:16.083Z"
+        },
+        "time_taken": 107.096882,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e22f135c7a6d61caa123"
+        },
+        "qa_index": 4,
+        "question": "మౌనపోరాటం సినిమాకు వచ్చిన పురస్కారం?",
+        "answer": "నంది అవార్డు",
+        "judgment": "Doubt",
+        "content_id": 503,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-13T06:09:50.785Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:06:05.551Z"
+        },
+        "time_taken": 225.234597,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e4aa135c7a6d61caa1f4"
+        },
+        "qa_index": 3,
+        "question": "ZWNJ Windows లో ఎలా టైపు చేయాలి?",
+        "answer": "Ctrl+Shift+2",
+        "judgment": "Doubt",
+        "content_id": 548,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T06:20:25.580Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:17:59.225Z"
+        },
+        "time_taken": 146.354772,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e4bc135c7a6d61caa201"
+        },
+        "qa_index": 4,
+        "question": "చౌముహాన్ యుద్ధంలో ఎన్ని ఆఫ్ఘన్లు చనిపోయారు?",
+        "answer": "7,000–9,000",
+        "judgment": "Doubt",
+        "content_id": 372,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-13T06:20:43.669Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:16:03.507Z"
+        },
+        "time_taken": 280.162411,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e641135c7a6d61caa274"
+        },
+        "qa_index": 3,
+        "question": "నిమిషా 어느 నగరంలో పుట్టింది?",
+        "answer": "ముంబై",
+        "judgment": "Doubt",
+        "content_id": 440,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T06:27:12.377Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:26:16.650Z"
+        },
+        "time_taken": 55.726354,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e707135c7a6d61caa2a6"
+        },
+        "qa_index": 5,
+        "question": "ఎమ్మెల్యే స్థానాల్లో ఎన్ని రిజర్వ్?",
+        "answer": "39",
+        "judgment": "Doubt",
+        "content_id": 580,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-13T06:30:30.211Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:26:13.646Z"
+        },
+        "time_taken": 256.565078,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822e758135c7a6d61caa2c8"
+        },
+        "qa_index": 3,
+        "question": "ఆసిఫ్ ఇక్బాల్ గులాం అహ్మద్ కు ఏ సంబంధం?",
+        "answer": "అల్లుడు",
+        "judgment": "Doubt",
+        "content_id": 449,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-13T06:31:51.594Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:25:38.335Z"
+        },
+        "time_taken": 373.258872,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822eaf3135c7a6d61caa3d8"
+        },
+        "qa_index": 3,
+        "question": "ఘంటసాల ఎవరి شاిష్యుడు?",
+        "answer": "పట్రాయని సీతారామశాస్త్రి",
+        "judgment": "Doubt",
+        "content_id": 581,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-13T06:47:15.272Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T06:45:04.160Z"
+        },
+        "time_taken": 131.111409,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f202135c7a6d61caa673"
+        },
+        "qa_index": 2,
+        "question": "వ్యక్తిగత డిమాండ్ రేఖ మరొక పేరేంటి?",
+        "answer": "Individual Demand Curve",
+        "judgment": "Doubt",
+        "content_id": 526,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-13T07:17:22.259Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:14:03.843Z"
+        },
+        "time_taken": 198.416159,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f2bf135c7a6d61caa6bd"
+        },
+        "qa_index": 5,
+        "question": "ఈ స్టేడియం ప్రస్తుతం ఏ మ్యాచ్లకు ఆతిథ్యం ఇస్తోంది?",
+        "answer": "ఇస్తోంది కాదు",
+        "judgment": "Doubt",
+        "content_id": 557,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-13T07:20:30.172Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:17:05.897Z"
+        },
+        "time_taken": 204.275079,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f324135c7a6d61caa6dd"
+        },
+        "qa_index": 0,
+        "question": "శ్రీశ్రీ రవిశంకర్ పుట్టిన సంవత్సరం ఏమిటి?",
+        "answer": "1956",
+        "judgment": "Doubt",
+        "content_id": 424,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T07:22:12.683Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:20:40.069Z"
+        },
+        "time_taken": 92.614672,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f324135c7a6d61caa6de"
+        },
+        "qa_index": 1,
+        "question": "ఆర్ట్ ఆఫ్ లివింగ్ ఫౌండేషన్ ఎప్పుడు స్థాపించబడింది?",
+        "answer": "1981",
+        "judgment": "Doubt",
+        "content_id": 424,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-13T07:22:12.683Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:20:40.069Z"
+        },
+        "time_taken": 92.614672,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f37d135c7a6d61caa711"
+        },
+        "qa_index": 4,
+        "question": "ఊర్మిళacted in which film for her Bollywood debut?",
+        "answer": "పరేషాన్‌పూర్",
+        "judgment": "Doubt",
+        "content_id": 545,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-13T07:23:41.032Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:22:36.183Z"
+        },
+        "time_taken": 64.848135,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f3d1135c7a6d61caa733"
+        },
+        "qa_index": 2,
+        "question": "ఆమె ఎంఏ లో ఏ مضمون చదివారు?",
+        "answer": "హిస్టరీ",
+        "judgment": "Doubt",
+        "content_id": 494,
+        "intern_id": "vinsrx",
+        "timestamp": {
+            "$date": "2025-05-13T07:25:05.072Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:21:14.148Z"
+        },
+        "time_taken": 230.924803,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6822f897135c7a6d61caa8f0"
+        },
+        "qa_index": 3,
+        "question": "ఆమె చదువుకున్న డిజైన్ సంస్థ పేరు?",
+        "answer": "School of Design, మాడ్రిడ్",
+        "judgment": "Doubt",
+        "content_id": 423,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-13T07:45:26.395Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-13T07:42:29.906Z"
+        },
+        "time_taken": 176.489664,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246541eb81db6bd2cad5a4"
+        },
+        "qa_index": 1,
+        "question": "హేడన్ 어느 దేశానికి చెందినవాడు?",
+        "answer": "న్యూజిలాండ్",
+        "judgment": "Doubt",
+        "content_id": 626,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-14T09:41:20.843Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:38:04.627Z"
+        },
+        "time_taken": 196.21644,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246544eb81db6bd2cad5ac"
+        },
+        "qa_index": 1,
+        "question": "హేడన్ 어느 దేశానికి చెందినవాడు?",
+        "answer": "న్యూజిలాండ్",
+        "judgment": "Doubt",
+        "content_id": 626,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:41:24.192Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:40:07.744Z"
+        },
+        "time_taken": 76.448041,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824663eeb81db6bd2cad66e"
+        },
+        "qa_index": 3,
+        "question": "రోనాల్డోకి R9 అనే ముద్దుపేరు ఎందుకు పెట్టారు?",
+        "answer": "అతని జెర్సీ నంబరు వల్ల",
+        "judgment": "Doubt",
+        "content_id": 425,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-14T09:45:32.937Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:40:15.683Z"
+        },
+        "time_taken": 317.253434,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824663eeb81db6bd2cad670"
+        },
+        "qa_index": 5,
+        "question": "రొనాల్డో తన వృత్తిని ప్రారంభించిన క్లబ్ పేరు?",
+        "answer": "క్రూజీరో",
+        "judgment": "Doubt",
+        "content_id": 425,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-14T09:45:32.937Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:40:15.683Z"
+        },
+        "time_taken": 317.253434,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824679eeb81db6bd2cad754"
+        },
+        "qa_index": 3,
+        "question": "అంజలి ఏ مضمون బోధిస్తుంది?",
+        "answer": "సంగీతం",
+        "judgment": "Doubt",
+        "content_id": 507,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-14T09:51:25.025Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:48:09.961Z"
+        },
+        "time_taken": 195.063778,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824688ceb81db6bd2cad7ea"
+        },
+        "qa_index": 1,
+        "question": " ravinder ఎం.ఎస్‌సి ఏ విశ్వవిద్యాలయంలో పూర్తి చేశాడు?",
+        "answer": "ఉస్మానియా విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:23.700Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:50:45.058Z"
+        },
+        "time_taken": 278.641402,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824688ceb81db6bd2cad7eb"
+        },
+        "qa_index": 2,
+        "question": " ravinder ఎప్పుడు ఫిజిక్స్‌లో అసిస్టెంట్ ప్రొఫెసర్‌గా చేరాడు?",
+        "answer": "1989",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:23.700Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:50:45.058Z"
+        },
+        "time_taken": 278.641402,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824688ceb81db6bd2cad7ed"
+        },
+        "qa_index": 3,
+        "question": " ravinder ఏ పురస్కారాలను పొందాడు?",
+        "answer": "యూజీసీ కెరీర్ అవార్డు, యంగ్ సైంటిస్ట్ అవార్డు",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:23.700Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:50:45.058Z"
+        },
+        "time_taken": 278.641402,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824688deb81db6bd2cad7ef"
+        },
+        "qa_index": 4,
+        "question": " ravinder పదవీ విరమణ సంవత్సరం?",
+        "answer": "2020",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:23.700Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:50:45.058Z"
+        },
+        "time_taken": 278.641402,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824688deb81db6bd2cad7f1"
+        },
+        "qa_index": 5,
+        "question": " ravinder ఎప్పుడు వైస్ చాన్సలర్ బాధ్యతలు స్వీకరించాడు?",
+        "answer": "2021 మే 24",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:23.700Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:50:45.058Z"
+        },
+        "time_taken": 278.641402,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824689aeb81db6bd2cad805"
+        },
+        "qa_index": 0,
+        "question": "డి. రవీందర్ పుట్టిన జిల్లా?",
+        "answer": "యాదాద్రి భువనగిరి",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "meesrx",
+        "timestamp": {
+            "$date": "2025-05-14T09:55:37.730Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T09:54:51.116Z"
+        },
+        "time_taken": 46.613753,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246a55eb81db6bd2cad914"
+        },
+        "qa_index": 0,
+        "question": "డొనాల్డ్ డక్首次 ఎప్పుడు కనిపించాడు?",
+        "answer": "1934",
+        "judgment": "Doubt",
+        "content_id": 670,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:03:01.479Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:00:38.964Z"
+        },
+        "time_taken": 142.515325,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246acfeb81db6bd2cad951"
+        },
+        "qa_index": 1,
+        "question": " ravinder ఎం.ఎస్‌సి ఏ విశ్వవిద్యాలయంలో పూర్తి చేశాడు?",
+        "answer": "ఉస్మానియా విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:05:02.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:03:33.368Z"
+        },
+        "time_taken": 89.282361,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246acfeb81db6bd2cad952"
+        },
+        "qa_index": 2,
+        "question": " ravinder ఎప్పుడు ఫిజిక్స్‌లో అసిస్టెంట్ ప్రొఫెసర్‌గా చేరాడు?",
+        "answer": "1989",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:05:02.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:03:33.368Z"
+        },
+        "time_taken": 89.282361,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246acfeb81db6bd2cad953"
+        },
+        "qa_index": 3,
+        "question": " ravinder ఏ పురస్కారాలను పొందాడు?",
+        "answer": "యూజీసీ కెరీర్ అవార్డు, యంగ్ సైంటిస్ట్ అవార్డు",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:05:02.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:03:33.368Z"
+        },
+        "time_taken": 89.282361,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246acfeb81db6bd2cad954"
+        },
+        "qa_index": 4,
+        "question": " ravinder పదవీ విరమణ సంవత్సరం?",
+        "answer": "2020",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:05:02.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:03:33.368Z"
+        },
+        "time_taken": 89.282361,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246ad0eb81db6bd2cad955"
+        },
+        "qa_index": 5,
+        "question": " ravinder ఎప్పుడు వైస్ చాన్సలర్ బాధ్యతలు స్వీకరించాడు?",
+        "answer": "2021 మే 24",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T10:05:02.651Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:03:33.368Z"
+        },
+        "time_taken": 89.282361,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68246cd6eb81db6bd2cadac6"
+        },
+        "qa_index": 4,
+        "question": "విక్రమసింహుడి చిన్నప్పటి పాత్ర ఎవరు పోషించారు?",
+        "answer": "మాస్టర్ విశ్వేశ్వర్",
+        "judgment": "Doubt",
+        "content_id": 688,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-14T10:13:41.614Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:09:30.293Z"
+        },
+        "time_taken": 251.320704,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824717eeb81db6bd2cadd70"
+        },
+        "qa_index": 3,
+        "question": "నిమిషా 어느 నగరంలో పుట్టింది?",
+        "answer": "ముంబై",
+        "judgment": "Doubt",
+        "content_id": 440,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-14T10:33:33.087Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:28:43.844Z"
+        },
+        "time_taken": 289.243019,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824735beb81db6bd2cade8d"
+        },
+        "qa_index": 3,
+        "question": "ఆమె చదువుకున్న డిజైన్ సంస్థ పేరు?",
+        "answer": "School of Design, మాడ్రిడ్",
+        "judgment": "Doubt",
+        "content_id": 423,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-14T10:41:30.456Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:39:38.063Z"
+        },
+        "time_taken": 112.393195,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68247481eb81db6bd2cadf4d"
+        },
+        "qa_index": 2,
+        "question": "BB కోడ్ ప్రధానంగా ఎక్కడ ఉపయోగిస్తారు?",
+        "answer": "ఫోరమ్ సాఫ్ట్‌వేర్‌లో",
+        "judgment": "Doubt",
+        "content_id": 578,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-14T10:46:24.689Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:41:33.865Z"
+        },
+        "time_taken": 290.82385,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824771aeb81db6bd2cae0e4"
+        },
+        "qa_index": 0,
+        "question": "డొనాల్డ్ డక్首次 ఎప్పుడు కనిపించాడు?",
+        "answer": "1934",
+        "judgment": "Doubt",
+        "content_id": 670,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-14T10:57:30.049Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:56:33.143Z"
+        },
+        "time_taken": 56.905957,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68247803eb81db6bd2cae167"
+        },
+        "qa_index": 1,
+        "question": "కీచకుని ఎవరు సంహరించారు?",
+        "answer": "భీముడు",
+        "judgment": "Doubt",
+        "content_id": 166,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-14T11:01:23.267Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:56:20.867Z"
+        },
+        "time_taken": 302.400008,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68247897eb81db6bd2cae190"
+        },
+        "qa_index": 2,
+        "question": "సెహగల్‌కు సాహిత్య అకాడమీ అవార్డు లభించిన నవల పేరు ఏమిటి?",
+        "answer": "Rich Like Us",
+        "judgment": "Doubt",
+        "content_id": 597,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-14T11:03:50.394Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T11:00:58.548Z"
+        },
+        "time_taken": 171.84628,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824789ceb81db6bd2cae19a"
+        },
+        "qa_index": 2,
+        "question": "సెహగల్‌కు సాహిత్య అకాడమీ అవార్డు లభించిన నవల పేరు ఏమిటి?",
+        "answer": "Rich Like Us",
+        "judgment": "Doubt",
+        "content_id": 597,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-14T11:03:55.183Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T10:59:31.812Z"
+        },
+        "time_taken": 263.371047,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682478f3eb81db6bd2cae1d4"
+        },
+        "qa_index": 2,
+        "question": "ఫైల్ సిస్టమ్‌లో ఉన్నత స్థాయి డైరెక్టరీ పేరు?",
+        "answer": "రూట్ డైరెక్టరీ",
+        "judgment": "Doubt",
+        "content_id": 462,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-14T11:05:22.450Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T11:00:02.554Z"
+        },
+        "time_taken": 319.896492,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68248129eb81db6bd2cae595"
+        },
+        "qa_index": 3,
+        "question": "పీపులి ఆకుతో తయారయ్యే మందు ఏ రకం?",
+        "answer": "పీ రకం",
+        "judgment": "Doubt",
+        "content_id": 479,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-14T11:40:24.397Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T11:35:11.002Z"
+        },
+        "time_taken": 313.394584,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6824837aeb81db6bd2cae68e"
+        },
+        "qa_index": 2,
+        "question": "సెహగల్‌కు సాహిత్య అకాడమీ అవార్డు లభించిన నవల పేరు ఏమిటి?",
+        "answer": "Rich Like Us",
+        "judgment": "Doubt",
+        "content_id": 597,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-14T11:50:17.367Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-14T11:48:46.636Z"
+        },
+        "time_taken": 90.73085,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257277eb81db6bd2cae8bd"
+        },
+        "qa_index": 1,
+        "question": " ravinder ఎం.ఎస్‌సి ఏ విశ్వవిద్యాలయంలో పూర్తి చేశాడు?",
+        "answer": "ఉస్మానియా విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T04:49:58.465Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.771Z"
+        },
+        "time_taken": 311.693262,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257277eb81db6bd2cae8be"
+        },
+        "qa_index": 2,
+        "question": " ravinder ఎప్పుడు ఫిజిక్స్‌లో అసిస్టెంట్ ప్రొఫెసర్‌గా చేరాడు?",
+        "answer": "1989",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T04:49:58.465Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.771Z"
+        },
+        "time_taken": 311.693262,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257277eb81db6bd2cae8bf"
+        },
+        "qa_index": 3,
+        "question": " ravinder ఏ పురస్కారాలను పొందాడు?",
+        "answer": "యూజీసీ కెరీర్ అవార్డు, యంగ్ సైంటిస్ట్ అవార్డు",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T04:49:58.465Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.771Z"
+        },
+        "time_taken": 311.693262,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257277eb81db6bd2cae8c0"
+        },
+        "qa_index": 4,
+        "question": " ravinder పదవీ విరమణ సంవత్సరం?",
+        "answer": "2020",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T04:49:58.465Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.771Z"
+        },
+        "time_taken": 311.693262,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257278eb81db6bd2cae8c1"
+        },
+        "qa_index": 5,
+        "question": " ravinder ఎప్పుడు వైస్ చాన్సలర్ బాధ్యతలు స్వీకరించాడు?",
+        "answer": "2021 మే 24",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T04:49:58.465Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.771Z"
+        },
+        "time_taken": 311.693262,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682577daeb81db6bd2caebdc"
+        },
+        "qa_index": 2,
+        "question": "ఎంఎల్ఏ స్థానాల మొత్తం ఎన్ని?",
+        "answer": "234",
+        "judgment": "Doubt",
+        "content_id": 432,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-15T05:12:57.302Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:08:02.821Z"
+        },
+        "time_taken": 294.480495,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257a44eb81db6bd2caed37"
+        },
+        "qa_index": 3,
+        "question": "ఆమిర్ ఖాన్‌తో పూజా బేడి నటించిన చిత్రం?",
+        "answer": "జో జీతా వోహీ సికందర్",
+        "judgment": "Doubt",
+        "content_id": 576,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-15T05:23:15.795Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:17:05.910Z"
+        },
+        "time_taken": 369.884845,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257b31eb81db6bd2caeda8"
+        },
+        "qa_index": 2,
+        "question": "ఎంఎల్ఏ స్థానాల మొత్తం ఎన్ని?",
+        "answer": "234",
+        "judgment": "Doubt",
+        "content_id": 432,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T05:27:12.939Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:21:45.540Z"
+        },
+        "time_taken": 327.398559,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257d50eb81db6bd2caeeb9"
+        },
+        "qa_index": 2,
+        "question": "ఆమె ఎంఏ లో ఏ مضمون చదివారు?",
+        "answer": "హిస్టరీ",
+        "judgment": "Doubt",
+        "content_id": 494,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T05:36:16.036Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:34:39.344Z"
+        },
+        "time_taken": 96.692458,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257daceb81db6bd2caeeef"
+        },
+        "qa_index": 3,
+        "question": "మాక్ సంఖ్య ఎవరిని గౌరవిస్తూ పెట్టారు?",
+        "answer": "ఎర్నెస్ట్ మాచ్",
+        "judgment": "Doubt",
+        "content_id": 619,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-15T05:37:47.196Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:33:31.781Z"
+        },
+        "time_taken": 255.415592,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257dd1eb81db6bd2caef08"
+        },
+        "qa_index": 3,
+        "question": "డైరెక్టరీలు ఏ తరహా నిర్మాణం కలిగి ఉంటాయి?",
+        "answer": "చెట్టు నిర్మాణం",
+        "judgment": "Doubt",
+        "content_id": 462,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-15T05:38:24.055Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:37:53.340Z"
+        },
+        "time_taken": 30.71495,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68257e87eb81db6bd2caef68"
+        },
+        "qa_index": 5,
+        "question": "జయశ్యామల ప్రస్తుతం నివసించే నగరం?",
+        "answer": "ముంబాయి",
+        "judgment": "Doubt",
+        "content_id": 674,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-15T05:41:26.107Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:38:52.462Z"
+        },
+        "time_taken": 153.645317,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68258057eb81db6bd2caf019"
+        },
+        "qa_index": 0,
+        "question": "డొనాల్డ్ డక్首次 ఎప్పుడు కనిపించాడు?",
+        "answer": "1934",
+        "judgment": "Doubt",
+        "content_id": 670,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T05:49:11.013Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T05:43:53.488Z"
+        },
+        "time_taken": 317.524718,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682589edeb81db6bd2caf45b"
+        },
+        "qa_index": 3,
+        "question": "నిమిషా 어느 నగరంలో పుట్టింది?",
+        "answer": "ముంబై",
+        "judgment": "Doubt",
+        "content_id": 440,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-15T06:30:03.963Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T06:24:30.822Z"
+        },
+        "time_taken": 333.140978,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68258d32eb81db6bd2caf581"
+        },
+        "qa_index": 1,
+        "question": "హేడన్ 어느 దేశానికి చెందినవాడు?",
+        "answer": "న్యూజిలాండ్",
+        "judgment": "Doubt",
+        "content_id": 626,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-15T06:44:01.505Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T06:38:24.695Z"
+        },
+        "time_taken": 336.810635,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68259001eb81db6bd2caf6f8"
+        },
+        "qa_index": 5,
+        "question": "2012 నాటికి అన్నపూర్ణ Iపై ఎన్ని మరణాలు జరిగాయి?",
+        "answer": "61",
+        "judgment": "Doubt",
+        "content_id": 614,
+        "intern_id": "pradex",
+        "timestamp": {
+            "$date": "2025-05-15T06:55:59.470Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T06:52:06.967Z"
+        },
+        "time_taken": 232.503576,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825933deb81db6bd2caf853"
+        },
+        "qa_index": 1,
+        "question": " ravinder ఎం.ఎస్‌సి ఏ విశ్వవిద్యాలయంలో పూర్తి చేశాడు?",
+        "answer": "ఉస్మానియా విశ్వవిద్యాలయం",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T07:09:48.620Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:08:44.909Z"
+        },
+        "time_taken": 63.710735,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825933deb81db6bd2caf854"
+        },
+        "qa_index": 2,
+        "question": " ravinder ఎప్పుడు ఫిజిక్స్‌లో అసిస్టెంట్ ప్రొఫెసర్‌గా చేరాడు?",
+        "answer": "1989",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T07:09:48.620Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:08:44.909Z"
+        },
+        "time_taken": 63.710735,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825933deb81db6bd2caf855"
+        },
+        "qa_index": 3,
+        "question": " ravinder ఏ పురస్కారాలను పొందాడు?",
+        "answer": "యూజీసీ కెరీర్ అవార్డు, యంగ్ సైంటిస్ట్ అవార్డు",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T07:09:48.620Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:08:44.909Z"
+        },
+        "time_taken": 63.710735,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825933deb81db6bd2caf856"
+        },
+        "qa_index": 4,
+        "question": " ravinder పదవీ విరమణ సంవత్సరం?",
+        "answer": "2020",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T07:09:48.620Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:08:44.909Z"
+        },
+        "time_taken": 63.710735,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825933eeb81db6bd2caf857"
+        },
+        "qa_index": 5,
+        "question": " ravinder ఎప్పుడు వైస్ చాన్సలర్ బాధ్యతలు స్వీకరించాడు?",
+        "answer": "2021 మే 24",
+        "judgment": "Doubt",
+        "content_id": 659,
+        "intern_id": "alemax",
+        "timestamp": {
+            "$date": "2025-05-15T07:09:48.620Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:08:44.909Z"
+        },
+        "time_taken": 63.710735,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "6825937eeb81db6bd2caf874"
+        },
+        "qa_index": 4,
+        "question": "సిద్ధిక్ వృత్తిగా చేసిన మొదటి ఉద్యోగం ఏమిటి?",
+        "answer": "ఎలక్ట్రికల్ ఇంజనీర్",
+        "judgment": "Doubt",
+        "content_id": 625,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-15T07:10:53.511Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-15T07:05:12.061Z"
+        },
+        "time_taken": 341.450046,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68270c8bb4b9c458ed92f2df"
+        },
+        "qa_index": 4,
+        "question": "గోరింకలు తింటాయేంటి?",
+        "answer": "పురుగులు, పండ్లు, గింజలు",
+        "judgment": "Doubt",
+        "content_id": 406,
+        "intern_id": "adarex",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:38.255Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-16T09:52:51.620Z"
+        },
+        "time_taken": 406.63526,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "68270f9fb4b9c458ed92f6ff"
+        },
+        "qa_index": 5,
+        "question": "నిహోనియం ఏ సంవత్సరంలో పేరుపెట్టబడింది?",
+        "answer": "2016",
+        "judgment": "Doubt",
+        "content_id": 338,
+        "intern_id": "ckunas",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:46.266Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-16T10:08:10.163Z"
+        },
+        "time_taken": 276.103283,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682aba25c3bcb657131de80c"
+        },
+        "qa_index": 5,
+        "question": "బాబ్ మార్లే哪 దేశంలో ఉంటాడు?",
+        "answer": "పోర్చుగల్",
+        "judgment": "Doubt",
+        "content_id": 724,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-19T04:57:07.907Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T04:54:32.098Z"
+        },
+        "time_taken": 155.809124,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682aba95c3bcb657131de8bd"
+        },
+        "qa_index": 5,
+        "question": "బాబ్ మార్లే哪 దేశంలో ఉంటాడు?",
+        "answer": "పోర్చుగల్",
+        "judgment": "Doubt",
+        "content_id": 724,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-19T04:58:59.621Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T04:57:43.241Z"
+        },
+        "time_taken": 76.380035,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abb19c3bcb657131de9b6"
+        },
+        "qa_index": 5,
+        "question": "బాబ్ మార్లే哪 దేశంలో ఉంటాడు?",
+        "answer": "పోర్చుగల్",
+        "judgment": "Doubt",
+        "content_id": 724,
+        "intern_id": "ysadax",
+        "timestamp": {
+            "$date": "2025-05-19T05:01:11.759Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T04:57:35.892Z"
+        },
+        "time_taken": 215.866962,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abbcac3bcb657131deb09"
+        },
+        "qa_index": 4,
+        "question": "విద్యా నివాస్ మిశ్రా మరణించ原因 ఏమిటి?",
+        "answer": "రోడ్డు ప్రమాదం",
+        "judgment": "Doubt",
+        "content_id": 762,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-19T05:04:09.314Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T05:02:34.749Z"
+        },
+        "time_taken": 94.564547,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abc44c3bcb657131debab"
+        },
+        "qa_index": 2,
+        "question": "రామకృష్ణయ్యకు ఇచ్చిన 약పేరు ఏమిటి?",
+        "answer": "బి.ఆర్.కె",
+        "judgment": "Doubt",
+        "content_id": 719,
+        "intern_id": "laamax",
+        "timestamp": {
+            "$date": "2025-05-19T05:06:11.704Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T05:04:50.700Z"
+        },
+        "time_taken": 81.003382,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abc77c3bcb657131debe0"
+        },
+        "qa_index": 2,
+        "question": "రామకృష్ణయ్యకు ఇచ్చిన 약పేరు ఏమిటి?",
+        "answer": "బి.ఆర్.కె",
+        "judgment": "Doubt",
+        "content_id": 719,
+        "intern_id": "manmux",
+        "timestamp": {
+            "$date": "2025-05-19T05:07:02.739Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T05:04:51.774Z"
+        },
+        "time_taken": 130.965047,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abc82c3bcb657131debf5"
+        },
+        "qa_index": 2,
+        "question": "రామకృష్ణయ్యకు ఇచ్చిన 약పేరు ఏమిటి?",
+        "answer": "బి.ఆర్.కె",
+        "judgment": "Doubt",
+        "content_id": 719,
+        "intern_id": "gchell",
+        "timestamp": {
+            "$date": "2025-05-19T05:07:13.250Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T05:04:31.877Z"
+        },
+        "time_taken": 161.373415,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682abe63c3bcb657131deead"
+        },
+        "qa_index": 4,
+        "question": "విద్యా నివాస్ మిశ్రా మరణించ原因 ఏమిటి?",
+        "answer": "రోడ్డు ప్రమాదం",
+        "judgment": "Doubt",
+        "content_id": 762,
+        "intern_id": "pshubh",
+        "timestamp": {
+            "$date": "2025-05-19T05:15:13.705Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-19T05:09:15.738Z"
+        },
+        "time_taken": 357.966448,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c4717388bdf17fc7b13d1"
+        },
+        "content_id": 792,
+        "intern_id": "laamax",
+        "qa_index": 3,
+        "question": "అతని మొదటి ప్రపంచ యుద్ధ అవార్డులు ఏమిటి?",
+        "answer": "MC, CVO",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:10:46.425Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:09:12.540Z"
+        },
+        "time_taken": 93.885113,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c4ad8388bdf17fc7b172d"
+        },
+        "content_id": 895,
+        "intern_id": "ysadax",
+        "qa_index": 0,
+        "question": "ఐపీఎల్ 2024哪 ఫైనల్ ఎక్కడ జరిగింది?",
+        "answer": "చెపాక్ స్టేడియం",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:26:47.688Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:23:54.236Z"
+        },
+        "time_taken": 173.451931,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c50da388bdf17fc7b1d13"
+        },
+        "content_id": 879,
+        "intern_id": "manmux",
+        "qa_index": 0,
+        "question": "అడవి ఆముదము శాస్త్రీయ నామం ఏమిటి?",
+        "answer": "Jatropha curcas",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:52:25.744Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:50:58.252Z"
+        },
+        "time_taken": 87.491449,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c50da388bdf17fc7b1d14"
+        },
+        "content_id": 879,
+        "intern_id": "manmux",
+        "qa_index": 1,
+        "question": "ఇది ఏ కుటుంబానికి చెందింది?",
+        "answer": "Euphorbiaceae",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:52:25.744Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:50:58.252Z"
+        },
+        "time_taken": 87.491449,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c510e388bdf17fc7b1d42"
+        },
+        "content_id": 879,
+        "intern_id": "alemax",
+        "qa_index": 0,
+        "question": "అడవి ఆముదము శాస్త్రీయ నామం ఏమిటి?",
+        "answer": "Jatropha curcas",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:53:17.792Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:50:49.321Z"
+        },
+        "time_taken": 148.471568,
+        "length": "short"
+    },
+    {
+        "_id": {
+            "$oid": "682c510e388bdf17fc7b1d43"
+        },
+        "content_id": 879,
+        "intern_id": "alemax",
+        "qa_index": 1,
+        "question": "ఇది ఏ కుటుంబానికి చెందింది?",
+        "answer": "Euphorbiaceae",
+        "judgment": "Doubt",
+        "timestamp": {
+            "$date": "2025-05-20T09:53:17.792Z"
+        },
+        "assigned_at": {
+            "$date": "2025-05-20T09:50:49.321Z"
+        },
+        "time_taken": 148.471568,
+        "length": "short"
+    }
+]

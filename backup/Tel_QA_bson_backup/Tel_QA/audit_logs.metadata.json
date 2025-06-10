@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"content_id":{"$numberInt":"1"},"intern_id":{"$numberInt":"1"}},"name":"content_id_1_intern_id_1"}],"uuid":"b6b2dbf921ee433c9ec0e7f57e8e34aa","collectionName":"audit_logs","type":"collection"}

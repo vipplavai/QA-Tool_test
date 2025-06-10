@@ -1,0 +1,6446 @@
+[
+    {
+        "_id": {
+            "$oid": "68184304af29661a893fc5b8"
+        },
+        "intern_id": "gchell",
+        "content_id": 146,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:47:04.272Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:48:04.017Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818432faf29661a893fc5b9"
+        },
+        "intern_id": "meesrx",
+        "content_id": 107,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:47:26.722Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:48:47.772Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818434daf29661a893fc5bb"
+        },
+        "intern_id": "pradex",
+        "content_id": 87,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:47:43.808Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:49:17.845Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818437caf29661a893fc5bd"
+        },
+        "intern_id": "gchell",
+        "content_id": 126,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:48:59.824Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:50:04.247Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681843a2af29661a893fc5c1"
+        },
+        "intern_id": "meesrx",
+        "content_id": 87,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:49:07.054Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:50:42.854Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681843d1af29661a893fc5c2"
+        },
+        "intern_id": "adarex",
+        "content_id": 15,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:50:05.861Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:51:29.476Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818440faf29661a893fc5c5"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 68,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:47:47.495Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:31.504Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818440faf29661a893fc5c6"
+        },
+        "intern_id": "ckunas",
+        "content_id": 12,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:48:49.664Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:31.645Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818440faf29661a893fc5c7"
+        },
+        "intern_id": "ysadax",
+        "content_id": 125,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:48:20.155Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:31.988Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184410af29661a893fc5c8"
+        },
+        "intern_id": "laamax",
+        "content_id": 153,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:49:26.102Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:32.130Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184410af29661a893fc5c9"
+        },
+        "intern_id": "manmux",
+        "content_id": 88,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:50:10.490Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:32.133Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184411af29661a893fc5ca"
+        },
+        "intern_id": "alemax",
+        "content_id": 158,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:50:07.676Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T04:52:33.423Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818470a27da0a6f24aaca61"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 190,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:54:25.490Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T05:05:14.712Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818480827da0a6f24aaca7a"
+        },
+        "intern_id": "manmux",
+        "content_id": 21,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:59:25.910Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T05:09:28.887Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818492c27da0a6f24aacab4"
+        },
+        "intern_id": "alemax",
+        "content_id": 117,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T04:54:07.403Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T05:14:20.060Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184e9327da0a6f24aacbf1"
+        },
+        "intern_id": "alemax",
+        "content_id": 11,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T05:26:31.281Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T05:37:23.391Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68184f4527da0a6f24aacc28"
+        },
+        "intern_id": "gchell",
+        "content_id": 94,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T05:29:25.094Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T05:40:21.410Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818577527da0a6f24aacdf5"
+        },
+        "intern_id": "ckunas",
+        "content_id": 193,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:05:06.182Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T06:15:17.676Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681857a327da0a6f24aacdfc"
+        },
+        "intern_id": "laamax",
+        "content_id": 131,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:01:36.833Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T06:16:03.868Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68185e9027da0a6f24aacfb7"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 5,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:35:10.109Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T06:45:36.188Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681860dd27da0a6f24aad018"
+        },
+        "intern_id": "adarex",
+        "content_id": 140,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:42:02.987Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T06:55:25.374Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681860ed27da0a6f24aad019"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 116,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:45:39.683Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T06:55:41.370Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818649d27da0a6f24aad0aa"
+        },
+        "intern_id": "gchell",
+        "content_id": 18,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:59:16.120Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:11:25.664Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681864ab27da0a6f24aad0b1"
+        },
+        "intern_id": "manmux",
+        "content_id": 119,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:59:13.023Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:11:39.287Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681866d627da0a6f24aad10c"
+        },
+        "intern_id": "pradex",
+        "content_id": 136,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T06:53:38.753Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:20:54.743Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818671527da0a6f24aad119"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 65,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T07:08:47.124Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:21:57.461Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818698027da0a6f24aad15c"
+        },
+        "intern_id": "pradex",
+        "content_id": 160,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T07:20:58.743Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:32:16.377Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68186c1727da0a6f24aad1ef"
+        },
+        "intern_id": "adarex",
+        "content_id": 121,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T07:32:21.981Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:43:19.018Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68186d8427da0a6f24aad226"
+        },
+        "intern_id": "pradex",
+        "content_id": 116,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T07:32:21.653Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T07:49:24.023Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6818702627da0a6f24aad2a3"
+        },
+        "intern_id": "manmux",
+        "content_id": 126,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-05T07:50:09.892Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-05T08:00:38.558Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819910927da0a6f24aad2b9"
+        },
+        "intern_id": "pshubh",
+        "content_id": 299,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T04:23:13.963Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T04:33:13.811Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681994a827da0a6f24aad2ba"
+        },
+        "intern_id": "pradex",
+        "content_id": 197,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T04:35:52.451Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T04:48:40.659Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68199a9027da0a6f24aad348"
+        },
+        "intern_id": "gchell",
+        "content_id": 166,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:03:08.125Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:13:52.366Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68199ed727da0a6f24aad4a0"
+        },
+        "intern_id": "pshubh",
+        "content_id": 262,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:12:45.829Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:32:07.252Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819a10827da0a6f24aad516"
+        },
+        "intern_id": "manmux",
+        "content_id": 153,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:29:11.219Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:41:28.181Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819a32327da0a6f24aad58f"
+        },
+        "intern_id": "gchell",
+        "content_id": 74,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:40:00.219Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:50:27.844Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819a38f27da0a6f24aad5ae"
+        },
+        "intern_id": "pshubh",
+        "content_id": 216,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:42:10.357Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:52:15.780Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819a39027da0a6f24aad5af"
+        },
+        "intern_id": "manmux",
+        "content_id": 67,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:41:37.616Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T05:52:16.107Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819a61f27da0a6f24aad66b"
+        },
+        "intern_id": "gchell",
+        "content_id": 273,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T05:52:06.056Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T06:03:11.865Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819aa9a27da0a6f24aad7b0"
+        },
+        "intern_id": "gchell",
+        "content_id": 150,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:11:57.592Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T06:22:18.854Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819ab7f27da0a6f24aad7d5"
+        },
+        "intern_id": "meesrx",
+        "content_id": 196,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:15:40.086Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T06:26:07.895Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819ac4827da0a6f24aad800"
+        },
+        "intern_id": "adarex",
+        "content_id": 174,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:19:25.045Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T06:29:28.455Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819adf527da0a6f24aad861"
+        },
+        "intern_id": "pshubh",
+        "content_id": 276,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:26:35.450Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T06:36:37.627Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819b51827da0a6f24aada12"
+        },
+        "intern_id": "pradex",
+        "content_id": 74,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:55:13.571Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:07:04.820Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819b56127da0a6f24aada2b"
+        },
+        "intern_id": "manmux",
+        "content_id": 80,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T06:57:25.316Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:08:17.553Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819bab727da0a6f24aadc25"
+        },
+        "intern_id": "pradex",
+        "content_id": 282,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T07:16:04.347Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:31:03.218Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819bdff27da0a6f24aadd5b"
+        },
+        "intern_id": "alemax",
+        "content_id": 299,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T07:34:52.199Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:45:03.330Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819bfa427da0a6f24aadd98"
+        },
+        "intern_id": "pshubh",
+        "content_id": 174,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T07:34:59.943Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:52:04.625Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819bff127da0a6f24aaddab"
+        },
+        "intern_id": "adarex",
+        "content_id": 294,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T07:42:28.402Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T07:53:21.287Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6819c1a127da0a6f24aade0c"
+        },
+        "intern_id": "alemax",
+        "content_id": 246,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-06T07:49:03.832Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-06T08:00:33.486Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681aeb1927da0a6f24aadf69"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 283,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T04:59:40.856Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T05:09:45.472Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681af51d27da0a6f24aae240"
+        },
+        "intern_id": "adarex",
+        "content_id": 49,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T05:42:18.157Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T05:52:29.081Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681af79627da0a6f24aae2f5"
+        },
+        "intern_id": "alemax",
+        "content_id": 300,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T05:52:24.646Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T06:03:02.377Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681afc4d27da0a6f24aae47e"
+        },
+        "intern_id": "pshubh",
+        "content_id": 129,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T06:13:07.897Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T06:23:09.859Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681afd9027da0a6f24aae4df"
+        },
+        "intern_id": "manmux",
+        "content_id": 229,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T06:17:55.638Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T06:28:32.150Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681b006627da0a6f24aae558"
+        },
+        "intern_id": "manmux",
+        "content_id": 175,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T06:28:40.637Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T06:40:38.561Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681b0a0d27da0a6f24aae7db"
+        },
+        "intern_id": "adarex",
+        "content_id": 31,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T07:11:47.739Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T07:21:49.268Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681b0db227da0a6f24aae8c6"
+        },
+        "intern_id": "gchell",
+        "content_id": 123,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T07:25:29.516Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T07:37:22.944Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681b198327da0a6f24aae9d8"
+        },
+        "intern_id": "alemax",
+        "content_id": 143,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-07T08:16:07.635Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-07T08:27:47.677Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681c7db027da0a6f24aaea9f"
+        },
+        "intern_id": "ysadax",
+        "content_id": 286,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-08T09:33:16.530Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-08T09:47:28.267Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681c875827da0a6f24aaebe9"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 285,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-08T10:18:40.419Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-08T10:28:40.268Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681c88e527da0a6f24aaec4a"
+        },
+        "intern_id": "alemax",
+        "content_id": 82,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-08T10:19:00.674Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-08T10:35:17.716Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681c8f6e27da0a6f24aaeddb"
+        },
+        "intern_id": "alemax",
+        "content_id": 281,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-08T10:52:40.619Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-08T11:03:10.942Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681dd15e27da0a6f24aaf0b1"
+        },
+        "intern_id": "pradex",
+        "content_id": 332,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T09:46:27.553Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T09:56:46.055Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681dd15e27da0a6f24aaf0b2"
+        },
+        "intern_id": "pradex",
+        "content_id": 332,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T09:46:27.553Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T09:56:46.356Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681dd25227da0a6f24aaf0f2"
+        },
+        "intern_id": "adarex",
+        "content_id": 316,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T09:50:48.908Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T10:00:50.266Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681dd25227da0a6f24aaf0f3"
+        },
+        "intern_id": "adarex",
+        "content_id": 316,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T09:50:48.908Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T10:00:50.687Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681dddd627da0a6f24aaf443"
+        },
+        "intern_id": "manmux",
+        "content_id": 424,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T10:39:37.984Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T10:49:58.784Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681de05327da0a6f24aaf4c2"
+        },
+        "intern_id": "manmux",
+        "content_id": 456,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T10:50:02.758Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T11:00:35.175Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "681de1e427da0a6f24aaf50b"
+        },
+        "intern_id": "alemax",
+        "content_id": 334,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-09T10:50:03.308Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-09T11:07:16.355Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682189dd135c7a6d61ca92d0"
+        },
+        "intern_id": "adarex",
+        "content_id": 449,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T05:33:39.459Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T05:40:45.713Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68218ae4135c7a6d61ca930d"
+        },
+        "intern_id": "manmux",
+        "content_id": 526,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T05:37:18.581Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T05:45:08.082Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68218cb4135c7a6d61ca939e"
+        },
+        "intern_id": "alemax",
+        "content_id": 573,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T05:44:44.128Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T05:52:52.220Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68219a15135c7a6d61ca9722"
+        },
+        "intern_id": "alemax",
+        "content_id": 509,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T06:42:49.122Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T06:49:57.900Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68219b76135c7a6d61ca9783"
+        },
+        "intern_id": "ysadax",
+        "content_id": 362,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T06:48:42.081Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T06:55:50.731Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68219d31135c7a6d61ca97d2"
+        },
+        "intern_id": "manmux",
+        "content_id": 322,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T06:55:41.834Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T07:03:13.830Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68219e69135c7a6d61ca97f1"
+        },
+        "intern_id": "gchell",
+        "content_id": 405,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T07:00:28.214Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T07:08:25.662Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6821a2f2135c7a6d61ca98ca"
+        },
+        "intern_id": "meesrx",
+        "content_id": 517,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T07:00:28.529Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T07:27:46.382Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6821a472135c7a6d61ca9930"
+        },
+        "intern_id": "gchell",
+        "content_id": 491,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T07:26:53.964Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T07:34:10.877Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6821a579135c7a6d61ca995f"
+        },
+        "intern_id": "manmux",
+        "content_id": 546,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-12T07:28:51.181Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-12T07:38:33.918Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e004135c7a6d61caa03f"
+        },
+        "intern_id": "alemax",
+        "content_id": 571,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T05:51:25.417Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:00:36.581Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e05b135c7a6d61caa06e"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 423,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T05:55:01.587Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:02:03.852Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e57b135c7a6d61caa227"
+        },
+        "intern_id": "manmux",
+        "content_id": 511,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T06:16:04.559Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:23:55.190Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e5e7135c7a6d61caa252"
+        },
+        "intern_id": "meesrx",
+        "content_id": 411,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T06:17:48.723Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:25:43.226Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e870135c7a6d61caa30d"
+        },
+        "intern_id": "meesrx",
+        "content_id": 331,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T06:25:47.366Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:36:32.346Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822e949135c7a6d61caa344"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 383,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T06:32:59.323Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:40:09.009Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6822ebaa135c7a6d61caa40b"
+        },
+        "intern_id": "pradex",
+        "content_id": 503,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-13T06:43:09.938Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-13T06:50:18.050Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68246a9deb81db6bd2cad948"
+        },
+        "intern_id": "pradex",
+        "content_id": 650,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-14T09:56:29.264Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-14T10:04:13.028Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68246b29eb81db6bd2cad9a6"
+        },
+        "intern_id": "gchell",
+        "content_id": 667,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-14T09:52:35.346Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-14T10:06:33.318Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68257306eb81db6bd2cae90b"
+        },
+        "intern_id": "pradex",
+        "content_id": 687,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T04:44:46.820Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T04:52:22.361Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68257411eb81db6bd2cae9a2"
+        },
+        "intern_id": "meesrx",
+        "content_id": 700,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T04:49:02.233Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T04:56:49.367Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68257a6deb81db6bd2caed47"
+        },
+        "intern_id": "pradex",
+        "content_id": 479,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T05:15:41.395Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T05:23:57.721Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682586f8eb81db6bd2caf30c"
+        },
+        "intern_id": "meesrx",
+        "content_id": 461,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T05:54:38.952Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T06:17:28.643Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68258727eb81db6bd2caf31b"
+        },
+        "intern_id": "adarex",
+        "content_id": 427,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T06:11:13.884Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T06:18:15.330Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68258869eb81db6bd2caf3a2"
+        },
+        "intern_id": "pradex",
+        "content_id": 671,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T06:14:16.890Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T06:23:37.704Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68259212eb81db6bd2caf7cb"
+        },
+        "intern_id": "manmux",
+        "content_id": 643,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-15T06:52:54.784Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-15T07:04:50.861Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a61b4b9c458ed92f120"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:50:25.272Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a6fb4b9c458ed92f128"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:50:39.440Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a7cb4b9c458ed92f12b"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:50:52.328Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a81b4b9c458ed92f12e"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:50:57.633Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a8eb4b9c458ed92f133"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:10.053Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a8fb4b9c458ed92f134"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:11.898Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270a98b4b9c458ed92f137"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:20.291Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270aafb4b9c458ed92f141"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:43.493Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ab3b4b9c458ed92f144"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:47.380Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270abfb4b9c458ed92f149"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:51:59.303Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ac4b4b9c458ed92f14c"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:04.123Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270acab4b9c458ed92f154"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:10.219Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270acfb4b9c458ed92f159"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:15.644Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ad1b4b9c458ed92f15a"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:17.047Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ad3b4b9c458ed92f15d"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:19.221Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ad6b4b9c458ed92f160"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:22.490Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ae2b4b9c458ed92f165"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:34.519Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ae8b4b9c458ed92f16d"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:40.313Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270aeab4b9c458ed92f170"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:42.327Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270aedb4b9c458ed92f173"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:45.199Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270af1b4b9c458ed92f178"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:49.792Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270af4b4b9c458ed92f17b"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:52.071Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270af4b4b9c458ed92f17c"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:52:52.096Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270affb4b9c458ed92f181"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:03.698Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b00b4b9c458ed92f182"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:04.881Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b0ab4b9c458ed92f187"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:14.405Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b0bb4b9c458ed92f188"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:15.293Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b12b4b9c458ed92f18b"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:22.571Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b15b4b9c458ed92f18e"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:25.775Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b23b4b9c458ed92f191"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:39.615Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b2fb4b9c458ed92f19d"
+        },
+        "intern_id": "laamax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:53:51.349Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b38b4b9c458ed92f1a2"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:00.793Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b46b4b9c458ed92f1a8"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:14.196Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b51b4b9c458ed92f1ab"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:25.035Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b55b4b9c458ed92f1b7"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:29.974Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b56b4b9c458ed92f1b8"
+        },
+        "intern_id": "meesrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:30.387Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b5db4b9c458ed92f1c2"
+        },
+        "intern_id": "ysadax",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:37.454Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b62b4b9c458ed92f1c5"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:42.376Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b6cb4b9c458ed92f1cb"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:54:52.661Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b76b4b9c458ed92f1d4"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:02.672Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b88b4b9c458ed92f1dc"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:20.756Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b8fb4b9c458ed92f1e3"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:27.321Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b8fb4b9c458ed92f1e4"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:27.402Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b92b4b9c458ed92f1e7"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:30.480Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b9ab4b9c458ed92f1ec"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:38.571Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270b9bb4b9c458ed92f1ed"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:39.446Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ba0b4b9c458ed92f1f2"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:44.050Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ba2b4b9c458ed92f1f3"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:46.160Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ba5b4b9c458ed92f1f6"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:49.099Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ba9b4b9c458ed92f1f9"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:53.161Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bafb4b9c458ed92f1fe"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:55:59.702Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bb0b4b9c458ed92f1ff"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:00.518Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bb6b4b9c458ed92f202"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:06.938Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bd7b4b9c458ed92f20e"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:39.372Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bdab4b9c458ed92f213"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:42.116Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bda2dde8f8eefb7dce8"
+        },
+        "content_id": 602,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:45.654Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bdbb4b9c458ed92f214"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:43.497Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270be6b4b9c458ed92f220"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:54.016Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270be7b4b9c458ed92f221"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:56:55.930Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270becb4b9c458ed92f22f"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:00.888Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270befb4b9c458ed92f230"
+        },
+        "intern_id": "laamax",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:03.722Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bf8b4b9c458ed92f235"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:12.090Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bfbb4b9c458ed92f23b"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:15.590Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bfeb4b9c458ed92f240"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:18.595Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270bffb4b9c458ed92f241"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:19.410Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c04b4b9c458ed92f24f"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:24.035Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c04b4b9c458ed92f250"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:24.051Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c04b4b9c458ed92f251"
+        },
+        "intern_id": "gchell",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:24.340Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c042dde8f8eefb7dced"
+        },
+        "content_id": 309,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:46.486Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c0db4b9c458ed92f254"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:33.149Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c1ab4b9c458ed92f264"
+        },
+        "intern_id": "meesrx",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:46.731Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c1ab4b9c458ed92f266"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:46.959Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c1cb4b9c458ed92f268"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:48.223Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c25b4b9c458ed92f26d"
+        },
+        "intern_id": "meesrx",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:57:57.630Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c29b4b9c458ed92f272"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:01.048Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c2ab4b9c458ed92f273"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:02.835Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c30b4b9c458ed92f27a"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:08.907Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c31b4b9c458ed92f27b"
+        },
+        "intern_id": "meesrx",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:09.117Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c31b4b9c458ed92f27c"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:09.467Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c3db4b9c458ed92f282"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:21.556Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c44b4b9c458ed92f290"
+        },
+        "intern_id": "ysadax",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:28.945Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c46b4b9c458ed92f291"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:30.774Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c4cb4b9c458ed92f294"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:36.517Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c53b4b9c458ed92f2a1"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:43.201Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c53b4b9c458ed92f2a2"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:43.928Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c59b4b9c458ed92f2aa"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:49.052Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c59b4b9c458ed92f2ab"
+        },
+        "intern_id": "meesrx",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:49.890Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c5eb4b9c458ed92f2b4"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:54.248Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c5fb4b9c458ed92f2b7"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:55.624Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c5fb4b9c458ed92f2b8"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:55.794Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c602dde8f8eefb7dcf8"
+        },
+        "content_id": 605,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:47.468Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c62b4b9c458ed92f2b9"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:58:58.213Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c69b4b9c458ed92f2be"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:05.420Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c7eb4b9c458ed92f2ca"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:26.012Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c80b4b9c458ed92f2cd"
+        },
+        "intern_id": "manmux",
+        "content_id": 309,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:28.074Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c84b4b9c458ed92f2d5"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 602,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:32.424Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c8fb4b9c458ed92f2ec"
+        },
+        "intern_id": "adarex",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:43.219Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c90b4b9c458ed92f2ef"
+        },
+        "intern_id": "meesrx",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:44.217Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c94b4b9c458ed92f2f6"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:48.687Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c95b4b9c458ed92f2f7"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:49.882Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c9db4b9c458ed92f306"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:57.192Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c9d2dde8f8eefb7dcfa"
+        },
+        "status": "retired",
+        "content_id": 384,
+        "timestamp": {
+            "$date": "2025-05-16T10:02:16.179Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270c9eb4b9c458ed92f308"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T09:59:58.447Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ca2b4b9c458ed92f30c"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:02.275Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ca7b4b9c458ed92f319"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:07.307Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ca8b4b9c458ed92f31c"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:08.242Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ca9b4b9c458ed92f31e"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:09.536Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270caa2dde8f8eefb7dcfb"
+        },
+        "content_id": 634,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:27.092Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270caab4b9c458ed92f31f"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:10.796Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cb1b4b9c458ed92f331"
+        },
+        "intern_id": "laamax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:17.098Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cb1b4b9c458ed92f332"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:17.988Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cb3b4b9c458ed92f333"
+        },
+        "intern_id": "adarex",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:19.744Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cb8b4b9c458ed92f339"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:24.398Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cbcb4b9c458ed92f33e"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:28.993Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cbeb4b9c458ed92f342"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:30.870Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cc1b4b9c458ed92f346"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:33.592Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cc22dde8f8eefb7dcfd"
+        },
+        "status": "retired",
+        "content_id": 406,
+        "timestamp": {
+            "$date": "2025-05-16T10:03:35.884Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cc3b4b9c458ed92f347"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:35.519Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cc8b4b9c458ed92f34c"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:40.442Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cc8b4b9c458ed92f34d"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:40.801Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ccbb4b9c458ed92f350"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:43.611Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cd0b4b9c458ed92f357"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:48.997Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cd3b4b9c458ed92f35c"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:51.417Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cd3b4b9c458ed92f35d"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:51.529Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cd5b4b9c458ed92f35e"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:53.497Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cdab4b9c458ed92f367"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:58.995Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cdbb4b9c458ed92f369"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:00:59.512Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cdfb4b9c458ed92f371"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:03.698Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ce4b4b9c458ed92f374"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:08.127Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ce6b4b9c458ed92f377"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:10.385Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ce7b4b9c458ed92f37a"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:11.317Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cebb4b9c458ed92f37e"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:15.108Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cefb4b9c458ed92f392"
+        },
+        "intern_id": "gchell",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:19.623Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cf0b4b9c458ed92f393"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:20.286Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cf2b4b9c458ed92f394"
+        },
+        "intern_id": "laamax",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:22.145Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cf5b4b9c458ed92f39b"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:25.612Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cf6b4b9c458ed92f39c"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:26.862Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270cf7b4b9c458ed92f39d"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:27.929Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d00b4b9c458ed92f3aa"
+        },
+        "intern_id": "adarex",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:36.338Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d01b4b9c458ed92f3af"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:37.725Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d02b4b9c458ed92f3b3"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:38.766Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d05b4b9c458ed92f3ba"
+        },
+        "intern_id": "laamax",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:41.131Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d06b4b9c458ed92f3bb"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:42.562Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d06b4b9c458ed92f3bc"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:42.766Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d0ab4b9c458ed92f3c3"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:46.794Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d0bb4b9c458ed92f3c4"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:47.291Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d12b4b9c458ed92f3c7"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:54.479Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d17b4b9c458ed92f3ce"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:01:59.663Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d19b4b9c458ed92f3d1"
+        },
+        "intern_id": "laamax",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:01.160Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d1ab4b9c458ed92f3d3"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:02.246Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d1bb4b9c458ed92f3db"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:03.303Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d1db4b9c458ed92f3e0"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:05.854Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d1fb4b9c458ed92f3e4"
+        },
+        "intern_id": "manmux",
+        "content_id": 384,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:07.250Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d21b4b9c458ed92f3ef"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:09.100Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d22b4b9c458ed92f3f2"
+        },
+        "intern_id": "laamax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:10.739Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d24b4b9c458ed92f3f3"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 634,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:12.036Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d28b4b9c458ed92f3fb"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:16.179Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d2db4b9c458ed92f400"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:21.206Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d2db4b9c458ed92f401"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:21.498Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d30b4b9c458ed92f40a"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:24.537Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d31b4b9c458ed92f40d"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:25.266Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d35b4b9c458ed92f411"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:29.172Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d3ab4b9c458ed92f41a"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:34.226Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d3cb4b9c458ed92f41b"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:36.546Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d3cb4b9c458ed92f41c"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:36.797Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d3fb4b9c458ed92f426"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:39.641Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d41b4b9c458ed92f42d"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:41.158Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d43b4b9c458ed92f432"
+        },
+        "intern_id": "ckunas",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:43.418Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d43b4b9c458ed92f433"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:43.771Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d44b4b9c458ed92f434"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:44.268Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d45b4b9c458ed92f435"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:02:45.272Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d56b4b9c458ed92f43f"
+        },
+        "intern_id": "laamax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:02.550Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d57b4b9c458ed92f443"
+        },
+        "intern_id": "ckunas",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:03.787Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d5ab4b9c458ed92f448"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:06.072Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d5cb4b9c458ed92f44e"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:08.462Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d5db4b9c458ed92f450"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:09.212Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d5eb4b9c458ed92f455"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:10.885Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d60b4b9c458ed92f456"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:12.044Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d60b4b9c458ed92f457"
+        },
+        "intern_id": "ckunas",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:12.330Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d6cb4b9c458ed92f462"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:24.662Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d70b4b9c458ed92f469"
+        },
+        "intern_id": "meesrx",
+        "content_id": 406,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:28.496Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d73b4b9c458ed92f46a"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:31.179Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d76b4b9c458ed92f46f"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:34.727Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d7cb4b9c458ed92f47a"
+        },
+        "intern_id": "ysadax",
+        "content_id": 605,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:40.385Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d7fb4b9c458ed92f481"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:43.758Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d81b4b9c458ed92f486"
+        },
+        "intern_id": "meesrx",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:45.436Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d812dde8f8eefb7dd0b"
+        },
+        "content_id": 668,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:15.532Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d83b4b9c458ed92f488"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:47.523Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d8ab4b9c458ed92f491"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:54.684Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d8cb4b9c458ed92f492"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:56.298Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d8db4b9c458ed92f493"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:03:57.038Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d99b4b9c458ed92f49f"
+        },
+        "intern_id": "pshubh",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:09.494Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270d9bb4b9c458ed92f4a0"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:11.333Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dabb4b9c458ed92f4a3"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:27.289Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270db0b4b9c458ed92f4a6"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:32.392Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270db6b4b9c458ed92f4a9"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:38.808Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dc3b4b9c458ed92f4af"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:51.676Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dcab4b9c458ed92f4b6"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:04:58.278Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dceb4b9c458ed92f4b9"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:02.717Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dd2b4b9c458ed92f4be"
+        },
+        "intern_id": "meesrx",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:06.493Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dd2b4b9c458ed92f4bf"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:06.855Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dd8b4b9c458ed92f4cd"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:12.317Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dd9b4b9c458ed92f4d2"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:13.256Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dd9b4b9c458ed92f4d5"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:13.739Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ddab4b9c458ed92f4d6"
+        },
+        "intern_id": "meesrx",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:14.225Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ddcb4b9c458ed92f4d9"
+        },
+        "intern_id": "manmux",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:16.347Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dddb4b9c458ed92f4da"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:17.726Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270de1b4b9c458ed92f4df"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:21.831Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270de3b4b9c458ed92f4e0"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:23.364Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270decb4b9c458ed92f4e7"
+        },
+        "intern_id": "meesrx",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:32.096Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270df2b4b9c458ed92f4ea"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:38.463Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270df9b4b9c458ed92f4ed"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:45.346Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270dfdb4b9c458ed92f4f0"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:05:49.211Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e09b4b9c458ed92f4f3"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:01.572Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e0eb4b9c458ed92f4f6"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:06.130Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e15b4b9c458ed92f4f9"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:13.309Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e1cb4b9c458ed92f514"
+        },
+        "intern_id": "adarex",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:20.388Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e1eb4b9c458ed92f51a"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:22.778Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e1eb4b9c458ed92f51b"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:22.933Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e1fb4b9c458ed92f51c"
+        },
+        "intern_id": "gchell",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:23.938Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e21b4b9c458ed92f51d"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:25.325Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e27b4b9c458ed92f532"
+        },
+        "intern_id": "laamax",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:31.974Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e28b4b9c458ed92f535"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:32.928Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e2ab4b9c458ed92f539"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:34.988Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e2cb4b9c458ed92f53c"
+        },
+        "intern_id": "ysadax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:36.843Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e32b4b9c458ed92f548"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:42.857Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e39b4b9c458ed92f551"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:49.573Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e3ab4b9c458ed92f552"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:06:50.202Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e45b4b9c458ed92f555"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:01.683Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e4bb4b9c458ed92f55f"
+        },
+        "intern_id": "meesrx",
+        "content_id": 668,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:07.077Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e52b4b9c458ed92f566"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:14.935Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e54b4b9c458ed92f568"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:16.644Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e5bb4b9c458ed92f56f"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:23.385Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e5cb4b9c458ed92f570"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:24.446Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e61b4b9c458ed92f573"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:29.280Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e72b4b9c458ed92f57a"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:46.066Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e73b4b9c458ed92f57b"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:47.002Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e73b4b9c458ed92f57c"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:07:47.581Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e80b4b9c458ed92f58a"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:00.793Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e81b4b9c458ed92f58b"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:01.558Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e82b4b9c458ed92f58d"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:02.068Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e88b4b9c458ed92f592"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:08.523Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e8ab4b9c458ed92f597"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:10.608Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e8b2dde8f8eefb7dd15"
+        },
+        "status": "retired",
+        "content_id": 338,
+        "timestamp": {
+            "$date": "2025-05-16T10:13:36.822Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e8bb4b9c458ed92f598"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:11.922Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e90b4b9c458ed92f5a1"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:16.737Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e91b4b9c458ed92f5a7"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:17.981Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e94b4b9c458ed92f5aa"
+        },
+        "intern_id": "laamax",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:20.566Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e96b4b9c458ed92f5ab"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:22.420Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e99b4b9c458ed92f5ae"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:25.801Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270e9eb4b9c458ed92f5b5"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:30.892Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea2b4b9c458ed92f5b9"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:34.580Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea7b4b9c458ed92f5c6"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:39.638Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea7b4b9c458ed92f5c7"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:39.843Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea82dde8f8eefb7dd1a"
+        },
+        "content_id": 552,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:41.184Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea8b4b9c458ed92f5c8"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:40.382Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ea9b4b9c458ed92f5cb"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:41.764Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eaeb4b9c458ed92f5d4"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:46.291Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eb1b4b9c458ed92f5d8"
+        },
+        "intern_id": "gchell",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:49.605Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eb4b4b9c458ed92f5db"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:08:52.672Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec0b4b9c458ed92f5ec"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:04.291Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec1b4b9c458ed92f5f0"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:05.088Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec1b4b9c458ed92f5f3"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:05.227Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec3b4b9c458ed92f5f4"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:07.767Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec3b4b9c458ed92f5f5"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:07.981Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec42dde8f8eefb7dd1b"
+        },
+        "content_id": 390,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:49.521Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec7b4b9c458ed92f606"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:11.922Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ec9b4b9c458ed92f607"
+        },
+        "intern_id": "pshubh",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:13.134Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ecfb4b9c458ed92f60c"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:19.551Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed02dde8f8eefb7dd1c"
+        },
+        "content_id": 673,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:13.167Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed0b4b9c458ed92f60f"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:20.361Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed2b4b9c458ed92f613"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:22.722Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed5b4b9c458ed92f61c"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:25.487Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed7b4b9c458ed92f61f"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:27.325Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ed9b4b9c458ed92f622"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:29.792Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270edab4b9c458ed92f625"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:30.722Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eddb4b9c458ed92f626"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:33.490Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ee0b4b9c458ed92f62f"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:36.403Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ee1b4b9c458ed92f631"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:37.766Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ee1b4b9c458ed92f632"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:37.785Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ee5b4b9c458ed92f637"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:41.793Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ee7b4b9c458ed92f63e"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:43.985Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eeab4b9c458ed92f643"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:46.294Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eea2dde8f8eefb7dd1f"
+        },
+        "content_id": 672,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:12.673Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eeab4b9c458ed92f645"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:46.989Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270eebb4b9c458ed92f646"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:47.482Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ef1b4b9c458ed92f64b"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:53.368Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ef4b4b9c458ed92f650"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:56.450Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ef5b4b9c458ed92f653"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:09:57.510Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f01b4b9c458ed92f656"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:09.084Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f05b4b9c458ed92f659"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:13.688Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f0ab4b9c458ed92f667"
+        },
+        "intern_id": "laamax",
+        "content_id": 552,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:18.415Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f0db4b9c458ed92f668"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:21.087Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f1fb4b9c458ed92f66f"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:39.562Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f25b4b9c458ed92f673"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:45.612Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f29b4b9c458ed92f678"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:10:49.799Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f2a2dde8f8eefb7dd25"
+        },
+        "content_id": 603,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:25:40.610Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f3ab4b9c458ed92f67b"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:06.527Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f44b4b9c458ed92f680"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:16.846Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f48b4b9c458ed92f685"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:20.871Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f49b4b9c458ed92f686"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:21.501Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f51b4b9c458ed92f689"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:29.489Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f55b4b9c458ed92f68e"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:33.871Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f56b4b9c458ed92f691"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:34.271Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f58b4b9c458ed92f692"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:36.816Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f5bb4b9c458ed92f695"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:39.942Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f5fb4b9c458ed92f698"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:43.879Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f67b4b9c458ed92f6a6"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:51.372Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f67b4b9c458ed92f6a7"
+        },
+        "intern_id": "alemax",
+        "content_id": 673,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:51.434Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f67b4b9c458ed92f6a8"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:11:51.616Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f71b4b9c458ed92f6ab"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:01.103Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f74b4b9c458ed92f6af"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:04.144Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f78b4b9c458ed92f6b8"
+        },
+        "intern_id": "adarex",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:08.664Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f7db4b9c458ed92f6c5"
+        },
+        "intern_id": "meesrx",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:13.651Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f80b4b9c458ed92f6c8"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:16.883Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f85b4b9c458ed92f6d3"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:21.802Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f862dde8f8eefb7dd2b"
+        },
+        "content_id": 662,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:42.782Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f8bb4b9c458ed92f6de"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:27.786Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f8db4b9c458ed92f6df"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:29.224Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f8db4b9c458ed92f6e0"
+        },
+        "intern_id": "meesrx",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:29.532Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f90b4b9c458ed92f6e3"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:32.420Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f9ab4b9c458ed92f6f1"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:42.687Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270f9cb4b9c458ed92f6f2"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:44.494Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa1b4b9c458ed92f703"
+        },
+        "intern_id": "meesrx",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:49.027Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa1b4b9c458ed92f704"
+        },
+        "intern_id": "gchell",
+        "content_id": 390,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:49.054Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa3b4b9c458ed92f711"
+        },
+        "intern_id": "ckunas",
+        "content_id": 338,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:51.192Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa3b4b9c458ed92f712"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:51.940Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa5b4b9c458ed92f713"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:53.357Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fa5b4b9c458ed92f715"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:53.620Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270faab4b9c458ed92f71e"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:12:58.169Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270facb4b9c458ed92f721"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:00.251Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270faeb4b9c458ed92f724"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:02.711Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fb1b4b9c458ed92f727"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:05.006Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fb3b4b9c458ed92f729"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:07.042Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fb7b4b9c458ed92f732"
+        },
+        "intern_id": "laamax",
+        "content_id": 603,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:11.553Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fbbb4b9c458ed92f737"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:15.593Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fbcb4b9c458ed92f738"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:16.449Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fc4b4b9c458ed92f740"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:24.751Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fc7b4b9c458ed92f743"
+        },
+        "intern_id": "laamax",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:27.957Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fd5b4b9c458ed92f74b"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:41.848Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fd8b4b9c458ed92f74e"
+        },
+        "intern_id": "ckunas",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:44.915Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fd92dde8f8eefb7dd31"
+        },
+        "status": "retired",
+        "content_id": 628,
+        "timestamp": {
+            "$date": "2025-05-16T10:14:18.055Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fe4b4b9c458ed92f751"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:13:56.623Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fedb4b9c458ed92f756"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:05.816Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270fefb4b9c458ed92f759"
+        },
+        "intern_id": "laamax",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:07.314Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ff1b4b9c458ed92f75a"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:09.469Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ff4b4b9c458ed92f75d"
+        },
+        "intern_id": "laamax",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:12.759Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ff9b4b9c458ed92f765"
+        },
+        "intern_id": "ckunas",
+        "content_id": 628,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:17.396Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ffcb4b9c458ed92f769"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:20.036Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68270ffcb4b9c458ed92f76a"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:20.472Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271001b4b9c458ed92f778"
+        },
+        "intern_id": "ckunas",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:25.705Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710022dde8f8eefb7dd37"
+        },
+        "status": "retired",
+        "content_id": 679,
+        "timestamp": {
+            "$date": "2025-05-16T10:15:17.638Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271002b4b9c458ed92f779"
+        },
+        "intern_id": "alemax",
+        "content_id": 662,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:26.564Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827100db4b9c458ed92f77c"
+        },
+        "intern_id": "ckunas",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:37.825Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271012b4b9c458ed92f789"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:42.899Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827101ab4b9c458ed92f790"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:50.543Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827101bb4b9c458ed92f791"
+        },
+        "intern_id": "ckunas",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:51.328Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271021b4b9c458ed92f79b"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:57.844Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271023b4b9c458ed92f79c"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:14:59.604Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271026b4b9c458ed92f79f"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:02.532Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827102cb4b9c458ed92f7a9"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:08.652Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827102eb4b9c458ed92f7aa"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:10.129Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271032b4b9c458ed92f7af"
+        },
+        "intern_id": "manmux",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:14.311Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271034b4b9c458ed92f7b0"
+        },
+        "intern_id": "meesrx",
+        "content_id": 679,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:16.959Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271038b4b9c458ed92f7b8"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:20.529Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271039b4b9c458ed92f7bb"
+        },
+        "intern_id": "manmux",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:21.982Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827103ab4b9c458ed92f7bc"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:22.200Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827103db4b9c458ed92f7c1"
+        },
+        "intern_id": "meesrx",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:25.424Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827103db4b9c458ed92f7c2"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:25.504Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271040b4b9c458ed92f7c5"
+        },
+        "intern_id": "meesrx",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:28.669Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271048b4b9c458ed92f7cd"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:36.768Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271049b4b9c458ed92f7ce"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:37.041Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271051b4b9c458ed92f7d1"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:45.411Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271055b4b9c458ed92f7d4"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:49.125Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827105ab4b9c458ed92f7d9"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:54.477Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827105db4b9c458ed92f7de"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:57.296Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827105db4b9c458ed92f7df"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:15:57.589Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271065b4b9c458ed92f7e2"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:05.053Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827106bb4b9c458ed92f7e5"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:11.139Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271072b4b9c458ed92f7f5"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:18.159Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271073b4b9c458ed92f7f6"
+        },
+        "intern_id": "laamax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:19.252Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271073b4b9c458ed92f7f7"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:19.993Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271078b4b9c458ed92f7fc"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:24.053Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271080b4b9c458ed92f802"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:32.777Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710812dde8f8eefb7dd40"
+        },
+        "status": "retired",
+        "content_id": 586,
+        "timestamp": {
+            "$date": "2025-05-16T10:18:09.037Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271087b4b9c458ed92f809"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:39.960Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271088b4b9c458ed92f80a"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:40.764Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271089b4b9c458ed92f80b"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:41.927Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271092b4b9c458ed92f817"
+        },
+        "intern_id": "alemax",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:50.878Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271093b4b9c458ed92f818"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:51.164Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827109bb4b9c458ed92f827"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:16:59.549Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827109eb4b9c458ed92f828"
+        },
+        "intern_id": "adarex",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:02.174Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710a1b4b9c458ed92f838"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:05.070Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710a2b4b9c458ed92f839"
+        },
+        "intern_id": "alemax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:06.453Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710a3b4b9c458ed92f83a"
+        },
+        "intern_id": "ckunas",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:07.057Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710a8b4b9c458ed92f83d"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:12.495Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710abb4b9c458ed92f842"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:15.568Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710b0b4b9c458ed92f846"
+        },
+        "intern_id": "alemax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:20.363Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710b5b4b9c458ed92f84b"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:25.762Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710b62dde8f8eefb7dd41"
+        },
+        "content_id": 14,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:21.210Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710bdb4b9c458ed92f850"
+        },
+        "intern_id": "alemax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:33.332Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710bdb4b9c458ed92f851"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:33.740Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710c8b4b9c458ed92f858"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:44.693Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710cbb4b9c458ed92f859"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:47.318Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710cfb4b9c458ed92f85f"
+        },
+        "intern_id": "alemax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:51.342Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710d0b4b9c458ed92f864"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:52.403Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710d3b4b9c458ed92f867"
+        },
+        "intern_id": "adarex",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:55.042Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710d32dde8f8eefb7dd46"
+        },
+        "content_id": 402,
+        "status": "retired",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:10.365Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710d5b4b9c458ed92f86f"
+        },
+        "intern_id": "alemax",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:17:57.365Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710d8b4b9c458ed92f873"
+        },
+        "intern_id": "laamax",
+        "content_id": 586,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:00.472Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710dcb4b9c458ed92f87c"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:04.804Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710dd2dde8f8eefb7dd47"
+        },
+        "status": "retired",
+        "content_id": 589,
+        "timestamp": {
+            "$date": "2025-05-16T10:22:56.309Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710deb4b9c458ed92f87f"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:06.333Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710deb4b9c458ed92f880"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:06.655Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710e4b4b9c458ed92f886"
+        },
+        "intern_id": "pshubh",
+        "content_id": 672,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:12.234Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710e7b4b9c458ed92f889"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:15.511Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710edb4b9c458ed92f891"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:21.426Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682710edb4b9c458ed92f892"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:21.564Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271109b4b9c458ed92f899"
+        },
+        "intern_id": "manmux",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:49.804Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827110bb4b9c458ed92f89a"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:51.308Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827110fb4b9c458ed92f8a3"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:55.792Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271112b4b9c458ed92f8a6"
+        },
+        "intern_id": "manmux",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:18:58.391Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271114b4b9c458ed92f8a7"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:00.027Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827111bb4b9c458ed92f8b5"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:07.385Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827111cb4b9c458ed92f8b6"
+        },
+        "intern_id": "manmux",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:08.640Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827111db4b9c458ed92f8b7"
+        },
+        "intern_id": "adarex",
+        "content_id": 402,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:09.686Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271125b4b9c458ed92f8c8"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:17.197Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682711252dde8f8eefb7dd4e"
+        },
+        "status": "retired",
+        "content_id": 695,
+        "timestamp": {
+            "$date": "2025-05-16T10:25:50.108Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271126b4b9c458ed92f8c9"
+        },
+        "intern_id": "meesrx",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:18.235Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271127b4b9c458ed92f8ca"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:19.575Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827112ab4b9c458ed92f8cf"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:22.688Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271131b4b9c458ed92f8d7"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:29.880Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271133b4b9c458ed92f8d8"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:31.306Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271136b4b9c458ed92f8db"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:34.226Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271143b4b9c458ed92f8de"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:47.875Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827114fb4b9c458ed92f8e5"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:59.167Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827114fb4b9c458ed92f8e6"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:19:59.727Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271155b4b9c458ed92f8e9"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:05.491Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827117ab4b9c458ed92f8f1"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:42.168Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271182b4b9c458ed92f8fd"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:50.634Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271183b4b9c458ed92f8fe"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:51.265Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271188b4b9c458ed92f903"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:56.173Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271188b4b9c458ed92f904"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:20:56.752Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827118db4b9c458ed92f907"
+        },
+        "intern_id": "laamax",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:01.766Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271190b4b9c458ed92f90c"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:04.745Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271190b4b9c458ed92f90d"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:04.833Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827119ab4b9c458ed92f91a"
+        },
+        "intern_id": "ckunas",
+        "content_id": 14,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:14.357Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682711b7b4b9c458ed92f922"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:43.448Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682711bdb4b9c458ed92f92c"
+        },
+        "intern_id": "alemax",
+        "content_id": 589,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:21:49.462Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682711ebb4b9c458ed92f92f"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:22:35.798Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271223b4b9c458ed92f93e"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:23:31.829Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "6827123fb4b9c458ed92f946"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:23:59.373Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271261b4b9c458ed92f949"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:24:33.445Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "68271268b4b9c458ed92f953"
+        },
+        "intern_id": "adarex",
+        "content_id": 695,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-16T10:24:40.154Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c0bf91f84c80f45e2b650"
+        },
+        "intern_id": "pradex",
+        "content_id": 862,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T04:58:33.807Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c4bfd388bdf17fc7b1846"
+        },
+        "intern_id": "pradex",
+        "content_id": 816,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:31:41.268Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c4dc0388bdf17fc7b1a1c"
+        },
+        "intern_id": "meesrx",
+        "content_id": 861,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:39:12.227Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c4df0388bdf17fc7b1a53"
+        },
+        "intern_id": "pradex",
+        "content_id": 855,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:40:00.020Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c5008388bdf17fc7b1c4c"
+        },
+        "intern_id": "meesrx",
+        "content_id": 794,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:48:56.467Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c50d9388bdf17fc7b1d0c"
+        },
+        "intern_id": "adarex",
+        "content_id": 861,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:52:25.755Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c5144388bdf17fc7b1d67"
+        },
+        "intern_id": "vinsrx",
+        "content_id": 795,
+        "status": "manual_skip",
+        "timestamp": {
+            "$date": "2025-05-20T09:54:12.549Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c521c388bdf17fc7b1d96"
+        },
+        "intern_id": "pradex",
+        "content_id": null,
+        "status": "missing_or_invalid",
+        "assigned_at": false,
+        "timestamp": {
+            "$date": "2025-05-20T09:57:48.311Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c6a1a41357c06d35db0d7"
+        },
+        "intern_id": "katprx",
+        "content_id": null,
+        "status": "missing_or_invalid",
+        "assigned_at": false,
+        "timestamp": {
+            "$date": "2025-05-20T11:40:10.187Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682c6a9e41357c06d35db0f7"
+        },
+        "intern_id": "katprx",
+        "content_id": null,
+        "status": "missing_or_invalid",
+        "assigned_at": false,
+        "timestamp": {
+            "$date": "2025-05-20T11:42:22.829Z"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "682ca2b341357c06d35db25a"
+        },
+        "intern_id": "katprx",
+        "content_id": 888,
+        "status": "timeout",
+        "assigned_at": {
+            "$date": "2025-05-20T11:46:24.151Z"
+        },
+        "timestamp": {
+            "$date": "2025-05-20T15:41:39.641Z"
+        }
+    }
+]
