@@ -74,6 +74,46 @@ try:
             border-radius: 10px;
             margin: 1rem 0;
         }
+        div.stButton > button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            border: none !important;
+            padding: 1.5rem 1rem !important;
+            border-radius: 15px !important;
+            font-weight: bold !important;
+            font-size: 1.1rem !important;
+            margin: 0.5rem 0 !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+            transition: all 0.3s ease !important;
+            height: 120px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        div.stButton > button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+        }
+        /* Specific button styles */
+        div[data-testid="column"]:nth-child(1) button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%) !important;
+        }
+        div[data-testid="column"]:nth-child(1) button:hover {
+            background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%) !important;
+        }
+        div[data-testid="column"]:nth-child(2) button {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%) !important;
+        }
+        div[data-testid="column"]:nth-child(2) button:hover {
+            background: linear-gradient(135deg, #44a08d 0%, #4ecdc4 100%) !important;
+        }
+        div[data-testid="column"]:nth-child(3) button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        }
+        div[data-testid="column"]:nth-child(3) button:hover {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%) !important;
+        }
         </style>
     """, unsafe_allow_html=True)
 except Exception as e:
@@ -236,11 +276,23 @@ def main():
     st.markdown("<div class='queue-selector'>", unsafe_allow_html=True)
     st.subheader("📋 Select Auditing Queue")
     
-    queue_selection = st.radio(
-        "Choose the queue to audit:",
-        ("Short Queue", "Medium and Long Queue", "Edit Queue"),
-        help="Short Queue: Existing short Q&A pairs\nMedium and Long Queue: Medium/Long Q&A pairs with metadata\nEdit Queue: Review and edit incorrect submissions"
-    )
+    # Create three columns for the buttons
+    col1, col2, col3 = st.columns(3)
+    
+    queue_selection = None
+    
+    with col1:
+        if st.button("📝 Short Queue", key="short_btn", help="Audit short question-answer pairs for correctness", use_container_width=True):
+            queue_selection = "Short Queue"
+    
+    with col2:
+        if st.button("📚 Medium & Long Queue", key="medium_long_btn", help="Audit medium/long Q&A pairs with metadata", use_container_width=True):
+            queue_selection = "Medium and Long Queue"
+    
+    with col3:
+        if st.button("✏️ Edit Queue", key="edit_btn", help="Review and edit incorrect submissions", use_container_width=True):
+            queue_selection = "Edit Queue"
+    
     st.markdown("</div>", unsafe_allow_html=True)
 
     # === LOGOUT BUTTON ===
@@ -252,15 +304,34 @@ def main():
         st.rerun()
 
     # === ROUTE TO APPROPRIATE QUEUE ===
-    if queue_selection == "Short Queue":
-        from short_queue import handle_short_queue
-        handle_short_queue(intern_id, db)
-    elif queue_selection == "Medium and Long Queue":
-        from medium_long_queue import handle_medium_long_queue
-        handle_medium_long_queue(intern_id, db)
-    elif queue_selection == "Edit Queue":
-        from edit_queue import handle_edit_queue
-        handle_edit_queue(intern_id, db)
+    if queue_selection:
+        if queue_selection == "Short Queue":
+            from short_queue import handle_short_queue
+            handle_short_queue(intern_id, db)
+        elif queue_selection == "Medium and Long Queue":
+            from medium_long_queue import handle_medium_long_queue
+            handle_medium_long_queue(intern_id, db)
+        elif queue_selection == "Edit Queue":
+            from edit_queue import handle_edit_queue
+            handle_edit_queue(intern_id, db)
+    else:
+        # Show description for each queue when no selection is made
+        st.markdown("---")
+        st.markdown("### Queue Descriptions:")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("**📝 Short Queue**")
+            st.markdown("Audit short question-answer pairs for correctness. Quick review of basic Q&A content.")
+        
+        with col2:
+            st.markdown("**📚 Medium & Long Queue**")
+            st.markdown("Audit medium and long Q&A pairs along with their metadata. More detailed content review.")
+        
+        with col3:
+            st.markdown("**✏️ Edit Queue**")
+            st.markdown("Review and edit incorrect submissions. Fix content that needs corrections.")
 
 if __name__ == "__main__":
     main()
