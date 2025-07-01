@@ -22,6 +22,11 @@ def handle_short_queue(intern_id, db):
 
     st.subheader("📝 Short Q&A Auditing")
     st.markdown("Audit short question-answer pairs for correctness.")
+    
+    # Back button
+    if st.button("⬅️ Back to Queue Selection", key="back_to_main"):
+        st.session_state.current_page = "queue_selection"
+        st.rerun()
 
     # Initialize session state
     for key in ["eligible_id", "deadline", "assigned_time", "judged",

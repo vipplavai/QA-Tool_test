@@ -272,66 +272,81 @@ def main():
     st.title("🔍 JNANA – Enhanced QA Auditing Tool")
     st.markdown(f"Hello, **{first} {last}**! Your Intern ID: **{intern_id}**.")
 
-    # === QUEUE SELECTION ===
+    # Initialize session state for page navigation
+    if "current_page" not in st.session_state:
+        st.session_state.current_page = "queue_selection"
+
+    # Check if we should show a specific queue page
+    if st.session_state.current_page != "queue_selection":
+        # Show back button
+        if st.button("⬅️ Back to Queue Selection"):
+            st.session_state.current_page = "queue_selection"
+            st.rerun()
+        
+        # Route to the appropriate queue handler
+        if st.session_state.current_page == "short_queue":
+            from short_queue import handle_short_queue
+            handle_short_queue(intern_id, db)
+            return
+        elif st.session_state.current_page == "medium_long_queue":
+            from medium_long_queue import handle_medium_long_queue
+            handle_medium_long_queue(intern_id, db)
+            return
+        elif st.session_state.current_page == "edit_queue":
+            from edit_queue import handle_edit_queue
+            handle_edit_queue(intern_id, db)
+            return
+
+    # === QUEUE SELECTION PAGE ===
     st.markdown("<div class='queue-selector'>", unsafe_allow_html=True)
     st.subheader("📋 Select Auditing Queue")
     
     # Create three columns for the buttons
     col1, col2, col3 = st.columns(3)
     
-    queue_selection = None
-    
     with col1:
         if st.button("📝 Short Queue", key="short_btn", help="Audit short question-answer pairs for correctness", use_container_width=True):
-            queue_selection = "Short Queue"
+            st.session_state.current_page = "short_queue"
+            st.rerun()
     
     with col2:
         if st.button("📚 Medium & Long Queue", key="medium_long_btn", help="Audit medium/long Q&A pairs with metadata", use_container_width=True):
-            queue_selection = "Medium and Long Queue"
+            st.session_state.current_page = "medium_long_queue"
+            st.rerun()
     
     with col3:
         if st.button("✏️ Edit Queue", key="edit_btn", help="Review and edit incorrect submissions", use_container_width=True):
-            queue_selection = "Edit Queue"
+            st.session_state.current_page = "edit_queue"
+            st.rerun()
     
     st.markdown("</div>", unsafe_allow_html=True)
 
+    # Show queue descriptions
+    st.markdown("---")
+    st.markdown("### Queue Descriptions:")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("**📝 Short Queue**")
+        st.markdown("Audit short question-answer pairs for correctness. Quick review of basic Q&A content.")
+    
+    with col2:
+        st.markdown("**📚 Medium & Long Queue**")
+        st.markdown("Audit medium and long Q&A pairs along with their metadata. More detailed content review.")
+    
+    with col3:
+        st.markdown("**✏️ Edit Queue**")
+        st.markdown("Review and edit incorrect submissions. Fix content that needs corrections.")
+
     # === LOGOUT BUTTON ===
+    st.markdown("---")
     if st.button("🔒 Logout"):
         for k in list(st.session_state.keys()):
             if k not in ["global_config", "secrets"]:
                 del st.session_state[k]
         st.success("🎉 You have been logged out.")
         st.rerun()
-
-    # === ROUTE TO APPROPRIATE QUEUE ===
-    if queue_selection:
-        if queue_selection == "Short Queue":
-            from short_queue import handle_short_queue
-            handle_short_queue(intern_id, db)
-        elif queue_selection == "Medium and Long Queue":
-            from medium_long_queue import handle_medium_long_queue
-            handle_medium_long_queue(intern_id, db)
-        elif queue_selection == "Edit Queue":
-            from edit_queue import handle_edit_queue
-            handle_edit_queue(intern_id, db)
-    else:
-        # Show description for each queue when no selection is made
-        st.markdown("---")
-        st.markdown("### Queue Descriptions:")
-        
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.markdown("**📝 Short Queue**")
-            st.markdown("Audit short question-answer pairs for correctness. Quick review of basic Q&A content.")
-        
-        with col2:
-            st.markdown("**📚 Medium & Long Queue**")
-            st.markdown("Audit medium and long Q&A pairs along with their metadata. More detailed content review.")
-        
-        with col3:
-            st.markdown("**✏️ Edit Queue**")
-            st.markdown("Review and edit incorrect submissions. Fix content that needs corrections.")
 
 if __name__ == "__main__":
     main()
