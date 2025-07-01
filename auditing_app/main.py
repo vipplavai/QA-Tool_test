@@ -283,19 +283,20 @@ def main():
             st.session_state.current_page = "queue_selection"
             st.rerun()
         
-        # Route to the appropriate queue handler
-        if st.session_state.current_page == "short_queue":
-            from short_queue import handle_short_queue
-            handle_short_queue(intern_id, db)
-            return
-        elif st.session_state.current_page == "medium_long_queue":
-            from medium_long_queue import handle_medium_long_queue
-            handle_medium_long_queue(intern_id, db)
-            return
-        elif st.session_state.current_page == "edit_queue":
-            from edit_queue import handle_edit_queue
-            handle_edit_queue(intern_id, db)
-            return
+        # Show loading spinner and route to the appropriate queue handler
+        with st.spinner("Loading queue..."):
+            if st.session_state.current_page == "short_queue":
+                from short_queue import handle_short_queue
+                handle_short_queue(intern_id, db)
+                return
+            elif st.session_state.current_page == "medium_long_queue":
+                from medium_long_queue import handle_medium_long_queue
+                handle_medium_long_queue(intern_id, db)
+                return
+            elif st.session_state.current_page == "edit_queue":
+                from edit_queue import handle_edit_queue
+                handle_edit_queue(intern_id, db)
+                return
 
     # === QUEUE SELECTION PAGE ===
     st.markdown("<div class='queue-selector'>", unsafe_allow_html=True)
@@ -306,18 +307,21 @@ def main():
     
     with col1:
         if st.button("📝 Short Queue", key="short_btn", help="Audit short question-answer pairs for correctness", use_container_width=True):
-            st.session_state.current_page = "short_queue"
-            st.rerun()
+            with st.spinner("Loading Short Queue..."):
+                st.session_state.current_page = "short_queue"
+                st.rerun()
     
     with col2:
         if st.button("📚 Medium & Long Queue", key="medium_long_btn", help="Audit medium/long Q&A pairs with metadata", use_container_width=True):
-            st.session_state.current_page = "medium_long_queue"
-            st.rerun()
+            with st.spinner("Loading Medium & Long Queue..."):
+                st.session_state.current_page = "medium_long_queue"
+                st.rerun()
     
     with col3:
         if st.button("✏️ Edit Queue", key="edit_btn", help="Review and edit incorrect submissions", use_container_width=True):
-            st.session_state.current_page = "edit_queue"
-            st.rerun()
+            with st.spinner("Loading Edit Queue..."):
+                st.session_state.current_page = "edit_queue"
+                st.rerun()
     
     st.markdown("</div>", unsafe_allow_html=True)
 

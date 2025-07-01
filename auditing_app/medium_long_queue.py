@@ -23,11 +23,6 @@ def handle_medium_long_queue(intern_id, db):
 
     st.subheader("📚 Medium & Long Q&A Auditing")
     st.markdown("Audit medium and long question-answer pairs along with their metadata.")
-    
-    # Back button
-    if st.button("⬅️ Back to Queue Selection", key="back_to_main_ml"):
-        st.session_state.current_page = "queue_selection"
-        st.rerun()
 
     # Initialize session state
     for key in ["ml_content_id", "ml_deadline", "ml_assigned_time", "ml_submitted"]:

@@ -16,11 +16,6 @@ def handle_edit_queue(intern_id, db):
 
     st.subheader("✏️ Edit Queue")
     st.markdown("Review and edit incorrect submissions from the Medium & Long queue.")
-    
-    # Back button
-    if st.button("⬅️ Back to Queue Selection", key="back_to_main_edit"):
-        st.session_state.current_page = "queue_selection"
-        st.rerun()
 
     # Get pending edit items
     edit_items = list(edit_queue_col.find({"status": "pending"}).sort("timestamp", 1))
