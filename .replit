@@ -11,3 +11,15 @@ run = ["sh", "-c", "streamlit run app_working.py"]
 [[ports]]
 localPort = 8501
 externalPort = 80
+
+[workflows]
+runButton = "Run Enhanced Auditing App"
+
+[[workflows.workflow]]
+name = "Run Enhanced Auditing App"
+author = 44492663
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd auditing_app && python database_setup.py && streamlit run main.py"
